@@ -4,6 +4,7 @@ So this is an ongoing process to give myself a professional appearance online.
 
 So far, so good. Will 'go live' at some point.
 
+Coming soon!
 
 
 ***
