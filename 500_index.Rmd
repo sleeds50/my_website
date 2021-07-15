@@ -1,0 +1,29 @@
+---
+title: "Short articles"
+output: 
+  html_document:
+    toc: FALSE
+---
+
+```{r libs, echo=FALSE}
+
+library(fontawesome)
+
+```
+
+# {.tabset}
+
+## <u>Social<br> psychology</u>
+
+
+1. [__...coming soon__](./aboutme.html)
+
+_Short description_
+
+
+## <u>Occupational<br> psychology</u>
+
+
+1. [__...coming soon__](./aboutme.html)
+
+_Short description_

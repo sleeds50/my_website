@@ -1,0 +1,21 @@
+---
+title: "R- interesting things"
+output: 
+  html_document:
+    toc: FALSE
+---
+
+```{r libs, echo=FALSE}
+
+library(fontawesome)
+
+```
+
+# <u>Index</u>
+
+<br>
+
+## [...coming soon](./aboutme.html)
+_Short description_
+
+## ...

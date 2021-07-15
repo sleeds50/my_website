@@ -1,0 +1,21 @@
+---
+title: "More about me"
+output: 
+  html_document:
+    toc: FALSE
+---
+
+
+![_Stuart M. Leeds, MBPsS_](./images/me2020sq.jpg){height=165}
+
+So, my main interests are:
+
+## Social psychology
+
+## Occupational psychology
+
+## R-programming/RStudio
+
+<br>
+
+__(Soc + Occ)psych/R__ combines them all.
