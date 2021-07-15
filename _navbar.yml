@@ -1,0 +1,28 @@
+name: "Mywebsite"
+title: "(Soc + Occ)Psych/R"
+type: inverse
+left:
+  - text: "About"
+    menu:
+      - text: "Who am I?"
+        href: ./aboutme.html
+  - text: "500's"
+    menu:
+       - text: "Index"
+         href: ./500_index.html
+  - text: "Projects"
+    menu:
+       - text: "Index"
+         href: ./project_index.html
+  - text: "Contact"
+    menu:
+       - text: "Email"
+         href: mailto:sleeds40@gmail.com
+
+right:
+  - icon: fa-envelope fa-lg
+    href: mailto:sleeds40@gmail.com
+  - icon: fa-github fa-lg
+    href: https://github.com/sleeds50/
+  - icon: fa-linkedin fa-lg
+    href: https://www.linkedin.com/in/stuart-leeds2020/
