@@ -32,7 +32,7 @@ _One of the  modules for my MSc was Applying Psychology to Work & Organisations 
 ## <u>R-<br> interesting things</u>
 
 
-1. [Places I have lived](./places_lived.html)
+1. [__Places I have lived__](./places_lived.html)
 
 _This is a short RMarkdown referring to the places I have lived since birth_
 
