@@ -1,0 +1,456 @@
+---
+title: "Places I have lived"
+author: "Stuart Leeds"
+date: "2021-07-14"
+output: 
+  html_document:
+    toc: FALSE
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE
+)
+```
+
+>It occurred to me that I have lived in many places during my lifetime. This is a basic run-down of them all, giving rough locations as coordinates. I might return to it at some point and add dates, but this will do for now.
+
+Let's begin by loading the libraries for the code:
+
+```{r libraries}
+library(tidyverse)
+library(maps)
+library(mapproj)
+library(leaflet)
+library(kableExtra)
+library(ggrepel)
+```
+
+(_Side-note_. I'm sure there are easier, more efficient ways to do this, I might re-visit and cut down the code). Anyway...
+
+# 1. Locations
+
+These are the places I have lived. Let me state that the list only includes places where I have lived with parents as a child and young adult (items 1:8); and places that I have officially rented or mortgaged as an adult (items 9:end). Furthermore, if memory serves, we lived in two properties in Kuwait, two in Bahrain; and I rented twice in Addlestone.
+
+I have not included sofa-surfing or temporary dwellings. The list represents the order of properties lived in, from birth to now (some 50 years later!)
+
+>_A note on the code to generate the tables and plots in this document: feel free to use it and change details to suit your needs - or improve it (if you do, please email me to say how you did it better - we're all learning, right?)_.
+
+First, the data frame...
+
+```{r dwellings}
+
+# create data frame
+dwellings <- data.frame(
+  List = 1:18,Address = c(
+    "Abridge, Essex",
+    "Stansted, Essex",
+    "Kuwait City, Kuwait",
+    "Manama, Bahrain",
+    "Pilgrims Hatch, Essex",
+    "Chertsey, Surrey",
+    "Stradishall, Suffolk",
+    "Cowlinge, Suffolk",
+    "Addlestone, Surrey",
+    "Twickenham, Middlesex",
+    "Twickenham, Middlesex",
+    "Bedfont Green, Middlesex",
+    "Jaywick, Essex",
+    "Harwich, Essex",
+    "Harwich, Essex",
+    "Ipswich, Suffolk",
+    "Bath, Somerset",
+    "Bath, Somerset"
+  ),
+  Latitude = c(
+    51.651447,
+    51.9070471,
+    29.3797091,
+    26.2235041,
+    51.6357161,
+    51.378971,
+    52.139740,
+    52.158376,
+    51.371280,
+    51.438541,
+    51.434900,
+    51.450761,
+    51.776301,
+    51.933189,
+    51.932645,
+    52.068666,
+    51.394750,
+    51.392352
+  ),
+  Longitude = c(
+    0.124044,
+    0.2017505,
+    47.9735629,
+    50.5822436,
+    0.2945186,
+    -0.520269,
+    0.516622,
+    0.506907,
+    -0.489646,
+    -0.336711,
+    -0.332810,
+    -0.439600,
+    1.119079,
+    1.274589,
+    1.275031,
+    1.130408,
+    -2.388744,
+    -2.384639
+  )
+)
+```
+
+It's technically pointless to include a table because you can see all the variable data above, i just like tables - and you can see the information at a glance, instead of trying to find and link each row in the format above.
+
+```{r main table}
+dwellings |>
+  kbl(caption = "<b>Table 1</b><br> <i>Places I have lived</i>") |>
+  kable_classic_2(full_width = FALSE, position = "left")
+```
+
+These next two code-chunks create the variables for the mean and median coordinates, which come in handy later on when we plot them.
+
+```{r mean coords}
+meanCoords <- data.frame(
+  row.names = c(
+    "Worldwide",
+    "England"
+  ),
+  Latitude = c(
+    mean(dwellings$Latitude),
+    mean(dwellings[-c(3:4), ]$Latitude)
+  ),
+  Longitude = c(
+    mean(dwellings$Longitude),
+    mean(dwellings[-c(3:4), ]$Longitude)
+  ),
+  Place = c(
+    "Génicourt-sur-Meuse, France",
+    "Cheshunt, Hertfordshire, England"
+  )
+)
+```
+
+```{r median coords}
+medianCoords <- data.frame(
+  row.names = c(
+    "Worldwide",
+    "England"
+  ),
+  Latitude = c(
+    median(dwellings$Latitude),
+    median(dwellings[-c(3:4), ]$Latitude)
+  ),
+  Longitude = c(
+    median(dwellings$Longitude),
+    median(dwellings[-c(3:4), ]$Longitude)
+  ),
+  Place = c(
+    "Upminster, Essex, England",
+    "Stapleford Abbotts, Essex, England"
+  )
+)
+```
+
+# 2. Interactive map
+
+The coordinates are pin-pointed on a world map (use +/- zoom functions and left-click[hold]/drag to pan).
+
+* __Orange circles:__ points of all places lived.
+
+* __Green circles:__ _mean_ average location of all coordinates in _Table 1_ (see _Table 2_ for details)
+
+* __Red circles:__ _median_ average locations of all coordinates in _Table 1_ (see _Table 3_ for details)
+
+```{r map}
+worldMap <- with(dwellings, leaflet() |>
+  addTiles() |>
+  addCircleMarkers(
+    lng = Longitude,
+    lat = Latitude,
+    color = "darkorange", label = List
+  )) |>
+  addCircleMarkers(
+    lng = meanCoords[1, 2],
+    lat = meanCoords[1, 1], color = "green"
+  ) |>
+  addCircleMarkers(
+    lng = meanCoords[2, 2],
+    lat = meanCoords[2, 1], color = "green"
+  ) |>
+  addCircleMarkers(
+    lng = medianCoords[1, 2],
+    lat = medianCoords[1, 1], color = "red"
+  ) |>
+  addCircleMarkers(
+    lng = medianCoords[2, 2],
+    lat = medianCoords[2, 1], color = "red"
+  )
+
+worldMap
+```
+
+# 3a. Static plots
+
+## Global view of places lived
+
+```{r map plot}
+ggplot(dwellings, aes(x = Longitude, y = Latitude)) +
+  geom_point(
+    pch = 19,
+    colour = dwellings$List,
+    size = 2
+  ) +
+  coord_map(projection = "globular") +
+  geom_vline(xintercept = -0.0076589) +
+  geom_hline(yintercept = 51.4825766) +
+  labs(
+    title = "Coordinate plot: Worldwide",
+    caption = "Note. Coordinates intercept at Greenwich, London"
+  ) +
+  theme(plot.caption = element_text(hjust = 0, face = "italic"))
+```
+
+## The expanse of locations in England
+
+```{r map uk plot}
+ggplot(dwellings, aes(x = Longitude, y = Latitude)) +
+  xlim(-2.5, 1.5) +
+  ylim(51, 52.5) +
+  geom_point(
+    colour = dwellings$Latitude,
+    size = 3
+  ) +
+  geom_text_repel(
+    label = dwellings$List
+  ) +
+  coord_map(projection = "globular") +
+  geom_vline(xintercept = -0.0076589) +
+  geom_hline(yintercept = 51.4825766) +
+  labs(
+    title = "Coodinate plot: England",
+    caption = "Note. Coordinates intercept at Greenwich, London"
+  ) +
+  theme(plot.caption = element_text(hjust = 0, face = "italic"))
+```
+
+You can see that the places lived in England have mainly been between $51^{\circ}$ and $52^{\circ}$ latitude; and between $-2.5^{\circ}$ and $1.5^{\circ}$" longitude (quite a small area, considering). The numbers represent the order in which the places were lived.
+
+It is interesting that although numerous; and despite the huge leap between locations 2 and 5 (3 and 4 abroad), the places lived are in relatively tight clusters suggesting that I've enjoyed a local familiarity for a while before needing/having to move on.
+
+The clusters are divided across counties, as follows. 
+
+
+# 3b. Breaking down into counties: 
+
+## Essex and Suffolk
+
+```{r map Essex plot}
+ggplot(dwellings, aes(x = Longitude, y = Latitude)) +
+  xlim(-0.1, 1.3) +
+  ylim(51.4, 52.2) +
+  geom_point(
+    colour = dwellings$List,
+    size = 3
+  ) +
+  geom_text_repel(
+    label = dwellings$List
+  ) +
+  coord_map(projection = "globular") +
+  geom_vline(xintercept = -0.0076589) +
+  geom_hline(yintercept = 51.4825766) +
+  labs(
+    title = "Coodinate plot: Essex and Suffolk",
+    caption = "Note. Coordinates intercept at Greenwich, London"
+  ) +
+  theme(plot.caption = element_text(hjust = 0, face = "italic"))
+```
+
+## Surrey and Middlesex
+
+```{r map Surrey/middx plot}
+ggplot(dwellings, aes(x = Longitude, y = Latitude)) +
+  xlim(-0.55, 0.001) +
+  ylim(51.35, 51.49) +
+  geom_point(
+    colour = dwellings$List,
+    size = 3
+  ) +
+  geom_text_repel(
+    label = dwellings$List
+  ) +
+  coord_map(projection = "globular") +
+  geom_vline(xintercept = -0.0076589) +
+  geom_hline(yintercept = 51.4825766) +
+  labs(
+    title = "Coodinate plot: Surrey/Middlesex",
+    caption = "Note. Coordinates intercept at Greenwich, London"
+  ) +
+  theme(plot.caption = element_text(hjust = 0, face = "italic"))
+```
+
+## Somerset
+
+```{r map Bath plot}
+ggplot(dwellings, aes(x = Longitude, y = Latitude)) +
+  xlim(-2.4, 0.01) +
+  ylim(51.3, 51.5) +
+  geom_point(
+    colour = dwellings$List,
+    size = 3
+  ) +
+  geom_text_repel(
+    label = dwellings$List
+  ) +
+  coord_map(projection = "globular") +
+  geom_vline(xintercept = -0.0076589) +
+  geom_hline(yintercept = 51.4825766) +
+  labs(
+    title = "Coodinate plot: London to Somerset",
+    caption = "Note. Coordinates intercept at Greenwich, London"
+  ) +
+  theme(plot.caption = element_text(hjust = 0, face = "italic"))
+```
+
+# 3c. Mean and Median locations
+
+I thought it would be interesting to know the mean and median locations of where I have lived in the world; and in England.
+
+Table 2 shows the mean coordinates of both the worldwide locations; and the England locations from Table 1. In my mind, these give an indication of where I  should be living according to the average coordinates of where I actually _have_ lived.
+
+I quite fancy __Génicourt-sur-Meuse, France__. I've never been there, but it sounds like it would suit me. Ironically, I worked in Cheshunt for a fair while until I was made redundant.
+
+## Mean coordinates
+
+```{r mean coords table}
+meanCoords |>
+  kbl(caption = "Table 2: Average coordinates (mean)") |>
+  kable_classic_2(full_width = FALSE, position = "left")
+```
+
+```{r mean avg coords plot}
+ggplot(meanCoords, aes(x = Longitude, y = Latitude)) +
+  xlim(-1, 10) +
+  ylim(49, 53) +
+  geom_point(
+    colour = "green",
+    size = 5
+  ) +
+  geom_text_repel(
+    label = meanCoords$Place,
+    nudge_x = 3, nudge_y = 0.5
+  ) +
+  coord_map(projection = "globular") +
+  geom_vline(xintercept = -0.0076589) +
+  geom_hline(yintercept = 51.4825766) +
+  labs(
+    title = "Coodinate plot: the average (mean) of all coordinates",
+    caption = "Note. Coordinates intercept at Greenwich, London"
+  ) +
+  theme(plot.caption = element_text(hjust = 0, face = "italic"))
+```
+
+## Median coordinates
+
+Table 3 shows the median coordinates of both the worldwide locations; and the England locations from Table 1. So these will be the absolute mid-point places to live according to both options.
+
+```{r median coords table}
+medianCoords |>
+  kbl(caption = "Table 3: Average coordinates (median)") |>
+  kable_classic_2(full_width = FALSE, position = "left")
+```
+
+<br>
+
+>_Note._ The irony of the median coordinate plot is that both locations from the worldwide and England coordinates are a stones throw from where I was born! (Shown with an asterisk on the following map - see note).
+
+```{r med coords plot}
+ggplot(medianCoords, aes(x = Longitude, y = Latitude)) +
+  xlim(-1, 2.5) +
+  ylim(51, 52) +
+  geom_point(
+    colour = "red",
+    size = 5
+  ) +
+  geom_text_repel(
+    label = medianCoords$Place, 
+    nudge_x = 1, nudge_y = 0.1
+  ) +
+  coord_map(projection = "globular") +
+  geom_vline(xintercept = -0.0076589) +
+  geom_hline(yintercept = 51.4825766) +
+  geom_point(x = 0.176, y = 51.5655, pch = 8, size = 2) +
+  labs(
+    title = "Coodinate plot: the average (median) of all coordinates",
+    caption = "Note. Coordinates intercept at Greenwich, London
+            * = Rush Green, Dagenham"
+  ) +
+  theme(plot.caption = element_text(hjust = 0, face = "italic"))
+```
+
+So for fun, we'll use the `distm` function from the `geosphere` package to calculate the distances between coordinates in metres (found on [Statistics Globe](https://statisticsglobe.com/geospatial-distance-between-two-points-in-r) - actually a good site for many explanations of R-functions).
+
+Once installed and loaded, I realised I needed another variable to hold the _Rush Green _ coordinates. Then, I found out that `distm` needs the longitude and latitude in that order, so had to reverse the two columns in my original mean/median variables, then combined the two new variables into one.
+
+
+```{r}
+# install.packages("geosphere")
+
+# load additional "geosphere" library
+library(geosphere) 
+
+# create rush_green coordinate variable
+rush_green <- c(Longitude = 0.176, 
+                Latitude = 51.5655, 
+                Place = "Dagenham, Essex, England") 
+
+# create new median coords variable and swap long. and lat. variables because that's how `distm` likes it
+median_coord_swap <- medianCoords |> 
+  relocate(Longitude, .before = Latitude)
+
+#  and combine row 2 with rush_to_stapleford variable
+rush_to_stapleford <- median_coord_swap[2,] |> 
+  rbind(rush_green)
+
+# calculate distance between median places (Apply distm function)
+dist_median <- distm(rush_to_stapleford[, 1:2], fun = distGeo)
+
+# Print distance matrix
+dist_median
+```
+...and the same for the mean of places...
+
+```{r}
+
+# new rush_to_upminster variable combined with row 1 of median swap variable
+rush_to_upminster <- median_coord_swap[1,] |> 
+  rbind(rush_green)
+
+# calculate mean distance
+dist_mean <- distm(rush_to_upminster[, 1:2], fun = distGeo)
+
+# print matrix
+dist_mean
+
+```
+
+## Summary
+
+I used [this website](https://www.convertunits.com/from/meters/to/miles) (others are available!) to convert metres to miles (not sure if the site specifies US miles, as others have done, or preferred UK miles (is there a difference?) - but it's good enough for this purpose)
+
+>It's enough to give a guide to how close _Rush Green_ is to each of the median locations:  
+* Stapleford Abbotts = 8.73Km (5.43 miles) away  
+
+>and to the median point of the worldwide locations...  
+* Upminster = 5.58Km (3.47 miles) away.
+
+This has been an interesting project - thanks for reading. I might take it further one day; and tell the story of each place and why I moved so many times. I'm sure that the average moves during a lifetime is far fewer than what I have achieved here. Does it mean I haven't settled anywhere? Or is it acting on circumstances? A mixture of both? Why have I laid my hat in; and called so many different locations, home? 
+
+(Social) psychology describes these transitional moments of upheaval as `ruptures` [(Zittoun, 2006, p. 5)](https://www.google.co.uk/books/edition/Transitions/ivgnDwAAQBAJ?hl=en&gbpv=1&pg=PR1&printsec=frontcover), since they can cause stress and disruption to 'normal' life (whatever _that_ is). Maybe it explains a few things?

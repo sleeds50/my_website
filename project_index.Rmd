@@ -1,0 +1,39 @@
+---
+title: "Projects"
+output: 
+  html_document:
+    toc: FALSE
+---
+
+```{r libs, echo=FALSE}
+
+library(fontawesome)
+
+```
+
+# {.tabset}
+
+## <u>Social<br> psychology</u>
+
+
+1. [__...coming soon__](./aboutme.html)
+
+_Short description_
+
+
+## <u>Occupational<br> psychology</u>
+
+
+1. [__It’s never too late to learn new things__](./apwo.html)
+
+_One of the  modules for my MSc was Applying Psychology to Work & Organisations (APWO). A requirement was to write a short blog-post about the experience. Given that the work was undertaken during the Covid19 pandemic, suffice to say it was conducted remotely._
+
+
+## <u>R-<br> interesting things</u>
+
+
+1. [Places I have lived](./places_lived.html)
+
+_This is a short RMarkdown referring to the places I have lived since birth_
+
+
