@@ -4,6 +4,8 @@ output:
   html_document:
     theme: journal
     highlight: textmate
+    include:
+      after_body: footer.html
     toc: true
     toc_depth: 2
     toc_float:

@@ -59,6 +59,8 @@ Thanks to _Andreas Handel_ for the [build tutorial](https://www.andreashandel.co
 You'll find additional links to potentially useful R Markdown (and Github) 
 resources there"_.
 
+***
+
 
 ## <u>Qualifications</u>
 
@@ -68,7 +70,7 @@ Dissertation title:- "Engagement at work: investigating the relationships betwee
 groups, gender, personality; and trait EI."
 
 ### BSc (Honours) Social Psychology
-_2016-2020, The Open University_, (part-time, 2016-2018)
+_2016-2020, The Open University, (part-time, 2016-2018)_
 
 #### Data Science: Foundations in using R specialisation
 _2020, Coursera_
@@ -78,8 +80,11 @@ _2020, Coursera_
 ### <u>Societies</u>
 
 #### Graduate member
-_2020, The British Psychological Society_  
+_2020-present, The British Psychological Society_  
 (Student member 2017-2020)
+
+***
+
 
 
 ## <u>Employment</u>
@@ -91,3 +96,6 @@ After acheiving my BSc (Honours) Social Psychology in 2020, I decided to educate
 Before I decided to concentrate wholly on my (then) undergraduate degree in 2018, I had been in full-time employment since leaving secondary education. Various short-lived jobs filled the gap before I undertook an electrical apprenticeship in 1989; and I continued working in several electrical disciplines for 29 years. These included; and are not limited to: maintenance of university estate; technical drawing; inspection & testing; installation and maintenance of sewage treatment plants; and finally, maintenance of utility scale solar sites (LV/HV; AC/DC supplies) in the UK. Each job allowed me to train; and transfer new skills and abilities; honing my focus, dedication, and commitment.
 
 <u>Full CV on request</u>
+
+***
+
