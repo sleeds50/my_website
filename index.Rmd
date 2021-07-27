@@ -5,116 +5,103 @@ output:
     toc: FALSE
 ---
 
+![*Stuart M. Leeds, MBPsS*](./images/me2020sq.jpg){height="165"}
 
-![_Stuart M. Leeds, MBPsS_](./images/me2020sq.jpg){height=165}
+**Welcome to my website!**
 
-__Welcome to my website!__
-
-# {.tabset}
+#  {.tabset}
 
 ## <u>Introduction</u>
 
 ### Thanks for stopping by!
 
-
 The title of this site incorporates my interests in qualified areas of psychology (Social + Occupational), along with additional interest in R-programming (with RStudio, of course).
 
-My intention for creating this website was to promote a personal; and professional, 
-on-line presence to keep things in one accessible place.
+My intention for creating this website was to promote a personal; and professional, on-line presence to keep things in one accessible place.
 
 #### <u>The menu bar</u>
+
 Click the links in the menu above and look around....
 
 #### <u>(Soc + Occ)psych/R:</u>
+
 Returns to this page.
 
 #### <u>About:</u>
+
 Brief information of my interests which explains the website name.
 
 #### <u>500's:</u>
-I intend to start writing on my subjects of psychological interest. Each entry should have
-around 500 words (+/- 10%!)
+
+I intend to start writing on my subjects of psychological interest. Each entry should have around 500 words (+/- 10%!)
 
 #### <u>Projects:</u>
-Links to various Social & Occupational psychology projects I've conducted, or been involved
-with; and items of interest regarding R-programming 
-(my own or things I've found).
+
+Links to various Social & Occupational psychology projects I've conducted, or been involved with; and items of interest regarding R-programming (my own or things I've found).
 
 #### <u>Contact:</u>
+
 A direct link to my personal email address (prompt responses).
 
 On the right-hand side, you'll see links to my email, Github and LinkedIn profiles.
 
-<br>
-<br>
-<br>
+<br> <br> <br>
 
 #### <u>Note:</u>
-This website is a collection of regular (R)Markdown documents, so you can use 
-all the usual formatting. If you are new to R Markdown, you can learn more about it 
-[on the R Markdown website](https://rmarkdown.rstudio.com/). 
 
-__<u>Credit:</u>__
+This website is a collection of regular (R)Markdown documents, so you can use all the usual formatting. If you are new to R Markdown, you can learn more about it [on the R Markdown website](https://rmarkdown.rstudio.com/).
 
-Thanks to _Andreas Handel_ for the [build tutorial](https://www.andreashandel.com/post/github-website/); who adds:
+<u>Credit:</u>
 
->_"I also have a discussion of R Markdown and reproducibility [on one of my course pages](https://andreashandel.github.io/MADAcourse/1e_ToolsforReproducibility.html). 
-You'll find additional links to potentially useful R Markdown (and Github) 
-resources there"_.
+Thanks to *Andreas Handel* for the [build tutorial](https://www.andreashandel.com/post/github-website/); who adds:
 
-***
+> *"I also have a discussion of R Markdown and reproducibility [on one of my course pages](https://andreashandel.github.io/MADAcourse/1e_ToolsforReproducibility.html). You'll find additional links to potentially useful R Markdown (and Github) resources there".*
 
+------------------------------------------------------------------------
 
 ## <u>Qualifications</u>
 
-### MSc Occupational Psychology
-_2020-2021, University of the West of England (UWE)_  
-Dissertation title:- _"Engagement at work: investigating the relationships between age
-groups, gender, personality; and trait EI."_
+### MSc Occupational Psychology<span style="color: tomato;">$^1$</span>
 
-### BSc (Honours) Social Psychology
-_2016-2020, The Open University, (part-time, 2016-2018)_
+*2020-2021, University of the West of England (UWE)*
+
+**Dissertation title:** *"Engagement at work: investigating the relationships between age groups, gender, personality; and trait EI."*
+
+### BSc (Honours) Social Psychology<span style="color: tomato;">$^2$</span>
+
+*2016-2020, The Open University (OU; part-time: 2016-2018)*
+
+------------------------------------------------------------------------
 
 #### Data Science: Foundations in using R specialisation
-_2020, Coursera_
 
-***
+*2020, Coursera*
+
+------------------------------------------------------------------------
 
 ### <u>Societies</u>
 
 #### Graduate member
-_2020-present, The British Psychological Society_  
+
+*2020-present, The British Psychological Society (BPS)*\
 (Student member 2017-2020)
 
-***
+------------------------------------------------------------------------
 
-
+<span style="color: tomato;">1, 2:</span> <small>accredited by the BPS</small>
 
 ## <u>Employment</u>
 
 ### Now
-After acheiving my BSc (Honours) Social Psychology (grade 2.1) in 2020, I decided to educate myself 
-further (mainly due to the Covid19 pandemic!), by studying a full-time MSc Occupational
-Psychology, in the hope after completion, of finding a more suitable role for my interests 
-and needs. Ideally, I am looking for assistant researcher; assistant Occupational Psychologist
-positions or Social Psychology roles. I'm willing to combine both areas of interest,
-obviously; and have a keen interest in R-programming, to accompany SPSS and JASP skills. I
-also have a working knowledge of Nvivo and RQDA for qualitative analysis.
 
-* Additional transferable skills include: dedication, honesty, fortitude, attention to detail,
-data analysis, report writing, use of the usual MS-Office packages.
+After achieving my BSc (Honours) Social Psychology (grade 2.1) in 2020, I decided to educate myself further (mainly due to the Covid19 pandemic!), by studying a full-time MSc Occupational Psychology, in the hope after completion, of finding a more suitable role for my interests and needs. Ideally, I am looking for assistant researcher; assistant Occupational Psychologist positions or Social Psychology roles. I'm willing to combine both areas of interest, obviously; and have a keen interest in R-programming, to accompany SPSS and JASP skills. I also have a working knowledge of Nvivo and RQDA for qualitative analysis.
+
+-   Additional transferable skills include: dedication, honesty, fortitude, attention to detail, data analysis, report writing, use of the usual MS-Office packages.
 
 ### Then
-Before I decided to concentrate wholly on my (then) undergraduate degree in 2018, I had been
-in full-time employment since leaving secondary education. Various short-lived jobs filled the
-gap before I undertook an electrical apprenticeship in 1989; and I continued working in
-several electrical disciplines for 29 years. These included; and are not limited to:
-maintenance of university estate; technical drawing; inspection & testing; installation and
-maintenance of sewage treatment plants; and finally, maintenance of utility scale solar sites
-(LV/HV; AC/DC supplies) in the UK. Each job allowed me to train; and transfer new skills and
-abilities; honing my focus, dedication, and commitment.
 
-* <u>Full CV on request</u>
+Before I decided to concentrate wholly on my (then) undergraduate degree in 2018, I had been in full-time employment since leaving secondary education. Various short-lived jobs filled the gap before I undertook an electrical apprenticeship in 1989; and I continued working in several electrical disciplines for 29 years. These included; and are not limited to: maintenance of university estate; technical drawing; inspection & testing; installation and maintenance of sewage treatment plants; and finally, maintenance of utility scale solar sites (LV/HV; AC/DC supplies) in the UK. Each job allowed me to train; and transfer new skills and abilities; honing my focus, dedication, and commitment.
 
-***
+-   <u>Full CV on request</u>
 
+------------------------------------------------------------------------
