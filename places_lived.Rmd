@@ -12,7 +12,8 @@ output:
 knitr::opts_chunk$set(
   echo = FALSE, # set to TRUE to allow code chunks to "print" in output
   message = FALSE,
-  warning = FALSE
+  warning = FALSE,
+  fig.align='center'
 )
 ```
 
@@ -115,14 +116,14 @@ dwellings <- data.frame(
 )
 ```
 
-```{r main table}
+```{r main table, }
 
 # print a table to see the information at a glance, instead of having the reader try to 
 # find and link each row in the format above.
 
 dwellings |>
   kbl(caption = "<b>Table 1</b><br> <i>Places I have lived</i>") |>
-  kable_classic_2(full_width = FALSE, position = "left")
+  kable_classic_2(full_width = FALSE, position = "center")
 ```
 
 ```{r mean coords}
@@ -191,33 +192,29 @@ left-click[hold]/drag to pan). Hover cursor over circles for labels.
 
 # plot coordinates on the world map
 # whole table
-worldMap <- with(dwellings, leaflet() |>
+worldMap <- with(dwellings, leaflet(width = 900) |>
   addTiles() |>
   addCircleMarkers(
     lng = Longitude,
     lat = Latitude,
     color = "green", label = List
   )) |>
-  
-# mean coordinates of World locations
+  # mean coordinates of World locations
   addCircleMarkers(
     lng = meanCoords[1, 2],
     lat = meanCoords[1, 1], color = "blue", label = "World mean",
   ) |>
-  
-# mean coordinates of England locations
+  # mean coordinates of England locations
   addCircleMarkers(
     lng = meanCoords[2, 2],
     lat = meanCoords[2, 1], color = "blue", label = "England mean"
   ) |>
-  
-# median coordinates of World locations
+  # median coordinates of World locations
   addCircleMarkers(
     lng = medianCoords[1, 2],
     lat = medianCoords[1, 1], color = "red", label = "World median"
   ) |>
-  
-# median coordinates of England locations
+  # median coordinates of England locations
   addCircleMarkers(
     lng = medianCoords[2, 2],
     lat = medianCoords[2, 1], color = "red", label = "England median"
@@ -274,14 +271,14 @@ ggplot(dwellings, aes(x = Longitude, y = Latitude)) +
   theme(plot.caption = element_text(hjust = 0, face = "italic"))
 ```
 
-You can see that the places lived in England have been between $51^{\circ}$ and 
-$52^{\circ}$ latitude; and between $-2.5^{\circ}$ and $1.5^{\circ}$ longitude (quite a small 
-area, considering). The numbers represent the order in which the places were lived; and 
-coincide with Table 1 above.
+You can see that most of the places lived in England have been between $51^{\circ}$ and 
+$52^{\circ}$ latitude, with a brief sojourn above the $52nd$ parallel (although I spent around five years living in Ipswich (16)); and between $-2.5^{\circ}$ and $1.5^{\circ}$ longitude (quite a small area, considering). 
 
-It is interesting that although numerous; and despite the huge leap between locations 2 and 
-5 (3 and 4 abroad), the places lived are in relatively tight clusters suggesting that I've 
-enjoyed a local familiarity for a while before needing/having to move on.
+* The numbers represent the order in which the places were lived; and coincide with Table 1 above.
+
+It is interesting that, although numerous; and despite the huge leap between locations 2 and
+5 (3 and 4 abroad, see main map above), the places lived are in relatively tight clusters
+suggesting that I've enjoyed a local familiarity for a while before needing/having to move on.
 
 The clusters are divided across counties, as follows. 
 
@@ -368,24 +365,21 @@ ggplot(dwellings, aes(x = Longitude, y = Latitude)) +
 
 # 3c. Mean and Median locations
 
+## Mean coordinates
+
 I thought it would be interesting to know the mean and median locations of where I have 
 lived in the world; and in England.
 
-Table 2 shows the mean coordinates of both the worldwide locations; and the England locations 
-from Table 1. In my mind, these give an indication of where I should be living according to 
-the mean-average coordinates of where I actually _have_ lived.
-
-I quite fancy __Génicourt-sur-Meuse, France__. I've never been there, but it sounds like it 
-would suit me. Ironically, I worked in Cheshunt for a fair while until I was made redundant.
-
-## Mean coordinates
+Table 2 shows the mean coordinates of both the worldwide; and the England locations  from
+Table 1. In my mind, these give an indication of where I should be living according to  the
+mean-average coordinates of where I actually _have_ lived.
 
 ```{r mean coords table}
 
 # mean coordinates
 meanCoords |>
   kbl(caption = "<b>Table 2</b><br> <i>Average coordinates (mean)</i>") |>
-  kable_classic_2(full_width = FALSE, position = "left")
+  kable_classic_2(full_width = FALSE, position = "center")
 ```
 
 ```{r mean coords plot}
@@ -414,25 +408,28 @@ ggplot(meanCoords, aes(x = Longitude, y = Latitude)) +
   theme(plot.caption = element_text(hjust = 0, face = "italic"))
 ```
 
+
+I must admit, I quite fancy __Génicourt-sur-Meuse, France__. I've never been there, but it
+sounds like it would suit me. Ironically, I worked in Cheshunt for a fair while until I was
+made redundant, though I didn't miss the daily journey from Harwich and back, which became
+a drag after about 5 years of working for the company there.
+
+
 ## Median coordinates
 
-Table 3 shows the median coordinates of both the worldwide locations; and the England 
-locations from Table 1. So these will be the absolute mid-point places to live according to 
-both options.
+Table 3 shows the median coordinates of both the worldwide; and the England locations from
+Table 1. 
+
+So, technically, these will be the absolute mid-point places to live according to both
+options.
 
 ```{r median coords table}
 
 # median coordinates
 medianCoords |>
   kbl(caption = "<b>Table 3</b><br> <i> Average coordinates (median)</i>") |>
-  kable_classic_2(full_width = FALSE, position = "left")
+  kable_classic_2(full_width = FALSE, position = "center")
 ```
-
-<br>
-
->_Note._ The irony of the median coordinate plot is that both locations from the worldwide 
-and England coordinates are a stones throw from where I was born! (Shown with an asterisk on 
-the following map - see note).
 
 ```{r med coords plot}
 
@@ -462,14 +459,25 @@ ggplot(medianCoords, aes(x = Longitude, y = Latitude)) +
   theme(plot.caption = element_text(hjust = 0, face = "italic"))
 ```
 
+
+<br>
+
+>_Note._ The irony of the median coordinate plot is that both locations from the worldwide 
+and England coordinates are a stones throw from where I was born! (Shown with an asterisk on
+the map above).
+
+<br>
+
+## Distances from the median locations to where I was born
+
 So for fun, we'll use the `distm` function from the `geosphere` package to calculate the 
-distances between coordinates in metres (tutorial found on [Statistics Globe](https://statisticsglobe.com/geospatial-distance-between-two-points-in-r) - actually a 
+distances between coordinates in metres (tutorial found on [Statistics Globe](https://statisticsglobe.com/geospatial-distance-between-two-points-in-r) - actually a
 good site and recommended for many explanations of R-functions).
 
 Once installed and loaded, I realised I needed another variable to hold the _Rush Green _ 
 coordinates. Then, I found out that `distm` needs the longitude and latitude in that order, 
-so had to reverse the two columns in my original mean/median variables, then combined the two 
-new variables into one, for each.
+so had to reverse the two columns in my original mean/median variables, then combined the
+two new variables into one, for each.
 
 So the calculation returns like this: 
 

@@ -350,7 +350,7 @@ $(document).ready(function () {
 <blockquote>
 <p><em>A note on the <a href="https://github.com/sleeds50/my_website/blob/main/places_lived.Rmd">code</a> to generate the tables and plots in this document: feel free to use it and change details to suit your needs - or improve it (if you do, please email me to say how you did it better - we’re all learning, right?)</em>.</p>
 </blockquote>
-<table class=" lightable-classic-2" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; ">
+<table class=" lightable-classic-2" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 <b>Table 1</b><br> <i>Places I have lived</i>
 </caption>
@@ -634,20 +634,23 @@ Bath, Somerset
 <li><p><strong>Blue circles:</strong> <em>mean</em> average location of ALL coordinates in <em>Table 1</em> (see <em>Table 2</em> for details)</p></li>
 <li><p><strong>Red circles:</strong> <em>median</em> average locations of ALL coordinates in <em>Table 1</em> (see <em>Table 3</em> for details)</p></li>
 </ul>
-<div id="htmlwidget-da1889c50ac2f29cb2f1" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<div id="htmlwidget-da1889c50ac2f29cb2f1" style="width:900px;height:480px;" class="leaflet html-widget"></div>
 <script type="application/json" data-for="htmlwidget-da1889c50ac2f29cb2f1">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addCircleMarkers","args":[[51.651447,51.9070471,29.3797091,26.2235041,51.6357161,51.378971,52.13974,52.158376,51.37128,51.438541,51.4349,51.450761,51.776301,51.933189,51.932645,52.068666,51.39475,51.392352],[0.124044,0.2017505,47.9735629,50.5822436,0.2945186,-0.520269,0.516622,0.506907,-0.489646,-0.336711,-0.33281,-0.4396,1.119079,1.274589,1.275031,1.130408,-2.388744,-2.384639],10,null,null,{"interactive":true,"className":"","stroke":true,"color":"green","weight":5,"opacity":0.5,"fill":true,"fillColor":"green","fillOpacity":0.2},null,null,null,null,["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addCircleMarkers","args":[49.0371053,5.45035203333333,10,null,null,{"interactive":true,"className":"","stroke":true,"color":"blue","weight":5,"opacity":0.5,"fill":true,"fillColor":"blue","fillOpacity":0.2},null,null,null,null,"World mean",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addCircleMarkers","args":[51.6915426375,-0.02809186875,10,null,null,{"interactive":true,"className":"","stroke":true,"color":"blue","weight":5,"opacity":0.5,"fill":true,"fillColor":"blue","fillOpacity":0.2},null,null,null,null,"England mean",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addCircleMarkers","args":[51.54323855,0.24813455,10,null,null,{"interactive":true,"className":"","stroke":true,"color":"red","weight":5,"opacity":0.5,"fill":true,"fillColor":"red","fillOpacity":0.2},null,null,null,null,"World median",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addCircleMarkers","args":[51.64358155,0.16289725,10,null,null,{"interactive":true,"className":"","stroke":true,"color":"red","weight":5,"opacity":0.5,"fill":true,"fillColor":"red","fillOpacity":0.2},null,null,null,null,"England median",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[26.2235041,52.158376],"lng":[-2.388744,50.5822436]}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="a.-static-plots" class="section level1">
 <h1>3a. Static plots</h1>
 <div id="global-view-of-places-lived" class="section level2">
 <h2>Global view of places lived</h2>
-<p><img src="places_lived_files/figure-html/map%20worldwide%20plot-1.png" width="672" /></p>
+<p><img src="places_lived_files/figure-html/map%20worldwide%20plot-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="the-spread-of-locations-in-england" class="section level2">
 <h2>The spread of locations in England</h2>
-<p><img src="places_lived_files/figure-html/map%20uk%20plot-1.png" width="672" /></p>
-<p>You can see that the places lived in England have been between <span class="math inline">\(51^{\circ}\)</span> and <span class="math inline">\(52^{\circ}\)</span> latitude; and between <span class="math inline">\(-2.5^{\circ}\)</span> and <span class="math inline">\(1.5^{\circ}\)</span> longitude (quite a small area, considering). The numbers represent the order in which the places were lived; and coincide with Table 1 above.</p>
-<p>It is interesting that although numerous; and despite the huge leap between locations 2 and 5 (3 and 4 abroad), the places lived are in relatively tight clusters suggesting that I’ve enjoyed a local familiarity for a while before needing/having to move on.</p>
+<p><img src="places_lived_files/figure-html/map%20uk%20plot-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>You can see that most of the places lived in England have been between <span class="math inline">\(51^{\circ}\)</span> and <span class="math inline">\(52^{\circ}\)</span> latitude, with a brief sojourn above the <span class="math inline">\(52nd\)</span> parallel (although I spent around five years living in Ipswich (16)); and between <span class="math inline">\(-2.5^{\circ}\)</span> and <span class="math inline">\(1.5^{\circ}\)</span> longitude (quite a small area, considering).</p>
+<ul>
+<li>The numbers represent the order in which the places were lived; and coincide with Table 1 above.</li>
+</ul>
+<p>It is interesting that, although numerous; and despite the huge leap between locations 2 and 5 (3 and 4 abroad, see main map above), the places lived are in relatively tight clusters suggesting that I’ve enjoyed a local familiarity for a while before needing/having to move on.</p>
 <p>The clusters are divided across counties, as follows.</p>
 </div>
 </div>
@@ -655,26 +658,25 @@ Bath, Somerset
 <h1>3b. Breaking down into counties:</h1>
 <div id="essex-and-suffolk" class="section level2">
 <h2>Essex and Suffolk</h2>
-<p><img src="places_lived_files/figure-html/map%20Essex%20plot-1.png" width="672" /></p>
+<p><img src="places_lived_files/figure-html/map%20Essex%20plot-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="surrey-and-middlesex" class="section level2">
 <h2>Surrey and Middlesex</h2>
-<p><img src="places_lived_files/figure-html/map%20Surrey/middx%20plot-1.png" width="672" /></p>
+<p><img src="places_lived_files/figure-html/map%20Surrey/middx%20plot-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="somerset" class="section level2">
 <h2>Somerset</h2>
 <p>There’s little point presenting a plot with two points on it, so Coordinate plot 5 below, shows the locations in Surrey/Middlesex and Somerset; and the expanse between.</p>
-<p><img src="places_lived_files/figure-html/map%20Bath%20plot-1.png" width="672" /></p>
+<p><img src="places_lived_files/figure-html/map%20Bath%20plot-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="c.-mean-and-median-locations" class="section level1">
 <h1>3c. Mean and Median locations</h1>
-<p>I thought it would be interesting to know the mean and median locations of where I have lived in the world; and in England.</p>
-<p>Table 2 shows the mean coordinates of both the worldwide locations; and the England locations from Table 1. In my mind, these give an indication of where I should be living according to the mean-average coordinates of where I actually <em>have</em> lived.</p>
-<p>I quite fancy <strong>Génicourt-sur-Meuse, France</strong>. I’ve never been there, but it sounds like it would suit me. Ironically, I worked in Cheshunt for a fair while until I was made redundant.</p>
 <div id="mean-coordinates" class="section level2">
 <h2>Mean coordinates</h2>
-<table class=" lightable-classic-2" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; ">
+<p>I thought it would be interesting to know the mean and median locations of where I have lived in the world; and in England.</p>
+<p>Table 2 shows the mean coordinates of both the worldwide; and the England locations from Table 1. In my mind, these give an indication of where I should be living according to the mean-average coordinates of where I actually <em>have</em> lived.</p>
+<table class=" lightable-classic-2" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 <b>Table 2</b><br> <i>Average coordinates (mean)</i>
 </caption>
@@ -724,12 +726,14 @@ Cheshunt, Hertfordshire, England
 </tr>
 </tbody>
 </table>
-<p><img src="places_lived_files/figure-html/mean%20coords%20plot-1.png" width="672" /></p>
+<p><img src="places_lived_files/figure-html/mean%20coords%20plot-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>I must admit, I quite fancy <strong>Génicourt-sur-Meuse, France</strong>. I’ve never been there, but it sounds like it would suit me. Ironically, I worked in Cheshunt for a fair while until I was made redundant, though I didn’t miss the daily journey from Harwich and back, which became a drag after about 5 years of working for the company there.</p>
 </div>
 <div id="median-coordinates" class="section level2">
 <h2>Median coordinates</h2>
-<p>Table 3 shows the median coordinates of both the worldwide locations; and the England locations from Table 1. So these will be the absolute mid-point places to live according to both options.</p>
-<table class=" lightable-classic-2" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; ">
+<p>Table 3 shows the median coordinates of both the worldwide; and the England locations from Table 1.</p>
+<p>So, technically, these will be the absolute mid-point places to live according to both options.</p>
+<table class=" lightable-classic-2" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 <b>Table 3</b><br> <i> Average coordinates (median)</i>
 </caption>
@@ -779,11 +783,15 @@ Stapleford Abbotts, Essex, England
 </tr>
 </tbody>
 </table>
+<p><img src="places_lived_files/figure-html/med%20coords%20plot-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p><br></p>
 <blockquote>
-<p><em>Note.</em> The irony of the median coordinate plot is that both locations from the worldwide and England coordinates are a stones throw from where I was born! (Shown with an asterisk on the following map - see note).</p>
+<p><em>Note.</em> The irony of the median coordinate plot is that both locations from the worldwide and England coordinates are a stones throw from where I was born! (Shown with an asterisk on the map above).</p>
 </blockquote>
-<p><img src="places_lived_files/figure-html/med%20coords%20plot-1.png" width="672" /></p>
+<p><br></p>
+</div>
+<div id="distances-from-the-median-locations-to-where-i-was-born" class="section level2">
+<h2>Distances from the median locations to where I was born</h2>
 <p>So for fun, we’ll use the <code>distm</code> function from the <code>geosphere</code> package to calculate the distances between coordinates in metres (tutorial found on <a href="https://statisticsglobe.com/geospatial-distance-between-two-points-in-r">Statistics Globe</a> - actually a good site and recommended for many explanations of R-functions).</p>
 <p>Once installed and loaded, I realised I needed another variable to hold the <em>Rush Green </em> coordinates. Then, I found out that <code>distm</code> needs the longitude and latitude in that order, so had to reverse the two columns in my original mean/median variables, then combined the two new variables into one, for each.</p>
 <p>So the calculation returns like this:</p>
