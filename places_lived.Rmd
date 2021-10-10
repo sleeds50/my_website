@@ -7,6 +7,8 @@ output:
     toc: FALSE
 ---
 
+Updated on: `r format(Sys.Date(),"%b %d, %Y")`
+
 ```{r setup, include=FALSE}
 
 knitr::opts_chunk$set(
@@ -38,10 +40,12 @@ library(ggrepel)
 Table 1 lists the places I have lived. Let me state that it only includes places where I 
 have lived with parents as a child and young adult (see items 1:8); and places that I have 
 officially rented or mortgaged as an adult (items 9:end). Furthermore, if memory serves, 
-we lived in two properties in Kuwait, two in Bahrain; I lived in Chertsey more than once; 
+we lived in two properties in Kuwait, two in Bahrain; and I lived in Chertsey more than once; 
 and rented twice in Addlestone.
 
-I have not included sofa-surfing or temporary dwellings. Table 1 also shows the order of 
+I have not included sofa-surfing or temporary dwellings. 
+
+Table 1 also shows the order of 
 properties lived in, from birth to now (some 50-ish years later!)
 
 >_A note on the [code](https://github.com/sleeds50/my_website/blob/main/places_lived.Rmd) to 
@@ -274,7 +278,7 @@ ggplot(dwellings, aes(x = Longitude, y = Latitude)) +
 You can see that most of the places lived in England have been between $51^{\circ}$ and 
 $52^{\circ}$ latitude, with a brief sojourn above the $52nd$ parallel (although I spent around five years living in Ipswich (16)); and between $-2.5^{\circ}$ and $1.5^{\circ}$ longitude (quite a small area, considering). 
 
-* The numbers represent the order in which the places were lived; and coincide with Table 1 above.
+* The numbers represent the order in which the places were lived and coincide with Table 1 above.
 
 It is interesting that, although numerous; and despite the huge leap between locations 2 and
 5 (3 and 4 abroad, see main map above), the places lived are in relatively tight clusters
@@ -337,8 +341,8 @@ ggplot(dwellings, aes(x = Longitude, y = Latitude)) +
 
 ## Somerset
 
-There's little point presenting a plot with two points on it, so Coordinate plot 5 below, 
-shows the locations in Surrey/Middlesex and Somerset; and the expanse between.
+There's little point presenting a plot with two points on it, so Coordinate plot 5 below 
+shows the locations in Surrey/Middlesex and Somerset and the expanse between.
 
 ```{r map Bath plot}
 
@@ -411,7 +415,7 @@ ggplot(meanCoords, aes(x = Longitude, y = Latitude)) +
 
 I must admit, I quite fancy __Génicourt-sur-Meuse, France__. I've never been there, but it
 sounds like it would suit me. Ironically, I worked in Cheshunt for a fair while until I was
-made redundant, though I didn't miss the daily journey from Harwich and back, which became
+made redundant, though I didn't miss the daily journey from Harwich and back which became
 a drag after about 5 years of working for the company there.
 
 
@@ -479,7 +483,7 @@ coordinates. Then, I found out that `distm` needs the longitude and latitude in 
 so had to reverse the two columns in my original mean/median variables, then combined the
 two new variables into one, for each.
 
-So the calculation returns like this: 
+So the calculation returns like this for Stapleford Abbot: 
 
 
 ```{r distance between- setup}
@@ -509,7 +513,7 @@ dist_median <- distm(rush_to_stapleford[, 1:2], fun = distGeo)
 # Print distance matrix
 dist_median
 ```
-...and the same for the mean of places...
+...and this for Upminster...
 
 ```{r distance between- calc}
 
@@ -527,9 +531,8 @@ dist_mean
 
 ## Summary
 
-I used [this website](https://www.convertunits.com/from/meters/to/miles) (others are 
-available!) to convert metres to miles (not sure if the site specifies US miles, as others 
-have done, or my preferred UK miles, however...)
+Remember the distances are in metres - I used [this website](https://www.convertunits.com/from/meters/to/miles) (others are 
+available!) to convert the distances into miles (not sure if the site specifies US miles as others have done, or my preferred UK miles, however...)
 
 >It's enough to give a guide to how close _Rush Green_ is...
 
@@ -539,7 +542,7 @@ have done, or my preferred UK miles, however...)
 >to the median point of the worldwide locations:  
 * Upminster = 5.58Km (3.47 miles) away.
 
-This has been an interesting project - thanks for reading. I might take it further one day; 
+This has been an interesting project - thanks for reading. I might take it further one day 
 and tell the story of each place and why I moved so many times. I'm sure that the average 
 moves during a lifetime is far fewer than what I have achieved here. Does it mean I haven't 
 settled anywhere? Or is it acting on circumstances? A mixture of both? Why have I laid my hat 
