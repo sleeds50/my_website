@@ -16,6 +16,4 @@ git test
 
 __<u>Credit</u>__
 
-Thanks to [Andreas Handel](https://www.andreashandel.com/post/github-website/) for the build tutorial; and he adds:
-
->_"I also have a discussion of R Markdown and reproducibility [on one of my course pages](https://andreashandel.github.io/MADAcourse/1e_ToolsforReproducibility.html). You'll find additional links to potentially useful R Markdown (and Github) resources there"_.
+<u>Credit</u>: Thanks to *Andreas Handel* for the [build tutorial](https://www.andreashandel.com/post/github-website/), who also discusses _RMarkdown_ and reproducibility [here](https://andreashandel.github.io/MADAcourse/1e_ToolsforReproducibility.html).
