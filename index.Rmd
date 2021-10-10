@@ -61,9 +61,7 @@ all the usual formatting. If you are new to R Markdown, you can learn more about
 it [on the R Markdown website](https://rmarkdown.rstudio.com/).
 
 <u>Credit</u>: Thanks to *Andreas Handel* for the [build
-tutorial](https://www.andreashandel.com/post/github-website/), who also
-discusses *RMarkdown* and reproducibility
-[here](https://andreashandel.github.io/MADAcourse/1e_ToolsforReproducibility.html).
+tutorial](https://www.andreashandel.com/posts/github-website/).
 <small>
 
 ## <u>Qualifications</u>
@@ -71,7 +69,8 @@ discusses *RMarkdown* and reproducibility
 ### MSc Occupational Psychology<span style="color: tomato;">$^1$</span>
 *2020-2021, University of the West of England (UWE)*
 
-__Dissertation:__ [Quantitative design] A cross-sectional correlational study, with added mediator and moderator analyses.  
+**Dissertation:** [Quantitative design] A cross-sectional correlational study,
+with added mediator and moderator analyses.  
 __Title:__ _"Engagement at work: investigating the relationships
 between age groups, gender, personality; and trait EI."_
 
@@ -79,14 +78,16 @@ between age groups, gender, personality; and trait EI."_
 *2016-2020, The Open University (OU; part-time: 2016-2018)*
 
 __Final project:__ [Qualitative design] A form of Critical Discourse Analysis  
-__Title:__ _"Volunteering and identity: a discursive approach to how volunteers see themselves and are seen by others"._
+**Title:** *"Volunteering and identity: a discursive approach to how volunteers
+see themselves and are seen by others".*
 
 ------------------------------------------------------------------------
 
 #### Data Science: Foundations in using R specialisation
 *2020, Coursera*
 
-__Courses:__ R-programming; The data scientists toolbox; Getting and cleaning data; Exploratory data analysis; Reproducible research.
+**Courses:** R-programming; The data scientists toolbox; Getting and cleaning
+data; Exploratory data analysis; Reproducible research.
 
 ------------------------------------------------------------------------
 
