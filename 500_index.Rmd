@@ -13,7 +13,7 @@ library(fontawesome)
 
 # {.tabset}
 
-## <u>Social<br> psychology</u>
+## <u>Social<br> Psychology</u>
 
 
 1. [__...coming soon__](./aboutme.html)
@@ -21,7 +21,7 @@ library(fontawesome)
 _Short description_
 
 
-## <u>Occupational<br> psychology</u>
+## <u>Occupational<br> Psychology</u>
 
 
 1. [__...coming soon__](./aboutme.html)

@@ -5,8 +5,8 @@ date: "10/05/2021"
 output: 
     html_document:
         toc: FALSE
-bibliography: apwo.bib
-csl: apa.csl
+bibliography: ../common/apwo.bib
+csl: ../common/apa.csl
 link-citations: true
 ---
 
