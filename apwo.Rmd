@@ -1,6 +1,6 @@
 ---
 title: "It’s never too late to learn new things"
-author: "Stuart Leeds"
+# author: "Stuart Leeds"
 date: "10/05/2021"
 output: 
     html_document:

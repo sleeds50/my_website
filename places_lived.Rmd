@@ -1,6 +1,6 @@
 ---
 title: "Places I have lived"
-author: "Stuart Leeds"
+# author: "Stuart Leeds"
 date: "2021-07-14"
 output: 
   html_document:

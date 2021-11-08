@@ -16,9 +16,9 @@ library(fontawesome)
 ## <u>Social<br> Psychology</u>
 
 
-1. [__...coming soon__](./aboutme.html)
+1.  [**...coming soon**](./aboutme.html)
 
-_Short description_
+*Short description*
 
 
 ## <u>Occupational<br> Psychology</u>
@@ -26,23 +26,26 @@ _Short description_
 
 1.  [**It’s never too late to learn new things**](./apwo.html)
 
-_One of the  modules for my MSc was Applying Psychology to Work & Organisations (APWO). A requirement was to write a short blog-post about the experience. Given that the work was undertaken during the Covid19 pandemic, suffice to say it was conducted remotely._
+*One of the modules for my MSc was Applying Psychology to Work & Organisations
+(APWO). A requirement was to write a short blog-post about the experience. Given
+that the work was undertaken during the Covid19 pandemic, suffice to say it was
+conducted remotely.*
 
-2. [__Final dissertation summary__](./dissertation_summary.html)
+2.  [**Final dissertation summary**](./dissertation_summary.html)
 
-*A summary of my final dissertation. It was not ground-breaking, neither
-will it be published nor presented at any Occupational Psychology conference.
-However, I am proud that it was my highest scoring assignment which earned me a
-full MSc degree with Merit.*
+*A summary of my final dissertation. It was not ground-breaking, neither will it
+be published nor presented at any Occupational Psychology conference. However, I
+am proud that it was my highest scoring assignment which earned me a full MSc
+degree with Merit.*
 
 
 
 ## <u>R-<br> Interesting things</u>
 
 
-1. [__Places I have lived__](./places_lived.html)
+1.  [**Places I have lived**](./places_lived.html)
 
-_This is a short RMarkdown referring to the places I have lived since birth_
+*This is a short RMarkdown referring to the places I have lived since birth*
 
 
 
