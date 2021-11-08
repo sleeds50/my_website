@@ -19,10 +19,14 @@ knitr::opts_chunk$set(
 )
 ```
 
->It occurred to me that I have lived in many places during my lifetime. This is a basic run-down of them all, giving rough locations as coordinates. I might return to it at 
-some point and add dates, but this will do for now.
+> It occurred to me that I have lived in many places during my lifetime. This is
+> a basic run-down of them all, giving rough locations as coordinates. I might
+> return to it at some point and add dates, but this will do for now.
 
-[`Code` available here](https://github.com/sleeds50/my_website/blob/main/places_lived.Rmd)
+[`Code` available
+here](https://github.com/sleeds50/my_website/blob/main/places_lived.Rmd)^[Feel
+free to use it and change details to suit your needs - or improve it (if you do,
+please email me to say how you did it better - we're all learning, right?)]
 
 ```{r libraries}
 
@@ -37,21 +41,16 @@ library(ggrepel)
 
 # 1. Locations
 
-Table 1 lists the places I have lived. Let me state that it only includes places where I 
-have lived with parents as a child and young adult (see items 1:8); and places that I have 
-officially rented or mortgaged as an adult (items 9:end). Furthermore, if memory serves, 
-we lived in two properties in Kuwait, two in Bahrain; and I lived in Chertsey more than once; 
-and rented twice in Addlestone.
+Table 1 lists the places I have lived. Let me state that it only includes places
+where I have lived with parents as a child and young adult (see items 1:8); and
+places that I have officially rented or mortgaged as an adult (items 9:end).
+Furthermore, if memory serves, we lived in two properties in Kuwait, two in
+Bahrain; and I lived in Chertsey more than once; and rented twice in Addlestone.
 
-I have not included sofa-surfing or temporary dwellings. 
+I have not included sofa-surfing or temporary dwellings.
 
-Table 1 also shows the order of 
-properties lived in, from birth to now (some 50-ish years later!)
-
->_A note on the [code](https://github.com/sleeds50/my_website/blob/main/places_lived.Rmd) to 
-generate the tables and plots in this document: feel free to use it and change details to 
-suit your needs - or improve it (if you do, please email me to say how you did it better - 
-we're all learning, right?)_.
+Table 1 also shows the order of properties lived in, from birth to now
+(some 50-ish years later!)
 
 ```{r dwellings}
 
@@ -275,14 +274,19 @@ ggplot(dwellings, aes(x = Longitude, y = Latitude)) +
   theme(plot.caption = element_text(hjust = 0, face = "italic"))
 ```
 
-You can see that most of the places lived in England have been between $51^{\circ}$ and 
-$52^{\circ}$ latitude, with a brief sojourn above the $52nd$ parallel (although I spent around five years living in Ipswich (16)); and between $-2.5^{\circ}$ and $1.5^{\circ}$ longitude (quite a small area, considering). 
+You can see that most of the places lived in England have been between
+$51^{\\circ}$ and $52^{\\circ}$ latitude, with a brief sojourn above the $52nd$
+parallel (although I spent around five years living in Ipswich (16)); and
+between $-2.5^{\\circ}$ and $1.5^{\\circ}$ longitude (quite a small area,
+considering).
 
-* The numbers represent the order in which the places were lived and coincide with Table 1 above.
+  - The numbers represent the order in which the places were lived and coincide
+    with Table 1 above.
 
-It is interesting that, although numerous; and despite the huge leap between locations 2 and
-5 (3 and 4 abroad, see main map above), the places lived are in relatively tight clusters
-suggesting that I've enjoyed a local familiarity for a while before needing/having to move on.
+It is interesting that, although numerous; and despite the huge leap between
+locations 2 and 5 (3 and 4 abroad, see main map above), the places lived are in
+relatively tight clusters suggesting that I've enjoyed a local familiarity for a
+while before needing/having to move on.
 
 The clusters are divided across counties, as follows. 
 
@@ -341,8 +345,9 @@ ggplot(dwellings, aes(x = Longitude, y = Latitude)) +
 
 ## Somerset
 
-There's little point presenting a plot with two points on it, so Coordinate plot 5 below 
-shows the locations in Surrey/Middlesex and Somerset and the expanse between.
+There's little point presenting a plot with two points on it, so Coordinate
+plot 5 below shows the locations in Surrey/Middlesex and Somerset and the
+expanse between.
 
 ```{r map Bath plot}
 
@@ -371,12 +376,13 @@ ggplot(dwellings, aes(x = Longitude, y = Latitude)) +
 
 ## Mean coordinates
 
-I thought it would be interesting to know the mean and median locations of where I have 
-lived in the world; and in England.
+I thought it would be interesting to know the mean and median locations of where
+I have lived in the world; and in England.
 
-Table 2 shows the mean coordinates of both the worldwide; and the England locations  from
-Table 1. In my mind, these give an indication of where I should be living according to  the
-mean-average coordinates of where I actually _have_ lived.
+Table 2 shows the mean coordinates of both the worldwide; and the England
+locations from Table 1. In my mind, these give an indication of where I should
+be living according to the mean-average coordinates of where I actually *have*
+lived.
 
 ```{r mean coords table}
 
@@ -413,19 +419,20 @@ ggplot(meanCoords, aes(x = Longitude, y = Latitude)) +
 ```
 
 
-I must admit, I quite fancy __Génicourt-sur-Meuse, France__. I've never been there, but it
-sounds like it would suit me. Ironically, I worked in Cheshunt for a fair while until I was
-made redundant, though I didn't miss the daily journey from Harwich and back which became
-a drag after about 5 years of working for the company there.
+I must admit, I quite fancy **Génicourt-sur-Meuse, France**. I've never been
+there, but it sounds like it would suit me. Ironically, I worked in Cheshunt for
+a fair while until I was made redundant, though I didn't miss the daily journey
+from Harwich and back which became a drag after about 5 years of working for the
+company there.
 
 
 ## Median coordinates
 
-Table 3 shows the median coordinates of both the worldwide; and the England locations from
-Table 1. 
+Table 3 shows the median coordinates of both the worldwide; and the England
+locations from Table 1.
 
-So, technically, these will be the absolute mid-point places to live according to both
-options.
+So, technically, these will be the absolute mid-point places to live according
+to both options.
 
 ```{r median coords table}
 
@@ -466,22 +473,24 @@ ggplot(medianCoords, aes(x = Longitude, y = Latitude)) +
 
 <br>
 
->_Note._ The irony of the median coordinate plot is that both locations from the worldwide 
-and England coordinates are a stones throw from where I was born! (Shown with an asterisk on
-the map above).
+> *Note.* The irony of the median coordinate plot is that both locations from
+> the worldwide and England coordinates are a stones throw from where I was
+> born! (Shown with an asterisk on the map above).
 
 <br>
 
 ## Distances from the median locations to where I was born
 
-So for fun, we'll use the `distm` function from the `geosphere` package to calculate the 
-distances between coordinates in metres (tutorial found on [Statistics Globe](https://statisticsglobe.com/geospatial-distance-between-two-points-in-r) - actually a
-good site and recommended for many explanations of R-functions).
+So for fun, we'll use the `distm` function from the `geosphere` package to
+calculate the distances between coordinates in metres (tutorial found on
+[Statistics
+Globe](https://statisticsglobe.com/geospatial-distance-between-two-points-in-r)
+- actually a good site and recommended for many explanations of R-functions).
 
-Once installed and loaded, I realised I needed another variable to hold the _Rush Green _ 
-coordinates. Then, I found out that `distm` needs the longitude and latitude in that order, 
-so had to reverse the two columns in my original mean/median variables, then combined the
-two new variables into one, for each.
+Once installed and loaded, I realised I needed another variable to hold the
+\_Rush Green \_ coordinates. Then, I found out that `distm` needs the longitude
+and latitude in that order, so had to reverse the two columns in my original
+mean/median variables, then combined the two new variables into one, for each.
 
 So the calculation returns like this for Stapleford Abbot: 
 
@@ -531,24 +540,30 @@ dist_mean
 
 ## Summary
 
-Remember the distances are in metres - I used [this website](https://www.convertunits.com/from/meters/to/miles) (others are 
-available!) to convert the distances into miles (not sure if the site specifies US miles as others have done, or my preferred UK miles, however...)
+Remember the distances are in metres - I used [this
+website](https://www.convertunits.com/from/meters/to/miles) (others are
+available!) to convert the distances into miles (not sure if the site specifies
+US miles as others have done, or my preferred UK miles, however...)
 
->It's enough to give a guide to how close _Rush Green_ is...
+> It's enough to give a guide to how close *Rush Green* is...
 
-> to the median location of places in England:  
-* Stapleford Abbotts = 8.73Km (5.43 miles) away.
+> to the median location of places in England:
 
->to the median point of the worldwide locations:  
-* Upminster = 5.58Km (3.47 miles) away.
+  - Stapleford Abbotts = 8.73Km (5.43 miles) away.
 
-This has been an interesting project - thanks for reading. I might take it further one day 
-and tell the story of each place and why I moved so many times. I'm sure that the average 
-moves during a lifetime is far fewer than what I have achieved here. Does it mean I haven't 
-settled anywhere? Or is it acting on circumstances? A mixture of both? Why have I laid my hat 
-in; and called so many different locations, home? 
+> to the median point of the worldwide locations:
 
-(Social) psychology would describe these transitional moments of upheaval as _ruptures_ 
-[(Zittoun, 2006, p. 5)](https://www.google.co.uk/books/edition/Transitions/ivgnDwAAQBAJ?hl=en&gbpv=1&pg=PR1&printsec=frontcover), 
-since they can cause stress and disruption to 'normal' life (whatever _that_ is). Maybe that 
-explains a few things!
+  - Upminster = 5.58Km (3.47 miles) away.
+
+This has been an interesting project - thanks for reading. I might take it
+further one day and tell the story of each place and why I moved so many times.
+I'm sure that the average moves during a lifetime is far fewer than what I have
+achieved here. Does it mean I haven't settled anywhere? Or is it acting on
+circumstances? A mixture of both? Why have I laid my hat in; and called so many
+different locations, home?
+
+(Social) psychology would describe these transitional moments of upheaval as
+*ruptures* [(Zittoun, 2006,
+p. 5)](https://www.google.co.uk/books/edition/Transitions/ivgnDwAAQBAJ?hl=en&gbpv=1&pg=PR1&printsec=frontcover),
+since they can cause stress and disruption to 'normal' life (whatever *that*
+is). Maybe that explains a few things!

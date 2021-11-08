@@ -311,7 +311,7 @@ $(document).ready(function () {
   </a>
 </li>
 <li>
-  <a href="https://github.com/sleeds50/my_website">
+  <a href="https://github.com/sleeds50/">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -337,19 +337,16 @@ $(document).ready(function () {
 </div>
 
 
-<p>Updated on: Nov 08, 2021</p>
+<p>Updated on: Nov 10, 2021</p>
 <blockquote>
 <p>It occurred to me that I have lived in many places during my lifetime. This is a basic run-down of them all, giving rough locations as coordinates. I might return to it at some point and add dates, but this will do for now.</p>
 </blockquote>
-<p><a href="https://github.com/sleeds50/my_website/blob/main/places_lived.Rmd"><code>Code</code> available here</a></p>
+<p><a href="https://github.com/sleeds50/my_website/blob/main/places_lived.Rmd"><code>Code</code> available here</a><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
 <div id="locations" class="section level1">
 <h1>1. Locations</h1>
 <p>Table 1 lists the places I have lived. Let me state that it only includes places where I have lived with parents as a child and young adult (see items 1:8); and places that I have officially rented or mortgaged as an adult (items 9:end). Furthermore, if memory serves, we lived in two properties in Kuwait, two in Bahrain; and I lived in Chertsey more than once; and rented twice in Addlestone.</p>
 <p>I have not included sofa-surfing or temporary dwellings.</p>
 <p>Table 1 also shows the order of properties lived in, from birth to now (some 50-ish years later!)</p>
-<blockquote>
-<p><em>A note on the <a href="https://github.com/sleeds50/my_website/blob/main/places_lived.Rmd">code</a> to generate the tables and plots in this document: feel free to use it and change details to suit your needs - or improve it (if you do, please email me to say how you did it better - we’re all learning, right?)</em>.</p>
-</blockquote>
 <table class=" lightable-classic-2" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 <b>Table 1</b><br> <i>Places I have lived</i>
@@ -646,7 +643,7 @@ Bath, Somerset
 <div id="the-spread-of-locations-in-england" class="section level2">
 <h2>The spread of locations in England</h2>
 <p><img src="places_lived_files/figure-html/map%20uk%20plot-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>You can see that most of the places lived in England have been between <span class="math inline">\(51^{\circ}\)</span> and <span class="math inline">\(52^{\circ}\)</span> latitude, with a brief sojourn above the <span class="math inline">\(52nd\)</span> parallel (although I spent around five years living in Ipswich (16)); and between <span class="math inline">\(-2.5^{\circ}\)</span> and <span class="math inline">\(1.5^{\circ}\)</span> longitude (quite a small area, considering).</p>
+<p>You can see that most of the places lived in England have been between <span class="math inline">\(51^{\\circ}\)</span> and <span class="math inline">\(52^{\\circ}\)</span> latitude, with a brief sojourn above the <span class="math inline">\(52nd\)</span> parallel (although I spent around five years living in Ipswich (16)); and between <span class="math inline">\(-2.5^{\\circ}\)</span> and <span class="math inline">\(1.5^{\\circ}\)</span> longitude (quite a small area, considering).</p>
 <ul>
 <li>The numbers represent the order in which the places were lived and coincide with Table 1 above.</li>
 </ul>
@@ -793,7 +790,7 @@ Stapleford Abbotts, Essex, England
 <div id="distances-from-the-median-locations-to-where-i-was-born" class="section level2">
 <h2>Distances from the median locations to where I was born</h2>
 <p>So for fun, we’ll use the <code>distm</code> function from the <code>geosphere</code> package to calculate the distances between coordinates in metres (tutorial found on <a href="https://statisticsglobe.com/geospatial-distance-between-two-points-in-r">Statistics Globe</a> - actually a good site and recommended for many explanations of R-functions).</p>
-<p>Once installed and loaded, I realised I needed another variable to hold the <em>Rush Green </em> coordinates. Then, I found out that <code>distm</code> needs the longitude and latitude in that order, so had to reverse the two columns in my original mean/median variables, then combined the two new variables into one, for each.</p>
+<p>Once installed and loaded, I realised I needed another variable to hold the _Rush Green _ coordinates. Then, I found out that <code>distm</code> needs the longitude and latitude in that order, so had to reverse the two columns in my original mean/median variables, then combined the two new variables into one, for each.</p>
 <p>So the calculation returns like this for Stapleford Abbot:</p>
 <pre><code>##         [,1]    [,2]
 ## [1,]    0.00 8734.64
@@ -810,16 +807,26 @@ Stapleford Abbotts, Essex, England
 <p>It’s enough to give a guide to how close <em>Rush Green</em> is…</p>
 </blockquote>
 <blockquote>
-<p>to the median location of places in England:<br />
-* Stapleford Abbotts = 8.73Km (5.43 miles) away.</p>
+<p>to the median location of places in England:</p>
 </blockquote>
+<ul>
+<li>Stapleford Abbotts = 8.73Km (5.43 miles) away.</li>
+</ul>
 <blockquote>
-<p>to the median point of the worldwide locations:<br />
-* Upminster = 5.58Km (3.47 miles) away.</p>
+<p>to the median point of the worldwide locations:</p>
 </blockquote>
+<ul>
+<li>Upminster = 5.58Km (3.47 miles) away.</li>
+</ul>
 <p>This has been an interesting project - thanks for reading. I might take it further one day and tell the story of each place and why I moved so many times. I’m sure that the average moves during a lifetime is far fewer than what I have achieved here. Does it mean I haven’t settled anywhere? Or is it acting on circumstances? A mixture of both? Why have I laid my hat in; and called so many different locations, home?</p>
 <p>(Social) psychology would describe these transitional moments of upheaval as <em>ruptures</em> <a href="https://www.google.co.uk/books/edition/Transitions/ivgnDwAAQBAJ?hl=en&amp;gbpv=1&amp;pg=PR1&amp;printsec=frontcover">(Zittoun, 2006, p. 5)</a>, since they can cause stress and disruption to ‘normal’ life (whatever <em>that</em> is). Maybe that explains a few things!</p>
 </div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Feel free to use it and change details to suit your needs - or improve it (if you do, please email me to say how you did it better - we’re all learning, right?)<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
 
 
