@@ -89,6 +89,9 @@ particularly engaging with natural surroundings
 [@berman2008CognitiveBenefitsInteracting;
 @kaplan1989ExperienceNaturePsychological; @kaplan1995RestorativeBenefitsNature]
 
+($`r wordcountaddin::word_count()`$ words)
+
+
 <br>
 ```{r, echo=FALSE, out.width="100%"}
 knitr::include_graphics("./images/tree_corridor.png")
