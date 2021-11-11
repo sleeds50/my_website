@@ -26,8 +26,8 @@ library(tidyverse)
 
 <br>
 
-<center>__Engagement at Work: Investigating the Relationships Between  
-Age-Groups, Gender, Personality; and Trait Emotional Intelligence__
+<center>**Engagement at Work: Investigating the Relationships Between\
+Age-Groups, Gender, Personality; and Trait Emotional Intelligence**
 
 <br>
 
@@ -41,8 +41,6 @@ University of the West of England (UWE), Bristol</center>
 
 <br>
 <br>
-<br>
-<br>
 
 **Purpose:** To add to and extend existing research of engagement at work with
 new findings regarding age-groups, gender, personality; and trait emotional
@@ -52,14 +50,9 @@ intelligence (TEI).
 moderator analyses. Exploratory analyses include two-tailed correlation,
 hierarchical multiple linear regression and additional mediator analysis.
 
-<br>
-
 A simple research question reflects the title:
 
-  - *What is the relationship between age-groups, gender, personality, TEI and;
-    engagement at work?*
-
-<br>
+>_What is the relationship between age-groups, gender, personality, TEI and; engagement at work?_
 
 The introduction begins with a general overview of engagement at work with an
 original description and then offers a modernised definition suggesting that
@@ -78,8 +71,6 @@ various individual differences. The remaining variables (*age-groups and gender,
 personality; and TEI*) are described; and their use in the research is justified.
 Three hypotheses are given:
 
-<br>
-
   - **Hypothesis H1:** The personality traits Openness to experience,
     Conscientiousness, Extroversion, Agreeableness and Emotional Stability will
     be positively correlated to work engagement.
@@ -89,8 +80,6 @@ Three hypotheses are given:
  
   - **Hypothesis H3:** Gender will moderate the relationship between age-groups
     and TEI such that it will be stronger for females than males.
-
-<br>
 
 $159$ volunteers were recruited via bespoke online surveys measuring the usual
 demographics, personality, TEI; and work engagement of which $88$ participants
@@ -102,11 +91,7 @@ were used in the analysis. These were arranged into two age groups:
 
 <br>
 
-<center>**Figure 1.** *Participant Numbers by Age-group and Gender*</center>
-
-<br>
-
-```{r , group, echo=FALSE, out.width="80%"}
+```{r , group, echo=FALSE, out.width="80%", fig.cap="**Figure 1.** *Participant Numbers by Age-group and Gender*"}
 knitr::include_graphics("./images/age_groups_count.png")
 ```
 
@@ -125,17 +110,13 @@ knitr::include_graphics("./images/age_groups_count.png")
   - H3 was not supported in that the relationship between age-groups and TEI is
     not moderated by gender.
 
-<br>
-
-<center>**Figure 2.** *H1 Correlations between Engagement and Personality*</center>
-
-``` {r h1_plot, echo=FALSE, out.width="80%", fig.cap="_Note:_ 1= Engagement, 2= Extraversion, 3=Agreeableness, 4= Conscientiousness, <br>5= Emotional Stability, 6= Openness to Experience. _N_= 88; * _p_ < .05; ** _p_ < .01."}
+``` {r h1_plot, echo=FALSE, out.width="80%", fig.cap="**Figure 2.** *H1 Correlations between Engagement and Personality*.<br>_Note:_ 1= Engagement, 2= Extraversion, 3=Agreeableness, 4= Conscientiousness, <br>5= Emotional Stability, 6= Openness to Experience. _N_= 88; * _p_ < .05; ** _p_ < .01."}
 knitr::include_graphics("./images/H1_wide.png")
 ```
 
 <br>
 
-<u>__Exploratory results__</u>
+<u>**Exploratory results**</u>
 
   - Conscientiousness, emotional stability and agreeableness are the dominant
     personality traits that relate to engagement and each of its three
@@ -156,7 +137,7 @@ knitr::include_graphics("./images/H1_wide.png")
 
 <br>
 
-<u>__Implications__</u>
+<u>**Implications**</u>
 
 1.  **Theoretical:**
       - Engagement theory is partially supported since personality can change in
@@ -171,7 +152,10 @@ knitr::include_graphics("./images/H1_wide.png")
       - Implement emotional intelligence training programmes to improve
         wellbeing; and reduce stress and anxiety at work.
 
+*****
 
-($`r wordcountaddin::word_count()`$ words)
+Questions or additional information requests to be directed to [the main author.](mailto:sleeds40@gmail.com)
+
+This summary is also published at [ProjectMatch(/blog)](https://www.project-match.com/about/): _"Connecting business and students for great project partnerships"._
 
 <br>
