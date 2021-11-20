@@ -1,0 +1,268 @@
+---
+title: "Final Project for BSc (Honours) Social Psychology: A Summary"
+# author: "Stuart Leeds"
+date: "14/11/2021"
+output:
+  html_document:
+    toc: no
+bibliography: ../common/occ_psych.bib
+csl: ../common/apa.csl
+link-citations: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      message = FALSE,
+                      fig.align = "center")
+
+```
+
+```{r libraries}
+library(tidyverse)
+
+```
+
+
+<br>
+
+<center>**Volunteering and identity: a discursive approach to how  
+volunteers see themselves and are seen by others**
+
+<br>
+
+Stuart M. Leeds
+
+<br>
+
+The Open University (UK)</center>
+
+<br>
+<br>
+
+```{r data}
+interep <- tribble(
+    ~`Pos_Neg`, ~`Description`, ~`Perspective`, ~`Regional`, ~`Subject`,
+    "Positive", "Privileged positions", "Volunteer", "National (UK)", "Being of importance",
+    "Positive", "Privileged positions", "Volunteer", "English", "Being of importance",
+    "Positive", "Privileged positions", "Volunteer", "Scottish", "Being of importance",
+    "Positive", "Privileged positions", "Volunteer", "English", "Being of importance",
+    "Positive", "Privileged positions", "Volunteer", "English", "Being of importance",
+    "Positive", "The value of youth", "Volunteer", "Welsh", "Connected importance",
+    "Positive", "The value of youth", "Volunteer", "English", "Connected importance",
+    "Positive", "The value of youth", "Volunteer", "Scottish", "Connected importance",
+    "Positive", "Exalted levels", "Management", "Scottish", "Needy; Worthy; Valuable",
+    "Positive", "Exalted levels", "Management", "Scottish", "Needy; Worthy; Valuable",
+    "Positive", "Exalted levels", "Management", "English", "Needy; Worthy; Valuable",
+    "Positive", "Essential requirement", "Reporter", "English", "Essential; Commited; Indispensible",
+    "Positive", "Essential requirement", "Reporter", "Welsh", "Essential; Commited; Indispensible",
+    "Positive", "High accolade", "Reporter", "English", "Representative; Belonging; Dependable",
+    "Positive", "High accolade", "Reporter", "English", "Representative; Belonging; Dependable",
+    "Negative", "Inferior placements", "Volunteer", "National (UK)", "Insignificant; Worthless",
+    "Negative", "Inferior placements", "Volunteer", "National (London)", "Insignificant; Worthless",
+    "Negative", "Inferior placements", "Volunteer", "Scottish", "Insignificant; Worthless",
+    "Negative", "Inferior placements", "Volunteer", "English", "Insignificant; Worthless",
+    "Negative", "Negative status", "Management", "National (UK)", "Of little importance",
+    "Negative", "Negative status", "Management", "National (London)", "Of little importance",
+    "Negative", "Negative status", "Management", "Scottish", "Of little importance",
+    "Negative", "Disgruntled people", "Reporter", "National (London)", "Quitters; Unhapy; Volatile",
+    "Negative", "Disgruntled people", "Reporter", "English", "Quitters; Unhapy; Volatile"
+    )
+```
+
+**Purpose:** To explore how volunteer identity can be constructed by volunteers
+themselves and by others.
+
+**Design:** A Critical Discursive Psychology (CDP) approach using ten local and
+national news articles from the Nexis database (word range 5000-7000), found
+using the search criteria *‘volunteer’, ‘identity’, ‘interview’* and
+*‘charity’*.
+
+Research question:
+
+>_How are volunteer identities constructed in UK news articles?_
+
+The **background** begins with the importance of identity in how we categorise
+ourselves and others to help understand who we are. Examples from contemporary
+social psychology suggesting the fluidity and complexity of identity are given.
+**Previous research** reflects on an earlier literature review assignment which
+revealed three themes of identity: *individual, role* and *national*.
+**Strengths:** variety of methodologies and methods, quantity and age-ranges of
+participants; **limitations:** sample sizes, demographics, disasters between
+surveys affecting national identity, selection biases; and **future directions**
+of the previous research are discussed.
+
+The **current research** section explains why a CDP approach is used; and
+clarifies the meanings of the analytical concepts for identifying construction,
+variation and function in discourse using interpretive repertoire, subject
+positions and ideological dilemma to help understand how volunteer identities
+are constructed. In the **method** section, the criteria and process for
+sourcing the data via the *Nexis* database is explained. The resulting corpus
+(10 items; 5590 words) included articles in local newspapers from England (4),
+Scotland (3), Wales (1); and National papers (2). No suitable items were
+available for Northern Ireland due to content or word count constraints.
+
+**Ethical considerations** were minimal as there were no active participants,
+so mainly mentioned awareness of researcher safety and reducing the potential
+for harm (psychological distress from potentially reading about volunteer work
+in traumatic situations) due to unknown subject-matter. Data searching, storage
+and destruction methods are included, along with anonymising any named
+individual in articles. For **transparency** the articles are publicly available
+for checking credibility of analysis; **reflexivity** involves 'stepping back'
+from personal values and volunteering experiences, although some assumptions of
+subject knowledge are difficult to avoid.
+
+The **analytical procedure** expands the process of reading/re-reading
+the data for familiarisation; and of collating and categorising the data with
+*NVivo* to identify and organise the interpretive repertoires, subject
+positions and ideological dilemmas.
+
+<br>
+
+**Analyisis** (see Figure 1 for a visual summary): It became clear that the news
+articles construct volunteer identities from three different perspectives:
+*Volunteer; Management*; and *Reporter*:
+
+<br>
+
+<u>**Volunteer repertoires.**</u> *Volunteer identity constructed by themselves*
+
+1.  `r interep$Description[1]`
+      - Subject positioning: `r interep$Subject[1]`  
+        Five extracts see volunteers understanding that their volunteering
+        identity is important to themselves, clients, colleagues and
+        organisations they volunteer for. The positive subject position is
+        constructed from being "head-hunted" for the job, pride in helping the
+        community, enjoying the work, team-building, sense of belonging and
+        friendship building.
+
+\vspace{0.5cm}
+
+2.  `r interep$Description[17]`
+      - Subject positioning: `r interep$Subject[17]`  
+        Four extracts show how volunteers have constructed negative identities
+        for themselves. These are reflected in "feeling deflated" or "small,
+        like an ant"; and being worn out; ignored; or having work dismissed as
+        not important.
+
+\vspace{0.5cm}
+
+3.  `r interep$Description[6]`
+      - Subject positioning: `r interep$Subject[6]`  
+        The three extracts here construct a positive identity for younger
+        volunteers who see themselves as approachable and good listeners on an
+        equal basis with the youth who use their service.
+
+<br>
+
+<u>**Management repertoires.**</u> *Volunteer identity constructed by
+management*
+
+1.  `r interep$Description[20]`
+      - Subject positioning: `r interep$Subject[20]`  
+        A negative identity is constructed here as management position the
+        volunteers as, of little importance, unprofessional and unwanted. One
+        volunteer feels that management looks down on them as though they were
+        the bottom of the hierarchy. Elsewhere, managers find it easier to 'get
+        rid' of volunteers rather than train them properly; and that volunteers
+        are replaceable. Three of these articles attempt to repair the
+        situations.
+
+\vspace{0.5cm}
+
+2.  `r interep$Description[9]`
+      - Subject positioning: `r interep$Subject[9]`  
+        A positive identity constructed by management as they honour volunteers
+        with praise and reward.
+
+<br>
+
+<u>**Reporter repertoires.**</u> *Volunteer identity constructed by reporters*
+
+1.  `r interep$Description[23]`
+      - Subject positioning: `r interep$Subject[23]`  
+        This negative identity is constructed by reporters, though in both
+        extracts, management created the circumstances. However, one extract
+        relates to a volunteers misunderstanding of a policy, who continues her
+        expression of anger regardless.
+
+\vspace{0.5cm}
+
+2.  `r interep$Description[12]`
+      - Subject positioning: `r interep$Subject[12]`  
+        Reporters have positioned the volunteers with a positive identity by
+        writing about one-to-one attention given; and volunteer commitment
+        showing dedication and reliability. Positive phraseology and that
+        charities struggle to help people without volunteers qualifies the
+        volunteers purpose.
+
+\vspace{0.5cm}
+
+3.  `r interep$Description[14]`
+      - Subject positioning: `r interep$Subject[14]`  
+        More positive subject positioning of volunteer's identity by reporters is
+        highlighted in this final interpretive repertoire. Here volunteers are
+        exalted and rewarded for their essential work and recognised for their
+        length of service.
+
+<br>
+
+```{r plot, fig.cap="__Figure 1.__ Interpretive Repertoire Instances for each Perspective by Newspaper Region"}
+
+ggplot(interep, aes(Description,fill=Pos_Neg))+
+    geom_dotplot(dotsize = 2.5, 
+                 stackdir = "centerwhole", 
+                 stackgroups = TRUE)+
+    facet_grid(c(~Perspective, ~Regional))+
+    coord_flip()+
+    theme_bw()+
+    theme(axis.text.x = element_blank(),
+          axis.ticks.x = element_blank(), 
+          legend.position = "bottom"
+          )+
+    labs(x = "Interpretive Rerpertoire",
+         y = "",
+         caption = "Source: Author's own", 
+         fill = "Key") +
+                  scale_fill_brewer(direction = -1, palette = "Set2")
+```
+
+
+*Note.* The image was not part of the original document but derived from tables
+in the original appendices for this summary. It clearly represents the
+interpretive repertoires attributed by each news source (vertical) to each
+perspective (horizontal). For example, negative identities are given to
+volunteers by management in three regional areas with
+"`r interep$Description[20]`"; volunteers were the most positive *and* negative
+about themselves; and the Welsh regional paper could be seen as the most
+positive with no negative subject positioning.
+
+<br>
+
+**General variation** includes using different phrases to infer age differences.
+For example, young, retired, 30 years voluntary service, in their twenties; no
+upper limit, are found in eight of the papers. Of particular interest are three
+metaphorical uses of the word blood to convey different messages:
+
+1.  "Made my blood boil" (anger).
+2.  Calls for "fresh blood" (recruitment drive).
+3.  Being the "life-blood" (volunteer importance).
+
+<br>
+
+**General function** Several *micro-level* functions exist in the news articles
+as contradictions or disagreements. For example, one volunteer positions
+themselves as `r interep$Subject[1]` yet feels insignificant as management
+'looks down' on them. No *macro-level* (cultural/historical) functions were
+evident, although minor cultural differences can be assumed as the articles
+cover different regions of England, Scotland and Wales. See figure 1 for the
+variation in the spread of positive and negative attribution.
+
+
+*****
+
+Use the [email link](mailto:sleeds40@gmail.com) above for questions or further information.
+
+<br>
+
+

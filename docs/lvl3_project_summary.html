@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Final Project for BSc (Honours) Social Psychology: A Summary</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">(Soc + Occ)Psych/R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    About
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="./aboutme.html">Who am I?</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    500's
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="./500_index.html">Index</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Projects
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="./project_index.html">Index</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Contact
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="mailto:sleeds40@gmail.com">Email</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="mailto:sleeds40@gmail.com">
+    <span class="fa fa-envelope fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://github.com/sleeds50/">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://www.linkedin.com/in/stuart-leeds2020/">
+    <span class="fa fa-linkedin fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Final Project for BSc (Honours) Social Psychology: A Summary</h1>
+<h4 class="date">14/11/2021</h4>
+
+</div>
+
+
+<p><br></p>
+<center>
+<p><strong>Volunteering and identity: a discursive approach to how<br />
+volunteers see themselves and are seen by others</strong></p>
+<p><br></p>
+<p>Stuart M. Leeds</p>
+<p><br></p>
+The Open University (UK)
+</center>
+<p><br> <br></p>
+<p><strong>Purpose:</strong> To explore how volunteer identity can be constructed by volunteers themselves and by others.</p>
+<p><strong>Design:</strong> A Critical Discursive Psychology (CDP) approach using ten local and national news articles from the Nexis database (word range 5000-7000), found using the search criteria <em>‘volunteer,’ ‘identity,’ ‘interview’</em> and <em>‘charity’</em>.</p>
+<p>Research question:</p>
+<blockquote>
+<p><em>How are volunteer identities constructed in UK news articles?</em></p>
+</blockquote>
+<p>The <strong>background</strong> begins with the importance of identity in how we categorise ourselves and others to help understand who we are. Examples from contemporary social psychology suggesting the fluidity and complexity of identity are given. <strong>Previous research</strong> reflects on an earlier literature review assignment which revealed three themes of identity: <em>individual, role</em> and <em>national</em>. <strong>Strengths:</strong> variety of methodologies and methods, quantity and age-ranges of participants; <strong>limitations:</strong> sample sizes, demographics, disasters between surveys affecting national identity, selection biases; and <strong>future directions</strong> of the previous research are discussed.</p>
+<p>The <strong>current research</strong> section explains why a CDP approach is used; and clarifies the meanings of the analytical concepts for identifying construction, variation and function in discourse using interpretive repertoire, subject positions and ideological dilemma to help understand how volunteer identities are constructed. In the <strong>method</strong> section, the criteria and process for sourcing the data via the <em>Nexis</em> database is explained. The resulting corpus (10 items; 5590 words) included articles in local newspapers from England (4), Scotland (3), Wales (1); and National papers (2). No suitable items were available for Northern Ireland due to content or word count constraints.</p>
+<p><strong>Ethical considerations</strong> were minimal as there were no active participants, so mainly mentioned awareness of researcher safety and reducing the potential for harm (psychological distress from potentially reading about volunteer work in traumatic situations) due to unknown subject-matter. Data searching, storage and destruction methods are included, along with anonymising any named individual in articles. For <strong>transparency</strong> the articles are publicly available for checking credibility of analysis; <strong>reflexivity</strong> involves ‘stepping back’ from personal values and volunteering experiences, although some assumptions of subject knowledge are difficult to avoid.</p>
+<p>The <strong>analytical procedure</strong> expands the process of reading/re-reading the data for familiarisation; and of collating and categorising the data with <em>NVivo</em> to identify and organise the interpretive repertoires, subject positions and ideological dilemmas.</p>
+<p><br></p>
+<p><strong>Analyisis</strong> (see Figure 1 for a visual summary): It became clear that the news articles construct volunteer identities from three different perspectives: <em>Volunteer; Management</em>; and <em>Reporter</em>:</p>
+<p><br></p>
+<p><u><strong>Volunteer repertoires.</strong></u> <em>Volunteer identity constructed by themselves</em></p>
+<ol style="list-style-type: decimal">
+<li>Privileged positions
+<ul>
+<li>Subject positioning: Being of importance<br />
+Five extracts see volunteers understanding that their volunteering identity is important to themselves, clients, colleagues and organisations they volunteer for. The positive subject position is constructed from being “head-hunted” for the job, pride in helping the community, enjoying the work, team-building, sense of belonging and friendship building.</li>
+</ul></li>
+</ol>
+<ol start="2" style="list-style-type: decimal">
+<li>Inferior placements
+<ul>
+<li>Subject positioning: Insignificant; Worthless<br />
+Four extracts show how volunteers have constructed negative identities for themselves. These are reflected in “feeling deflated” or “small, like an ant”; and being worn out; ignored; or having work dismissed as not important.</li>
+</ul></li>
+</ol>
+<ol start="3" style="list-style-type: decimal">
+<li>The value of youth
+<ul>
+<li>Subject positioning: Connected importance<br />
+The three extracts here construct a positive identity for younger volunteers who see themselves as approachable and good listeners on an equal basis with the youth who use their service.</li>
+</ul></li>
+</ol>
+<p><br></p>
+<p><u><strong>Management repertoires.</strong></u> <em>Volunteer identity constructed by management</em></p>
+<ol style="list-style-type: decimal">
+<li>Negative status
+<ul>
+<li>Subject positioning: Of little importance<br />
+A negative identity is constructed here as management position the volunteers as, of little importance, unprofessional and unwanted. One volunteer feels that management looks down on them as though they were the bottom of the hierarchy. Elsewhere, managers find it easier to ‘get rid’ of volunteers rather than train them properly; and that volunteers are replaceable. Three of these articles attempt to repair the situations.</li>
+</ul></li>
+</ol>
+<ol start="2" style="list-style-type: decimal">
+<li>Exalted levels
+<ul>
+<li>Subject positioning: Needy; Worthy; Valuable<br />
+A positive identity constructed by management as they honour volunteers with praise and reward.</li>
+</ul></li>
+</ol>
+<p><br></p>
+<p><u><strong>Reporter repertoires.</strong></u> <em>Volunteer identity constructed by reporters</em></p>
+<ol style="list-style-type: decimal">
+<li>Disgruntled people
+<ul>
+<li>Subject positioning: Quitters; Unhapy; Volatile<br />
+This negative identity is constructed by reporters, though in both extracts, management created the circumstances. However, one extract relates to a volunteers misunderstanding of a policy, who continues her expression of anger regardless.</li>
+</ul></li>
+</ol>
+<ol start="2" style="list-style-type: decimal">
+<li>Essential requirement
+<ul>
+<li>Subject positioning: Essential; Commited; Indispensible<br />
+Reporters have positioned the volunteers with a positive identity by writing about one-to-one attention given; and volunteer commitment showing dedication and reliability. Positive phraseology and that charities struggle to help people without volunteers qualifies the volunteers purpose.</li>
+</ul></li>
+</ol>
+<ol start="3" style="list-style-type: decimal">
+<li>High accolade
+<ul>
+<li>Subject positioning: Representative; Belonging; Dependable<br />
+More positive subject positioning of volunteer’s identity by reporters is highlighted in this final interpretive repertoire. Here volunteers are exalted and rewarded for their essential work and recognised for their length of service.</li>
+</ul></li>
+</ol>
+<p><br></p>
+<div class="figure" style="text-align: center">
+<img src="lvl3_project_summary_files/figure-html/plot-1.png" alt="__Figure 1.__ Interpretive Repertoire Instances for each Perspective by Newspaper Region" width="672" />
+<p class="caption">
+<strong>Figure 1.</strong> Interpretive Repertoire Instances for each Perspective by Newspaper Region
+</p>
+</div>
+<p><em>Note.</em> The image was not part of the original document but derived from tables in the original appendices for this summary. It clearly represents the interpretive repertoires attributed by each news source (vertical) to each perspective (horizontal). For example, negative identities are given to volunteers by management in three regional areas with “Negative status”; volunteers were the most positive <em>and</em> negative about themselves; and the Welsh regional paper could be seen as the most positive with no negative subject positioning.</p>
+<p><br></p>
+<p><strong>General variation</strong> includes using different phrases to infer age differences. For example, young, retired, 30 years voluntary service, in their twenties; no upper limit, are found in eight of the papers. Of particular interest are three metaphorical uses of the word blood to convey different messages:</p>
+<ol style="list-style-type: decimal">
+<li>“Made my blood boil” (anger).</li>
+<li>Calls for “fresh blood” (recruitment drive).</li>
+<li>Being the “life-blood” (volunteer importance).</li>
+</ol>
+<p><br></p>
+<p><strong>General function</strong> Several <em>micro-level</em> functions exist in the news articles as contradictions or disagreements. For example, one volunteer positions themselves as Being of importance yet feels insignificant as management ‘looks down’ on them. No <em>macro-level</em> (cultural/historical) functions were evident, although minor cultural differences can be assumed as the articles cover different regions of England, Scotland and Wales. See figure 1 for the variation in the spread of positive and negative attribution.</p>
+<hr />
+<p>Use the <a href="mailto:sleeds40@gmail.com">email link</a> above for questions or further information.</p>
+<p><br></p>
+
+
+
+
+ <!-- remove Html comment bars below when enough content --> 
+
+ <!-- <p>Copyright &copy; 2021 S.M.Leeds. All rights reserved.</p> --> 
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
