@@ -16,9 +16,14 @@ library(fontawesome)
 ## <u>Social<br> Psychology</u>
 
 
-1.  [**...coming soon**](./aboutme.html)
+1.  [**Volunteering and identity**](./lvl3_project_summary.html)
 
-*Short description*
+*A summary of my level 3 final project. As much as I enjoyed (and enjoy)
+quantitative statistics, qualitative research methods intrigued me. Since I felt
+generally comfortable with the statistics side of research, I decided to indulge
+in a Critical Discursive Psychology approach using existing newspaper reports.
+It was enough to secure a 2:1 overall grade; and was inspired by my own
+volunteering at a local Citizens Advice office.* [Reading time: 5 minutes]
 
 
 ## <u>Occupational<br> Psychology</u>
@@ -29,23 +34,24 @@ library(fontawesome)
 *One of the modules for my MSc was Applying Psychology to Work & Organisations
 (APWO). A requirement was to write a short blog-post about the experience. Given
 that the work was undertaken during the Covid19 pandemic, suffice to say it was
-conducted remotely.*
+conducted remotely.* [Reading time: 3 minutes]
 
-2.  [**Final dissertation summary**](./dissertation_summary.html)
+2.  [**Engagement at work**](./dissertation_summary.html)
 
 *A summary of my final dissertation. It was not ground-breaking, neither will it
 be published nor presented at any Occupational Psychology conference. However, I
 am proud that it was my highest scoring assignment which earned me a full MSc
-degree with Merit.*
+degree with Merit.* [Reading time: 4 minutes]
 
 
 
-## <u>R-<br> Interesting things</u>
+## <u>R-<br> Interesting Things</u>
 
 
 1.  [**Places I have lived**](./places_lived.html)
 
-*This is a short RMarkdown referring to the places I have lived since birth*
+*This is a short RMarkdown cataloguing the places I have lived since birth.*
+[Reading time: 5 minutes]
 
 
 
