@@ -207,7 +207,7 @@ management*
 
 <br>
 
-```{r plot, fig.cap="__Figure 1.__ Interpretive Repertoire Instances for each Perspective by Newspaper Region"}
+```{r plot, out.width = "90%", fig.cap="__Figure 1.__ Interpretive Repertoire Instances for each Perspective by Newspaper Region"}
 
 ggplot(interep, aes(Description,fill=Pos_Neg))+
     geom_dotplot(dotsize = 2.5, 
@@ -231,11 +231,11 @@ ggplot(interep, aes(Description,fill=Pos_Neg))+
 *Note.* The image was not part of the original document but derived from tables
 in the original appendices for this summary. It clearly represents the
 interpretive repertoires attributed by each news source (vertical) to each
-perspective (horizontal). For example, negative identities are given to
-volunteers by management in three regional areas with
-"`r interep$Description[20]`"; volunteers were the most positive *and* negative
-about themselves; and the Welsh regional paper could be seen as the most
-positive with no negative subject positioning.
+perspective (horizontal). For example, negative volunteer identities are
+reported in three regional areas by management for
+"`r interep$Description[20]`"; the Welsh regional paper could be seen as the
+most positive with no negative subject positioning; and volunteers were the most
+positive *and* negative about themselves.
 
 <br>
 
@@ -259,9 +259,12 @@ cover different regions of England, Scotland and Wales. See figure 1 for the
 variation in the spread of positive and negative attribution.
 
 
+
+
 *****
 
-Use the [email link](mailto:sleeds40@gmail.com) above for questions or further information.
+Please use the [email link](mailto:sleeds40@gmail.com) above for questions or
+further information.
 
 <br>
 
