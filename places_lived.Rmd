@@ -7,8 +7,6 @@ output:
     toc: FALSE
 ---
 
-Updated on: `r format(Sys.Date(),"%b %d, %Y")`
-
 ```{r setup, include=FALSE}
 
 knitr::opts_chunk$set(
