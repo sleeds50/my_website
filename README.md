@@ -2,9 +2,9 @@
 
 So this is an ongoing process to give myself a professional appearance online.
 
-So far, so good. Will 'go live' at some point.
+So far, so good. ~~Will 'go live' at some point.
 
-Coming soon!.....15 July, 2021
+Coming soon!.....(Started: 15 July, 2021)
 
 git test
 
