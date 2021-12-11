@@ -372,7 +372,7 @@ $(document).ready(function () {
 <blockquote>
 <p>Well.being, GDP, Equality, Food.consumption, Alcohol.consumption, Energy.consumption, Family, Working.hours, Work.income, Health.spending, Military.spending</p>
 </blockquote>
-<p>The data require minimal cleaning, so in this case only the necessary columns are selected with <code>d[]</code> function; and the Well.being column sorted with the <code>Sort()</code> function in <code>lessR</code> (all code for this document can be found in the <a href="#Appendix">Appendix</a>). For the purposes of using <code>lessR</code>, the <code>UsingR::wellbeing</code> data frame was saved as a <code>.csv</code> file with <code>Write()</code> and re-imported with <code>Read()</code> into the variable <code>d</code> (you might not have to do this - I could not get the original data to be manipulated with <code>lessR</code> functions).</p>
+<p>The data require minimal cleaning, so in this case only the necessary columns are selected with <code>d[]</code> function; and the Well.being column sorted with the <code>Sort()</code> function in <code>lessR</code> (all code for this document can be found in the <a href="#Appendix">Appendix</a>). For the purposes of using <code>lessR</code>, the <code>UsingR::wellbeing</code> data frame was saved as an <code>.xlsx</code> file with <code>Write()</code> and re-imported with <code>Read()</code> into the variable <code>d</code> (you might not have to do this - I could not get the original data to be manipulated with <code>lessR</code> functions).</p>
 </div>
 <div id="the-analysis" class="section level1">
 <h1>The Analysis</h1>
@@ -662,7 +662,7 @@ The final predictive model is: proportion of Wellbeing <span class="math inline"
 <div id="further-query" class="section level1">
 <h1>Further Query</h1>
 <p>Clearly, working more hours in a week reduces wellbeing. We have already seen that the Wellbeing Mean for this data set is <span class="math inline">\(5.1\)</span>. This could be considered as <em>peak</em> wellbeing, so what are the average working hours per week per person needed to maintain that level of wellbeing?</p>
-<p>The prediction output suggests a level of wellbeing at <span class="math inline">\(5.13\)</span> <span class="math inline">\((95\%\)</span> <span class="math inline">\(CI[4.39, 5.87])\)</span> for <span class="math inline">\(32.95\)</span> (round to <span class="math inline">\(33\)</span>) average hours worked at item <span class="math inline">\(7\)</span>:</p>
+<p>The prediction output suggests a level of wellbeing at <span class="math inline">\(5.13\)</span> <span class="math inline">\((95\%\space CI[4.39, 5.87])\)</span> for <span class="math inline">\(32.95\)</span> (round to <span class="math inline">\(33\)</span>) average hours worked at item <span class="math inline">\(7\)</span>:</p>
 <pre><code>## [1] &quot;     Working.hours Well.being pred   sf pi.lwr pi.upr width&quot;
 ## [2] &quot;   7         32.95       5.39 5.13 0.35   4.39   5.87  1.48&quot;</code></pre>
 <p><br />
@@ -805,7 +805,7 @@ United Kingdom
 </table>
 <p><br />
 </p>
-<p>In this group, <em>France</em> has the largest difference in wellbeing <span class="math inline">\((-0.25)\)</span>, a <span class="math inline">\(1/4\)</span> of a point less than average wellbeing; and the country with the greatest working hours difference is <em>Germany</em> at <span class="math inline">\(-5.45\)</span>, which is <span class="math inline">\(5\)</span> hours <span class="math inline">\(27\)</span> minutes fewer than average. Further research is required to determine the <em>whys</em> and <em>wherefores</em>, which is beyond the scope of this report.</p>
+<p>In this group, <em>France</em> has the largest difference in wellbeing <span class="math inline">\((-0.25)\)</span>, a <span class="math inline">\(1/4\)</span> of a point less than average wellbeing. However, all of the wellbeing differences are <em>very</em> small; and the wellbeing scores for each country are within the lower bound of the <span class="math inline">\(95\%\space CI[4.39, 5.87]\)</span> of the wellbeing/working hours prediction. The country with the greatest working hours difference is <em>Germany</em> at <span class="math inline">\(-5.45\)</span>, which is <span class="math inline">\(5\)</span> hours <span class="math inline">\(27\)</span> minutes fewer than average. Further research is required to determine the <em>whys</em> and <em>wherefores</em>, which is beyond the scope of this report.</p>
 </div>
 <div id="conclusion" class="section level1">
 <h1>Conclusion</h1>
@@ -853,7 +853,7 @@ knitr::write_bib(c(.packages(), &quot;rmarkdown&quot;), &quot;../common/packages
 # Data loading from UsingR
 mydata &lt;- wellbeing
 
-# Write to `lessr` .csv format
+# Write to `lessr` .xlsx format
 Write(&quot;wellbeing&quot;, format = &quot;Excel&quot;, data = mydata)</code></pre>
 <pre><code>## [with the writeData function from Schauberger and  Walker&#39;s openxlsx package] 
 ## 
