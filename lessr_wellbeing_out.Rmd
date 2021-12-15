@@ -7,7 +7,7 @@ title: "Regression of Well.being on Working.hours"
 ---
 
 ***
-_Tue Dec 07, 2021 at 13:18 &nbsp; with lessR version 4.0.8_
+_Wed Dec 15, 2021 at 08:38 &nbsp; with lessR version 4.1.4_
 
 _Output Options: explain=TRUE, interpret=TRUE, results=TRUE, document=TRUE, code=TRUE_
 
@@ -22,7 +22,7 @@ Read the data with the `lessR` function `Read`.
 The corresponding data values for the variables in the model comprise the _training data_, from which the model is estimated. 
 
 ```{r}
-d <- Read(from = "wellbeing.xlsx")
+d <- Read(from = "./data/wellbeing.xlsx")
 ```
 Data from the following variables are available for analysis: `r xAnd(names(d))`. 
 
@@ -42,7 +42,7 @@ Estimate the coefficients with ordinary least squares (OLS), which provides the 
 Accomplish the estimation and related computations with the `lessR` function `Regression`, abbreviated as `reg`. Keep graphics separate, so generate these later. 
 
 ```{r}
-r <- Regression(my_formula = Well.being ~ Working.hours, graphics = FALSE)
+r <- Regression(my_formula = Well.being ~ Working.hours, digits_d = 2, graphics = FALSE)
 ```
 The output begins with a specification of the variables in the model and a brief description of the data. 
 
@@ -65,12 +65,12 @@ The confidence interval provides the range of likely values of the corresponding
 r$out_estimates
 ```
 This estimated model is the linear function with estimated numeric coefficients that yield a fitted value of Well.being from the provided data value of Working.hours.
-$$\hat Y_{Well.being} = `r xP(r$coefficients[1],3)` `r ifelse(sign(r$coefficients)==1, "+", "-")[2]` `r xP(abs(r$coefficients[2]),3)` X_{Working.hours}$$
+$$\hat Y_{Well.being} = `r xP(r$coefficients[1],2)` `r ifelse(sign(r$coefficients)==1, "+", "-")[2]` `r xP(abs(r$coefficients[2]),2)` X_{Working.hours}$$
 
 This predictor variable has a _p_-value less than or equal to $\alpha$ = 0.05: _`r xAnd(names(which(r$pvalues[2:length(r$pvalues)] <= 0.05)))`_. 
 
 To extend the results beyond this sample to the population from which the sample was obtained, interpret the meaning of this corresponding coefficient in terms of its confidence interval. 
-With 95% confidence, for each additional unit  of  Working.hours, on average, Well.being changes somewhere between `r xP(r$cilb[2],3,)` to `r xP(r$ciub[2],3,)`.
+With 95% confidence, for each additional unit  of  Working.hours, on average, Well.being changes somewhere between `r xP(r$cilb[2],2,)` to `r xP(r$ciub[2],2,)`.
 
 ## Model Fit
 An estimated model is not necessarily useful. A first consideration of usefulness is that the model fits the data from which it is estimated, the training data. To what extent do the values fitted by the model, $\hat Y_{Well.being}$, match the corresponding training data values $Y_{Well.being}$? Are the individual residuals, $e_i$, typically close to their mean of zero, or are they scattered about the regression line with relatively large positive values and negative values? There are more considerations of usefulness, but a model that cannot fit its own training data is generally not useful.
@@ -86,7 +86,7 @@ The analysis of variance (ANOVA) partitions this total sum of squares into the r
 ```{r}
 r$out_anova
 ```
-$$SS_{Well.being} = SS_{Model} + SS_{Residual} = `r xP(r$anova_model["ss"],3)` + `r xP(r$anova_residual["ss"],3)` = `r xP(r$anova_total["ss"],3,, semi=TRUE)` $$
+$$SS_{Well.being} = SS_{Model} + SS_{Residual} = `r xP(r$anova_model["ss"],2)` + `r xP(r$anova_residual["ss"],2)` = `r xP(r$anova_total["ss"],2,, semi=TRUE)` $$
 
 This decomposition of the sums of squares of Well.being into what is explained by the model, and what is not explained, is fundamental to assessing the fit of the model. 
 
@@ -99,22 +99,22 @@ r$out_fit
 ```
 
 The _standard deviation of the residuals_, $s_e$, directly assesses the variability of the data values of Well.being about the corresponding fitted values for the training data, the particular data set from which the model was estimated. Each mean square in the ANOVA table is a variance, a sum of squares divided by the corresponding degrees of freedom, _df_. By definition, the standard deviation, $s_e$ is the square root of the mean square of the residuals. 
-$$s_e = \sqrt{MS_{Residual}} = \sqrt{`r xP(r$anova_residual["ms"],3)`} = `r xP(r$se,3,, semi=TRUE)`$$
-To interpret $s_e$ = `r xP(r$se,3,)`, consider the estimated range of 95% of the values of a normally distributed variable, which depends on the corresponding 2.5% cutoff from the $t$-distribution for df=`r r$anova_residual["df"]`: `r xP(-qt(0.025, df=r$anova_residual["df"]),3)`. 
-$$95\% \;  Range: 2 * t_{cutoff} * s_e = 2 * `r xP(-qt(0.025, df=r$anova_residual["df"]),3)` * `r xP(r$se,3)` = 
-`r xP(r$resid_range,3,, semi=TRUE)`$$
+$$s_e = \sqrt{MS_{Residual}} = \sqrt{`r xP(r$anova_residual["ms"],2)`} = `r xP(r$se,2,, semi=TRUE)`$$
+To interpret $s_e$ = `r xP(r$se,2,)`, consider the estimated range of 95% of the values of a normally distributed variable, which depends on the corresponding 2.5% cutoff from the $t$-distribution for df=`r r$anova_residual["df"]`: `r xP(-qt(0.025, df=r$anova_residual["df"]),3)`. 
+$$95\% \;  Range: 2 * t_{cutoff} * s_e = 2 * `r xP(-qt(0.025, df=r$anova_residual["df"]),3)` * `r xP(r$se,2)` = 
+`r xP(r$resid_range,2,, semi=TRUE)`$$
 
 This range of the residuals for the fitted values is the lower limit of the range of prediction error presented later. 
 
 A second type of fit index is $R^2$, the proportion of the overall variability of response variable Well.being that is accounted for by the model, applied to the training data, expressed either in terms of $SS_{Residual}$ or $SS_{Model}$. 
-$$R^2 = 1 - \frac{SS_{Residual}}{SS_{Well.being}} = \frac{SS_{Model}}{SS_{Well.being}} = \frac{`r xP(r$anova_model["ss"],3)`} {`r xP(r$anova_total["ss"],3)`} = `r xP(r$Rsq,3)` $$ 
+$$R^2 = 1 - \frac{SS_{Residual}}{SS_{Well.being}} = \frac{SS_{Model}}{SS_{Well.being}} = \frac{`r xP(r$anova_model["ss"],2)`} {`r xP(r$anova_total["ss"],2)`} = `r xP(r$Rsq,3)` $$ 
 Unfortunately when any new predictor variable is added to a model, useful or not, $R^2$ necessarily increases. Use the adjusted version, $R^2_{adj}$, to more appropriately compare models estimated from the same training data with different numbers of predictors. $R^2_{adj}$ helps to avoid overfitting a model because it only increases if a new predictor variable added to the model improves the fit more than would be expected by chance. The adjustment considers the number of predictor variables relative to the number of rows of data (cases). Accomplish this adjustment with the degrees of freedom, to transform each Sum of Squares to the corresponding Mean Squares_ 
 $$R^2_{adj} = 1 - \frac{SS_{Residual} \; / \; `r r$anova_residual["df"]`}
-{SS_{Well.being} \; / \; `r r$anova_total["df"]`} = 1 - \frac{MS_{Residual}}{MS_{Well.being}} = 1 - \frac{`r xP(r$anova_residual["ms"],3)`} {`r xP(r$anova_total["ms"],3)`} = `r xP(r$Rsqadj,3)`$$
+{SS_{Well.being} \; / \; `r r$anova_total["df"]`} = 1 - \frac{MS_{Residual}}{MS_{Well.being}} = 1 - \frac{`r xP(r$anova_residual["ms"],2)`} {`r xP(r$anova_total["ms"],2)`} = `r xP(r$Rsqadj,3)`$$
 From this analysis compare $R^2$ = `r xP(r$Rsq,3)` to the adjusted value of $R^2_{adj}$ = `r xP(r$Rsqadj,3)`, a difference of `r xP((r$Rsq-r$Rsqadj), 3)`. A large difference indicates that too many predictor variables in the model for the available data yielded an overfitted model. 
 
 Both $R^2$ and $R^2_{adj}$ describe the fit of the model to the training data. To generalize to prediction accuracy on _new_ data, evaluate the fit of the model to predict using the _predictive residual_ (PRE). To calculate the predictive residual for a row of data (case), first estimate the model with that case deleted, that is, from all the remaining cases in the training data, an example of a _case-deletion_ statistic. Repeat for all rows of data. $SS_{PRE}$, or PRESS, is the sum of squares of all the predictive residuals in a data set. From $SS_{PRE}$ define the predictive $R^2$, $R^2_{PRESS}$. 
-$$R^2_{PRESS} = 1 - \frac{SS_{PRE}}{SS_{Well.being}} = 1 - \frac{`r xP(r$PRESS,3)`} {`r xP(r$anova_total["ss"],3)`} = `r xP(r$RsqPRESS,3)` $$ 
+$$R^2_{PRESS} = 1 - \frac{SS_{PRE}}{SS_{Well.being}} = 1 - \frac{`r xP(r$PRESS,2)`} {`r xP(r$anova_total["ss"],2)`} = `r xP(r$RsqPRESS,3)` $$ 
 
 Because an estimated model at least to some extent overfits the training data, $R^2_{PRESS}$ = `r xP(r$RsqPRESS,3)` is lower than both $R^2$ and $R^2_{adj}$. The value is lower, but is the more appropriate value to understand how well the model predicts new values beyond the training from which it was estimated. 
 
@@ -171,7 +171,7 @@ The analysis provides each row of data values, _as if_ they were  new data, with
 r$out_predict
 ```
 
-The size of the prediction intervals for the range of data found in the input data table vary from a minimum of `r xP(r$pred_min_max[1], 3,)` for `r xAnd(xRow(r$pred_min_max[1]))` to a maximum of `r xP(r$pred_min_max[2], 3,)` for `r xAnd(xRow(r$pred_min_max[2]))`. 
+The size of the prediction intervals for the range of data found in the input data table vary from a minimum of `r xP(r$pred_min_max[1], 2,)` for `r xAnd(xRow(r$pred_min_max[1]))` to a maximum of `r xP(r$pred_min_max[2], 2,)` for `r xAnd(xRow(r$pred_min_max[2]))`. 
 
 The confidence intervals for the points on the regression line, and the much larger prediction intervals for the individual data points, are illustrated with an enhancement of the original scatter plot.
 Plot the scatter plot with prediction intervals separately with the `lessR` function `regPlot`. Specify option 1 to indicate this specific plot.
@@ -190,7 +190,7 @@ Re-run the analysis to obtain the prediction intervals with these specified valu
 
 
 ```{r}
-r <- Regression(my_formula = Well.being ~ Working.hours,
+r <- Regression(my_formula = Well.being ~ Working.hours, digits_d = 2,
          X1_new=c(30,33),
          graphics = FALSE)
 ```
@@ -201,7 +201,7 @@ Calculate the piction intervals only for the new data values_
 r$out_predict
 ```
 
-The size of the prediction intervals for the range of data found in the newly specified values vary from a minimum of `r xP(r$pred_min_max[1], 3,)` for `r xAnd(xRow(r$pred_min_max[1]))` to a maximum of `r xP(r$pred_min_max[2], 3,)` for `r xAnd(xRow(r$pred_min_max[2]))`. The rows in the output display, however, are re-ordered according to the combinations of the ordered values of the predictor variables. 
+The size of the prediction intervals for the range of data found in the newly specified values vary from a minimum of `r xP(r$pred_min_max[1], 2,)` for `r xAnd(xRow(r$pred_min_max[1]))` to a maximum of `r xP(r$pred_min_max[2], 2,)` for `r xAnd(xRow(r$pred_min_max[2]))`. The rows in the output display, however, are re-ordered according to the combinations of the ordered values of the predictor variables. 
 
 ## Model Validity
 The residuals should be independent, normal random variables with a mean of zero and constant variance. 
