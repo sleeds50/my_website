@@ -567,20 +567,14 @@ NA
 <p><br />
 </p>
 <ol style="list-style-type: decimal">
-<li>The Well.being descriptive statistics:<br />
-Well.being: Mean = 5.10 SD = 0.40, Min = 4.39 Max = 5.93</li>
+<li>The regression estimate:</li>
 </ol>
+<pre><code>##                Estimate    Std Err  t-value  p-value   Lower 95%   Upper 95%
+##   (Intercept)      7.08       0.83    8.571    0.000        5.32        8.84
+## Working.hours     -0.06       0.03   -2.279    0.038       -0.11       -0.00</code></pre>
 <p><br />
 </p>
 <ol start="2" style="list-style-type: decimal">
-<li>The regression estimate:</li>
-</ol>
-<pre><code>## [1] &quot;               Estimate    Std Err  t-value  p-value   Lower 95%   Upper 95%&quot;
-## [2] &quot;  (Intercept)      7.08       0.83    8.571    0.000        5.32        8.84&quot;
-## [3] &quot;Working.hours     -0.06       0.03   -2.279    0.038       -0.11       -0.00&quot;</code></pre>
-<p><br />
-</p>
-<ol start="3" style="list-style-type: decimal">
 <li>The Anova:</li>
 </ol>
 <pre><code>##                 df    Sum Sq   Mean Sq   F-value   p-value
@@ -589,7 +583,7 @@ Well.being: Mean = 5.10 SD = 0.40, Min = 4.39 Max = 5.93</li>
 ## Well.being      16      2.27      0.14</code></pre>
 <p><br />
 </p>
-<ol start="4" style="list-style-type: decimal">
+<ol start="3" style="list-style-type: decimal">
 <li>The adjusted R-squared value is <span class="math inline">\((R^2_adj = 0.2077)\)</span>.</li>
 </ol>
 <p><br />
@@ -602,7 +596,7 @@ The final predictive model is: proportion of Wellbeing <span class="math inline"
 </div>
 <div id="plots" class="section level1">
 <h1>Plots</h1>
-<p>Three plots for visualising the regression assumptions are also produced (automatically in the <code>Regression()</code> function, or separately using <code>regPlot()</code>, as here:)</p>
+<p>Three plots for visualising the regression and the assumptions are also produced (automatically in the <code>Regression()</code> function, or separately using <code>regPlot()</code>, as here:)</p>
 <p><strong>Figure 1.</strong><br />
 <em>Scatterplot showing regression line, prediction and confidence intervals:</em></p>
 <p><img src="lessR_wellbeing_files/figure-html/plot1-1.png" width="672" style="display: block; margin: auto;" /><br />
@@ -805,7 +799,7 @@ United Kingdom
 </table>
 <p><br />
 </p>
-<p>In this group, <em>France</em> has the largest difference in wellbeing <span class="math inline">\((-0.25)\)</span>, a <span class="math inline">\(1/4\)</span> of a point less than average wellbeing. However, all of the wellbeing differences are <em>very</em> small; and the wellbeing scores for each country are within the lower bound of the <span class="math inline">\(95\%\space CI[4.39, 5.87]\)</span> of the wellbeing/working hours prediction. The country with the greatest working hours difference is <em>Germany</em> at <span class="math inline">\(-5.45\)</span>, which is <span class="math inline">\(5\)</span> hours <span class="math inline">\(27\)</span> minutes fewer than average. Further research is required to determine the <em>whys</em> and <em>wherefores</em>, which is beyond the scope of this report.</p>
+<p>In this group, <em>France</em> has the largest difference in wellbeing <span class="math inline">\((-0.25)\)</span>, a <span class="math inline">\(1/4\)</span> of a point less than average wellbeing. However, all of the wellbeing differences are <em>very</em> small; and the wellbeing scores for each country are within the bounds of the <span class="math inline">\(95\%\space CI[4.39, 5.87]\)</span> of the wellbeing/working hours prediction. The country with the greatest working hours difference is <em>Germany</em> at <span class="math inline">\(-5.45\)</span>, which is <span class="math inline">\(5\)</span> hours <span class="math inline">\(27\)</span> minutes fewer than average. Further research is required to determine the <em>whys</em> and <em>wherefores</em>, which is beyond the scope of this report.</p>
 </div>
 <div id="conclusion" class="section level1">
 <h1>Conclusion</h1>
@@ -853,14 +847,11 @@ knitr::write_bib(c(.packages(), &quot;rmarkdown&quot;), &quot;../common/packages
 # Data loading from UsingR
 mydata &lt;- wellbeing
 
-# Write to `lessr` .xlsx format
-Write(&quot;wellbeing&quot;, format = &quot;Excel&quot;, data = mydata)</code></pre>
-<pre><code>## [with the writeData function from Schauberger and  Walker&#39;s openxlsx package] 
-## 
-## The mydata data values written at the current working directory
-##         wellbeing.xlsx  in:   C:/Users/sleed/OneDrive/Documents/R/Projects/my_website</code></pre>
-<pre class="r"><code># Read data
-d &lt;- Read(&quot;wellbeing.xlsx&quot;)</code></pre>
+# Write to `lessr` .xlsx format (uncomment - only needs doing once)
+# Write(&quot;./data/wellbeing&quot;, format = &quot;Excel&quot;, data = mydata)
+
+# Read data
+d &lt;- Read(&quot;./data/wellbeing.xlsx&quot;)</code></pre>
 <pre><code>## [with the read.xlsx function from Schauberger and Walker&#39;s openxlsx package] 
 ## 
 ## &gt;&gt;&gt; Suggestions
@@ -1099,18 +1090,14 @@ NA
 <pre class="r"><code># The `Regression` function
 r &lt;- Regression(Well.being ~ Working.hours,
   digits_d = 2,
-  # Rmd = &quot;lessr_wellbeing_out&quot;, # Uncomment this for html readout
+  Rmd = &quot;lessr_wellbeing_out&quot;, # Uncomment this for html readout
   graphics = FALSE # Replace with TRUE for three plots:
   # (1: Regression, 2: Distribution, 3: Fitted Values)
 )
 
 r</code></pre>
-<pre><code>## &gt;&gt;&gt; Suggestion
-## # Create an R markdown file for interpretative output with  Rmd = &quot;file_name&quot;
-## Regression(my_formula=Well.being ~ Working.hours, digits_d=2, graphics=FALSE, Rmd=&quot;eg&quot;)  
-## 
-## 
-##   BACKGROUND
+<pre><code>## 
+##   BACKGROUND 
 ## 
 ## Data Frame:  d 
 ##  
@@ -1120,18 +1107,14 @@ r</code></pre>
 ## Number of cases (rows) of data:  22 
 ## Number of cases retained for analysis:  17 
 ## 
+##   BASIC ANALYSIS 
 ## 
-##   BASIC ANALYSIS
-## 
-## Well.being:  Mean = 5.10   SD = 0.40 
-##              Min = 4.39   Max = 5.93
-## 
-##  
 ##                Estimate    Std Err  t-value  p-value   Lower 95%   Upper 95% 
 ##   (Intercept)      7.08       0.83    8.571    0.000        5.32        8.84 
 ## Working.hours     -0.06       0.03   -2.279    0.038       -0.11       -0.00 
 ## 
-## 
+## Standard deviation of Well.being: 0.40 
+##  
 ## Standard deviation of residuals:  0.33 for 15 degrees of freedom 
 ## 95% range of residual variation:  1.43 = 2 * (2.131 * 0.33) 
 ##  
@@ -1140,23 +1123,20 @@ r</code></pre>
 ## Null hypothesis of all 0 population slope coefficients:
 ##   F-statistic: 5.195     df: 1 and 15     p-value:  0.038 
 ## 
-## 
 ##                 df    Sum Sq   Mean Sq   F-value   p-value 
 ## Model            1      0.58      0.58      5.20     0.038 
 ## Residuals       15      1.68      0.11 
 ## Well.being      16      2.27      0.14 
 ## 
+##   K-FOLD CROSS-VALIDATION 
 ## 
-##   K-FOLD CROSS-VALIDATION
-## 
-##   RELATIONS AMONG THE VARIABLES
+##   RELATIONS AMONG THE VARIABLES 
 ## 
 ##                 Well.being Working.hours 
 ##      Well.being       1.00         -0.51 
 ##   Working.hours      -0.51          1.00 
 ## 
-## 
-##   RESIDUALS AND INFLUENCE
+##   RESIDUALS AND INFLUENCE 
 ## 
 ## Data, Fitted, Residual, Studentized Residual, Dffits, Cook&#39;s Distance 
 ##    [sorted by Cook&#39;s Distance] 
@@ -1181,13 +1161,12 @@ r</code></pre>
 ##   18         31.82       5.34   5.20  0.14   0.43   0.11  0.01 
 ##   14         38.17       4.81   4.82 -0.01  -0.04  -0.02  0.00 
 ## 
-## 
 ##   PREDICTION ERROR 
 ## 
 ## Data, Predicted, Standard Error of Forecast, 
 ## 95% Prediction Intervals 
 ##    [sorted by lower bound of prediction interval] 
-##  ----------------------------------------------
+##  ---------------------------------------------- 
 ## 
 ##      Working.hours Well.being pred   sf pi.lwr pi.upr width 
 ##   10         38.25       4.74 4.82 0.38   4.00   5.64  1.64 
@@ -1206,12 +1185,16 @@ r</code></pre>
 ##    8         30.16       4.88 5.29 0.35   4.56   6.03  1.48 
 ##    9         27.55       5.01 5.45 0.36   4.68   6.22  1.54 
 ##   13         27.08       5.69 5.48 0.36   4.70   6.25  1.55 
-##   12         26.75       5.31 5.50 0.37   4.71   6.28  1.57</code></pre>
+##   12         26.75       5.31 5.50 0.37   4.71   6.28  1.57 
+## 
+## 
+## The R Markdown file written at the current working directory. 
+##         lessr_wellbeing_out.Rmd  in:   C:/Users/sleed/OneDrive/Documents/R/Projects/my_website</code></pre>
 <pre class="r"><code># The estimates output
-r$out_estimates[3:5]</code></pre>
-<pre><code>## [1] &quot;               Estimate    Std Err  t-value  p-value   Lower 95%   Upper 95%&quot;
-## [2] &quot;  (Intercept)      7.08       0.83    8.571    0.000        5.32        8.84&quot;
-## [3] &quot;Working.hours     -0.06       0.03   -2.279    0.038       -0.11       -0.00&quot;</code></pre>
+r$out_estimates</code></pre>
+<pre><code>##                Estimate    Std Err  t-value  p-value   Lower 95%   Upper 95%
+##   (Intercept)      7.08       0.83    8.571    0.000        5.32        8.84
+## Working.hours     -0.06       0.03   -2.279    0.038       -0.11       -0.00</code></pre>
 <pre class="r"><code># The ANOVA output
 r$out_anova</code></pre>
 <pre><code>##                 df    Sum Sq   Mean Sq   F-value   p-value
@@ -1220,13 +1203,13 @@ r$out_anova</code></pre>
 ## Well.being      16      2.27      0.14</code></pre>
 <pre class="r"><code># The regression plot
 regPlot(r, 1, res_rows = &quot;all&quot;) # Max rows = 20, use `res_rows=&#39;all&#39;` for all rows</code></pre>
-<p><img src="lessR_wellbeing_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="lessR_wellbeing_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code># The residual barplot
 regPlot(r, 2, res_rows = &quot;all&quot;) # Max rows = 20, use `res_rows=&#39;all&#39;` for all rows</code></pre>
-<p><img src="lessR_wellbeing_files/figure-html/unnamed-chunk-3-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="lessR_wellbeing_files/figure-html/unnamed-chunk-1-2.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code># The residual scatterplot
 regPlot(r, 3, res_rows = &quot;all&quot;) # Max rows = 20, use `res_rows=&#39;all&#39;` for all rows</code></pre>
-<p><img src="lessR_wellbeing_files/figure-html/unnamed-chunk-3-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="lessR_wellbeing_files/figure-html/unnamed-chunk-1-3.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code># The correlation matrix
 r$out_cor</code></pre>
 <pre><code>##                 Well.being Working.hours
