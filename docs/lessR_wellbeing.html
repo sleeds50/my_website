@@ -809,7 +809,7 @@ United Kingdom
 <h1>References</h1>
 <div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
 <div id="ref-colliganWorkplaceStressEtiology2006" class="csl-entry">
-Colligan, T. W., &amp; Higgins, E. M. (2006). Workplace stress: Etiology and consequences. <em>Journal of Workplace Behavioral Health</em>, <em>21</em>(2), 89–97. <a href="https://doi.org/10.1300/J490v21n02_07">https://doi.org/10.1300/J490v21n02_07</a>
+Colligan, T. W., &amp; Higgins, E. M. (2006). Workplace stress: <span>Etiology</span> and consequences. <em>Journal of Workplace Behavioral Health</em>, <em>21</em>(2), 89–97. <a href="https://doi.org/10.1300/J490v21n02_07">https://doi.org/10.1300/J490v21n02_07</a>
 </div>
 <div id="ref-R-lessR" class="csl-entry">
 Gerbing, D., Business, T. S. of, &amp; University, P. S. (2021). <em>lessR: Less code, more results</em>. <a href="https://CRAN.R-project.org/package=lessR">https://CRAN.R-project.org/package=lessR</a>
@@ -1090,13 +1090,16 @@ NA
 <pre class="r"><code># The `Regression` function
 r &lt;- Regression(Well.being ~ Working.hours,
   digits_d = 2,
-  Rmd = &quot;lessr_wellbeing_out&quot;, # Uncomment this for html readout
+  # Rmd = &quot;lessr_wellbeing_out&quot;, # uncomment for Rmd, change name to suit
   graphics = FALSE # Replace with TRUE for three plots:
   # (1: Regression, 2: Distribution, 3: Fitted Values)
 )
 
 r</code></pre>
-<pre><code>## 
+<pre><code>## &gt;&gt;&gt; Suggestion
+## # Create an R markdown file for interpretative output with  Rmd = &quot;file_name&quot;
+## Regression(my_formula=Well.being ~ Working.hours, digits_d=2, graphics=FALSE, Rmd=&quot;eg&quot;)  
+## 
 ##   BACKGROUND 
 ## 
 ## Data Frame:  d 
@@ -1185,11 +1188,7 @@ r</code></pre>
 ##    8         30.16       4.88 5.29 0.35   4.56   6.03  1.48 
 ##    9         27.55       5.01 5.45 0.36   4.68   6.22  1.54 
 ##   13         27.08       5.69 5.48 0.36   4.70   6.25  1.55 
-##   12         26.75       5.31 5.50 0.37   4.71   6.28  1.57 
-## 
-## 
-## The R Markdown file written at the current working directory. 
-##         lessr_wellbeing_out.Rmd  in:   C:/Users/sleed/OneDrive/Documents/R/Projects/my_website</code></pre>
+##   12         26.75       5.31 5.50 0.37   4.71   6.28  1.57</code></pre>
 <pre class="r"><code># The estimates output
 r$out_estimates</code></pre>
 <pre><code>##                Estimate    Std Err  t-value  p-value   Lower 95%   Upper 95%

@@ -273,9 +273,9 @@ ggplot(dwellings, aes(x = Longitude, y = Latitude)) +
 ```
 
 You can see that most of the places lived in England have been between
-$51^{\\circ}$ and $52^{\\circ}$ latitude, with a brief sojourn above the $52nd$
+$51^{\circ}$ and $52^{\circ}$ latitude, with a brief sojourn above the $52nd$
 parallel (although I spent around five years living in Ipswich (16)); and
-between $-2.5^{\\circ}$ and $1.5^{\\circ}$ longitude (quite a small area,
+between $-2.5^{\circ}$ and $1.5^{\circ}$ longitude (quite a small area,
 considering).
 
   - The numbers represent the order in which the places were lived and coincide

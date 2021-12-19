@@ -7,7 +7,7 @@ title: "Regression of Well.being on Working.hours"
 ---
 
 ***
-_Wed Dec 15, 2021 at 08:38 &nbsp; with lessR version 4.1.4_
+_Sun Dec 19, 2021 at 12:11 &nbsp; with lessR version 4.1.4_
 
 _Output Options: explain=TRUE, interpret=TRUE, results=TRUE, document=TRUE, code=TRUE_
 
