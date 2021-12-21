@@ -72,8 +72,12 @@ tutorial](https://www.andreashandel.com/posts/github-website/). <small>
 **Dissertation:** [Quantitative research] A cross-sectional correlational
 study, with added mediator and moderator analyses.  
 **Title:** *"Engagement at work: investigating the relationships between age
+<<<<<<< HEAD
 groups, gender, personality; and trait EI".*  
 [(Read a summary here).](./dissertation_summary.html)
+=======
+groups, gender, personality; and trait EI".* [(Read a summary here).](./dissertation_summary.html)
+>>>>>>> 1f741c245fc20742df35e9c81f54771d177b16d4
 
 ### BSc (Honours) Social Psychology<span style="color: tomato;">$^2$</span>
 
@@ -82,8 +86,12 @@ groups, gender, personality; and trait EI".*
 **Final project:** [Qualitative research] A form of Critical Discourse
 Analysis  
 **Title:** *"Volunteering and identity: a discursive approach to how volunteers
+<<<<<<< HEAD
 see themselves and are seen by others".*  
 [(Read a summary here).](./lvl3_project_summary.html)
+=======
+see themselves and are seen by others".* [(Read a summary here).](./lvl3_project_summary.html)
+>>>>>>> 1f741c245fc20742df35e9c81f54771d177b16d4
 
 -----
 
