@@ -1,0 +1,390 @@
+---
+title: "Using the `lessR` package to investigate wellbeing data"
+author: "Stuart Leeds"
+date: "01/12/2021"
+output: 
+    html_document:
+        toc: FALSE
+bibliography: [../common/packages.bib, ../common/my_library.bib]
+csl: ../common/apa.csl
+link-citations: true
+---
+
+```{r setup, include=FALSE, message=FALSE, warning=FALSE}
+
+# Setup
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  results = "hide",
+  fig.align = "center"
+)
+```
+
+```{r libraries}
+
+# Libraries
+library(UsingR) # For wellbeing data
+library(lessR) # Main package
+library(kableExtra) # For tables
+library(lubridate) # For date & time functions
+
+# Creation of R package citation file
+knitr::write_bib(c(.packages(), "rmarkdown"), "../common/packages.bib")
+```
+<br>
+
+# Introduction
+
+Employee wellbeing is a concern in occupational psychology. Negative
+antecedents such as toxic work environments, poor organisational climate,
+bullying, amount and type of working hours among many others
+[@colliganWorkplaceStressEtiology2006], increase employee stress. The addition
+of the Covid-19 pandemic brings new stressors, such as changing working
+practices by working from home or being on furlough, which have helped
+contribute to what has become known as ["The Great Resignation"
+(TGR)](https://www.theguardian.com/money/2021/nov/01/the-great-resignation-almost-one-in-four-workers-planning-job-change).
+
+It would seem that the pandemic has allowed some people to re-evaluate their
+lives and working practices, thereby, looking after their own wellbeing by doing
+what is best for them. Though these might be troubling times as far as some
+employees or organisations are concerned, some recruitment writers see suitable
+benefits for how TGR can potentially [benefit your
+career](https://www.reed.co.uk/career-advice/the-great-resignation-and-what-it-means-for-your-career/)
+and consequently increase wellbeing.
+
+However, this is not an essay or report on wellbeing in the workplace. The
+subject is far too deep and complicated to go into here in any great detail, but
+the introduction sets the scene.
+
+The idea here is to investigate the relationships between wellbeing and working
+hours using the `lessr` package [@R-lessR] which I have recently found to be
+very useful.
+
+```{r data}
+
+# Data loading from UsingR
+mydata <- wellbeing
+
+# Write to `lessr` .xlsx format (uncomment - only needs doing once)
+# Write("./data/wellbeing", format = "Excel", data = mydata)
+
+# Read data
+d <- Read("./data/wellbeing.xlsx")
+```
+
+# The Data
+
+The wellbeing data are included in the `UsingR` package [@R-UsingR] and
+originally used [here](http://prcweb.co.uk/lab/what-makes-us-happy/), where you
+can see interactive correlations with wellbeing and variables of your choice.
+There are also links to the data origin at [The National Accounts of
+Well-being](http://www.nationalaccountsofwellbeing.org/) and category data from
+[Gapminder](https://www.gapminder.org/data/), where you can also download other
+data from the *Gapminder* database in CSV or XLSX formats.
+
+The wellbeing data consists of $22$ observations (European countries):
+
+> `r d$Country`
+
+and $11$ additional variables:
+
+> `r names(d[-1])`
+
+The data require minimal cleaning, so in this case only the necessary columns
+are selected with `d[]` function; and the Well.being column sorted with the
+`Sort()` function in `lessR` (all code for this document can be found in the
+[Appendix](#Appendix)). For the purposes of using `lessR`, the
+`UsingR::wellbeing` data frame was saved as an `.xlsx` file with `Write()` and
+re-imported with `Read()` into the variable `d` (you might not have to do this -
+I could not get the original data to be manipulated with `lessR` functions).
+
+
+```{r organising}
+
+# Select columns of interest
+d <- d[, .("Country", "Well.being", "Working.hours")]
+
+# Sort countries by wellbeing
+d_sort <- Sort(d, Well.being, direction = "-")
+```
+
+# The Analysis
+
+Table 1 shows the top five European countries with the highest wellbeing
+(`r d_sort$Country[1]`: `r max(d_sort$Well.being)`), and the bottom five with
+the lowest wellbeing (`r d_sort$Country[22]`: `r min(d_sort$Well.being)`).
+There's not much difference between the highest and lowest positions 
+(`r max(d_sort$Well.being)-min(d_sort$Well.being)`).
+
+
+```{r table1, results='markup'}
+# Table top/bottom five
+wb_tab <- kbl(list(head(d_sort, 5), tail(d_sort, 5)),
+  caption = "<b>Table 1.</b><br><i>European Countries with Highest & Lowest  Wellbeing</i>",
+  row.names = F, digits = 2
+) |>
+  kable_classic(full_width = FALSE) |>
+  add_header_above(c(
+    "Highest Wellbeing",
+    "Lowest Wellbeing"
+  ),
+  align = "l"
+  )
+
+footnote(wb_tab, 
+         general = "Working.hours are the average working hours per week per person")
+```
+
+\
+
+Not all functions from `lessr` are necessary for this project. So aside from the "tidying" functions used above, the additional functions of interest are
+`Regression()` and `regPlot()`.
+
+```{r regression}
+# The `Regression` function
+r <- Regression(Well.being ~ Working.hours,
+  digits_d = 2,
+  # Rmd = "lessr_wellbeing_out", # uncomment for Rmd, change name to suit
+  graphics = FALSE # Replace with TRUE for three plots:
+  # (1: Regression, 2: Distribution, 3: Fitted Values)
+)
+
+r
+```
+
+
+The `Regression()` function is really useful. As the name `lessR` suggests, less
+$R$ and more output. We want to explore the relationship between wellbeing
+(*Intercept*) and the average working hours per week per person (*predictor*).
+The output for `Regression()` includes everything you need (and more), all of
+which can be presented separately if assigned to its own variable, such as:
+
+\
+
+1. The regression estimate:  
+```{r out_estimates, results='markup'}
+# The estimates output
+r$out_estimates
+```
+\
+
+2. The Anova:
+```{r anova, results='markup'}
+# The ANOVA output
+r$out_anova
+```
+\
+
+3. The adjusted R-squared value is $(R^2_adj = `r round(r$Rsqadj, 4)`)$.
+
+\
+
+The statistical information is reported as follows:
+
+> A simple linear regression was carried out to test if Working Hours
+> significantly predicted Wellbeing. The results of the regression indicated
+> that the model explained `r round(r$Rsqadj*100, 2)`% of the variance and that
+> the model was significant, $F$(`r r$anova_model[1]`, `r r$anova_residual[1]`)
+> $=$ `r round(r$anova_model[4], 2)`, $p=$ `r r$pvalues[2]`. It was found that
+> Working Hours significantly predicted Wellbeing ($B_1=$
+> `r round(r$coefficients[2], 2)`, $p=$ `r r$pvalues[2]`).  
+> The final predictive model is: proportion of Wellbeing $=$
+> `r round(r$coefficients[1], 2)` + (`r round(r$coefficients[2], 2)`
+> $\times$ Working Hours)
+
+# Plots
+
+Three plots for visualising the regression and the assumptions are also produced
+(automatically in the `Regression()` function, or separately using `regPlot()`, 
+as here:)
+
+__Figure 1.__  
+_Scatterplot showing regression line, prediction and confidence intervals:_
+
+```{r plot1, fig.show='asis'}
+# The regression plot
+regPlot(r, 1, res_rows = "all") # Max rows = 20, use `res_rows='all'` for all rows
+```
+\
+
+__Figure 2.__  
+_Bar/density plot for distribution of residuals_
+
+```{r plot2, fig.show='asis'}
+# The residual barplot
+regPlot(r, 2, res_rows = "all") # Max rows = 20, use `res_rows='all'` for all rows
+```
+\
+
+__Figure 3.__  
+_Scatterplot for residuals vs. fitted values_
+
+```{r plot3, fig.show='asis'}
+# The residual scatterplot
+regPlot(r, 3, res_rows = "all") # Max rows = 20, use `res_rows='all'` for all rows
+```
+
+# Additional Output
+
+Additional analyses of interest in the `Regression()` output are the correlation
+matrix, which shows a negative moderate relationship between wellbeing and
+working hours $(r= -0.51)$:
+
+\
+
+1. `r r$out_title_rel`:
+
+```{r corr, results='markup'}
+# The correlation matrix
+r$out_cor
+```
+\
+
+2. `r r$out_title_res` (Top five showing here)
+
+```{r residuals, results='markup'}
+# The residuals output
+head(r$out_residuals, 10)
+```
+\
+
+3. `r (r$out_title_pred[1])`(Top 5 again)
+
+```{r prediction, results='markup'}
+# The prediction output
+head(r$out_predict)
+```
+\
+
+> Another excellent feature of the `Regression()` function is the `Rmd =
+> "filename"` parameter which automatically produces an explanatory and
+> exploratory `.Rmd` document of the regression analysis that can be edited; and
+> an additional `.html` document, which for this analysis you can read
+> [here](./lessr_wellbeing_out.html).
+
+# Further Query
+
+Clearly, working more hours in a week reduces wellbeing. We have already seen
+that the Wellbeing Mean for this data set is $`r round(mean(d$Well.being), 2)`$.
+This could be considered as *peak* wellbeing, so what are the average working
+hours per week per person needed to maintain that level of wellbeing?
+
+The prediction output suggests a level of wellbeing at $5.13$ $(95\%\space CI[4.39, 5.87])$ for $32.95$ (round to $33$) average hours worked at item
+$7$:
+
+```{r max hours, results='markup'}
+# The prediction output for 5.13 wellbeing
+r$out_predict[c(1, 6)]
+```
+\
+
+This prediction can be confirmed with the regression calculation identified
+above:
+
+> Wellbeing = `r round(r$coefficients[1], 2)` + (`r round(r$coefficients[2], 2)`
+> $\times$ Working Hours) $\space\therefore\space$
+> `r round(r$coefficients[1], 2)` + (`r round(r$coefficients[2], 2)`
+> $\times$ 33) $=$
+> `r round(sum(r$coefficients[1] + r$coefficients[2] * 33), 2)`
+
+If the preferred working hours to maintain wellbeing at $5.13$ is $33$, then the
+question is: would it be more beneficial to work a shorter week with longer
+hours per day, or a longer week with fewer hours per day? See Table 2
+(Calculations converted to time with `lubridate` [@R-lubridate]).
+
+```{r table 2, results='asis'}
+# The data frame for speculative working week
+time_table <- data.frame(
+  "Days" = c(4, 5),
+  "Hours" = c(
+      seconds_to_period(33 / 4 * 3600), seconds_to_period(33 / 5 * 3600))
+)
+
+# The table for speculative working week
+kbl(time_table,
+  caption = "<b>Table 2.</b><br><i>Speculative Working Week</i>",
+  row.names = FALSE, 
+  col.names = c("Days per Week", "Hours per Day")
+) |>
+  kable_classic(full_width = FALSE)
+```
+\
+
+Of course there are other options, for example, a three day week at
+$11$ hours per day, or a six day week at
+$5$ hours $30$ minutes per day, not intending to dismiss those
+workers who would do more (or less).
+
+This theory does not account for the four countries that work fewer than $33$
+hours per week per person and have a lower than average wellbeing: *Belgium,
+France, Germany* and the *United Kingdom* (See the lower-left quadrant of
+Figure 1; and Table 3). 
+
+```{r low wb or wh}
+# Find countries with wellbeing < 5.13 and working hours < 33
+ifelse(d$Well.being < 5.13 & d$Working.hours < 33, d$Country, NA)
+```
+
+```{r low wb table, results='asis'}
+# Data frame for countries with wellbeing < 5.13 and working hours < 33
+less_well <- data.frame(
+  Country = c(d$Country[2], d$Country[8], 
+              d$Country[9], d$Country[22]),
+  Well.being = c(d$Well.being[2], d$Well.being[8], 
+                 d$Well.being[9], d$Well.being[22]),
+  Well.being.diff = c(d$Well.being[2] - 5.13, d$Well.being[8] - 5.13, 
+                      d$Well.being[9] - 5.13, d$Well.being[22] - 5.13),
+  Working.hours = c(d$Working.hours[2], d$Working.hours[8], 
+                    d$Working.hours[9], d$Working.hours[22]),
+  Working.hours.diff = c(d$Working.hours[2] - 33, d$Working.hours[8] - 33, 
+                         d$Working.hours[9] - 33, d$Working.hours[22] - 33)
+)
+
+# Table for countries with wellbeing < 5.13 and working hours < 33
+kbl(less_well,
+  caption = "<b>Table 3.</b><br><i>European Countries with Wellbeing < 5.13 and Working Hours < 33</i>",
+  row.names = F, digits = 2
+) |>
+  kable_classic(full_width = FALSE)
+```
+\
+
+In this group, *`r less_well$Country[2]`* has the largest difference in
+wellbeing $(`r less_well$Well.being.diff[2]`)$, a $1/4$ of a point less than
+average wellbeing. However, all of the wellbeing differences are *very* small;
+and the wellbeing scores for each country are within the  bounds of the 
+$95\%\space CI[4.39, 5.87]$ of the wellbeing/working hours prediction. The 
+country with the greatest working hours difference is *`r less_well$Country[3]`* 
+at $`r round(less_well$Working.hours.diff[3], 2)`$, which is $5$ hours $`r .45*60`$
+minutes fewer than average. Further research is required to determine the *whys*
+and *wherefores*, which is beyond the scope of this report.
+
+# Conclusion
+
+A very brief introduction to employee wellbeing preceded the purpose of using
+various functions from the `lessR` package to explore the relationship between
+Well.being and Working.hours in $22$ European countries using the
+`UsingR::wellbeing` data set. The `lessR` functions used were `Write()`,
+`Read()`, `d[]`, `Sort()`, `Regression()` and `regPlot()`. The key
+`Regression()` outputs, *estimate, ANOVA* and *adjusted R-squared* were
+presented separately to weave into the text, along with three plots to verify
+regression assumptions. Additional output for *correlation, residuals and
+influence* and *prediction error* followed. Further query suggested a predicted
+number of average working hours to maintain average wellbeing, with speculative
+thought on how a working week could be arranged. Finally, the four countries
+showing less than wellbeing average and fewer than average working hours were
+addressed. In general, `lessR` was found to be an excellent $R$ package to
+manipulate data with minimal use of $R$ for maximum output.
+
+# References
+
+<div id="refs"></div>
+
+\
+
+# Appendix: All code for this article {#Appendix}
+
+```{r ref.label=knitr::all_labels(), echo = T, eval = T, results='markup'}
+```
