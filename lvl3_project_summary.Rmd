@@ -11,11 +11,12 @@ link-citations: yes
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE,
-                      warning = FALSE,
-                      message = FALSE,
-                      fig.align = "center")
-
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE,
+  fig.align = "center"
+)
 ```
 
 ```{r libraries}
@@ -42,32 +43,32 @@ The Open University (UK)</center>
 
 ```{r data}
 interep <- tribble(
-    ~`Pos_Neg`, ~`Description`, ~`Perspective`, ~`Regional`, ~`Subject`,
-    "Positive", "Privileged positions", "Volunteer", "National (UK)", "Being of importance",
-    "Positive", "Privileged positions", "Volunteer", "English", "Being of importance",
-    "Positive", "Privileged positions", "Volunteer", "Scottish", "Being of importance",
-    "Positive", "Privileged positions", "Volunteer", "English", "Being of importance",
-    "Positive", "Privileged positions", "Volunteer", "English", "Being of importance",
-    "Positive", "The value of youth", "Volunteer", "Welsh", "Connected importance",
-    "Positive", "The value of youth", "Volunteer", "English", "Connected importance",
-    "Positive", "The value of youth", "Volunteer", "Scottish", "Connected importance",
-    "Positive", "Exalted levels", "Management", "Scottish", "Needy; Worthy; Valuable",
-    "Positive", "Exalted levels", "Management", "Scottish", "Needy; Worthy; Valuable",
-    "Positive", "Exalted levels", "Management", "English", "Needy; Worthy; Valuable",
-    "Positive", "Essential requirement", "Reporter", "English", "Essential; Commited; Indispensible",
-    "Positive", "Essential requirement", "Reporter", "Welsh", "Essential; Commited; Indispensible",
-    "Positive", "High accolade", "Reporter", "English", "Representative; Belonging; Dependable",
-    "Positive", "High accolade", "Reporter", "English", "Representative; Belonging; Dependable",
-    "Negative", "Inferior placements", "Volunteer", "National (UK)", "Insignificant; Worthless",
-    "Negative", "Inferior placements", "Volunteer", "National (London)", "Insignificant; Worthless",
-    "Negative", "Inferior placements", "Volunteer", "Scottish", "Insignificant; Worthless",
-    "Negative", "Inferior placements", "Volunteer", "English", "Insignificant; Worthless",
-    "Negative", "Negative status", "Management", "National (UK)", "Of little importance",
-    "Negative", "Negative status", "Management", "National (London)", "Of little importance",
-    "Negative", "Negative status", "Management", "Scottish", "Of little importance",
-    "Negative", "Disgruntled people", "Reporter", "National (London)", "Quitters; Unhapy; Volatile",
-    "Negative", "Disgruntled people", "Reporter", "English", "Quitters; Unhapy; Volatile"
-    )
+  ~`Pos_Neg`, ~`Description`, ~`Perspective`, ~`Regional`, ~`Subject`,
+  "Positive", "Privileged positions", "Volunteer", "National (UK)", "Being of importance",
+  "Positive", "Privileged positions", "Volunteer", "English", "Being of importance",
+  "Positive", "Privileged positions", "Volunteer", "Scottish", "Being of importance",
+  "Positive", "Privileged positions", "Volunteer", "English", "Being of importance",
+  "Positive", "Privileged positions", "Volunteer", "English", "Being of importance",
+  "Positive", "The value of youth", "Volunteer", "Welsh", "Connected importance",
+  "Positive", "The value of youth", "Volunteer", "English", "Connected importance",
+  "Positive", "The value of youth", "Volunteer", "Scottish", "Connected importance",
+  "Positive", "Exalted levels", "Management", "Scottish", "Needy; Worthy; Valuable",
+  "Positive", "Exalted levels", "Management", "Scottish", "Needy; Worthy; Valuable",
+  "Positive", "Exalted levels", "Management", "English", "Needy; Worthy; Valuable",
+  "Positive", "Essential requirement", "Reporter", "English", "Essential; Commited; Indispensible",
+  "Positive", "Essential requirement", "Reporter", "Welsh", "Essential; Commited; Indispensible",
+  "Positive", "High accolade", "Reporter", "English", "Representative; Belonging; Dependable",
+  "Positive", "High accolade", "Reporter", "English", "Representative; Belonging; Dependable",
+  "Negative", "Inferior placements", "Volunteer", "National (UK)", "Insignificant; Worthless",
+  "Negative", "Inferior placements", "Volunteer", "National (London)", "Insignificant; Worthless",
+  "Negative", "Inferior placements", "Volunteer", "Scottish", "Insignificant; Worthless",
+  "Negative", "Inferior placements", "Volunteer", "English", "Insignificant; Worthless",
+  "Negative", "Negative status", "Management", "National (UK)", "Of little importance",
+  "Negative", "Negative status", "Management", "National (London)", "Of little importance",
+  "Negative", "Negative status", "Management", "Scottish", "Of little importance",
+  "Negative", "Disgruntled people", "Reporter", "National (London)", "Quitters; Unhapy; Volatile",
+  "Negative", "Disgruntled people", "Reporter", "English", "Quitters; Unhapy; Volatile"
+)
 ```
 
 **Purpose:** To explore how volunteer identity can be constructed by volunteers
@@ -93,14 +94,8 @@ surveys affecting national identity, selection biases; and **future directions**
 of the previous research are discussed.
 
 The **current research** section explains why a CDP approach is used; and
-clarifies the meanings of the analytical concepts for identifying construction,
-variation and function in discourse using interpretive repertoire, subject
-positions and ideological dilemma to help understand how volunteer identities
-are constructed. In the **method** section, the criteria and process for
-sourcing the data via the *Nexis* database is explained. The resulting corpus
-(10 items; 5590 words) included articles in local newspapers from England (4),
-Scotland (3), Wales (1); and National papers (2). No suitable items were
-available for Northern Ireland due to content or word count constraints.
+clarifies the meanings of the analytical concepts for identifying construction, 
+variation and function in discourse using subject positions made available through interpretive repertoire, and ideological dilemma, to help understand how volunteer identities are constructed in selected news articles. The criteria and process for sourcing the data via the *Nexis* database are explained in the **method** section. The resulting corpus (10 items; 5590 words) included articles in local newspapers from England (4), Scotland (3), Wales (1); and National papers (2). No suitable items were available for Northern Ireland due to content or word count constraints.
 
 **Ethical considerations** were minimal as there were no active participants,
 so mainly mentioned awareness of researcher safety and reducing the potential
@@ -119,11 +114,9 @@ positions and ideological dilemmas.
 
 <br>
 
-**Analyisis** (see Figure 1 for a visual summary): It became clear that the news
+**Analysis** (see Figure 1 for a visual summary): It became clear that the news
 articles construct volunteer identities from three different perspectives:
 *Volunteer; Management*; and *Reporter*:
-
-<br>
 
 <u>**Volunteer repertoires.**</u> *Volunteer identity constructed by themselves*
 
@@ -153,8 +146,6 @@ articles construct volunteer identities from three different perspectives:
         volunteers who see themselves as approachable and good listeners on an
         equal basis with the youth who use their service.
 
-<br>
-
 <u>**Management repertoires.**</u> *Volunteer identity constructed by
 management*
 
@@ -174,8 +165,6 @@ management*
       - Subject positioning: `r interep$Subject[9]`  
         A positive identity constructed by management as they honour volunteers
         with praise and reward.
-
-<br>
 
 <u>**Reporter repertoires.**</u> *Volunteer identity constructed by reporters*
 
@@ -209,22 +198,27 @@ management*
 
 ```{r plot, out.width = "90%", fig.cap="__Figure 1.__ Interpretive Repertoire Instances for each Perspective by Newspaper Region"}
 
-ggplot(interep, aes(Description,fill=Pos_Neg))+
-    geom_dotplot(dotsize = 2.5, 
-                 stackdir = "centerwhole", 
-                 stackgroups = TRUE)+
-    facet_grid(c(~Perspective, ~Regional))+
-    coord_flip()+
-    theme_bw()+
-    theme(axis.text.x = element_blank(),
-          axis.ticks.x = element_blank(), 
-          legend.position = "bottom"
-          )+
-    labs(x = "Interpretive Rerpertoire",
-         y = "",
-         caption = "Source: Author's own", 
-         fill = "Key") +
-                  scale_fill_brewer(direction = -1, palette = "Set2")
+ggplot(interep, aes(Description, fill = Pos_Neg)) +
+  geom_dotplot(
+    dotsize = 2.5,
+    stackdir = "centerwhole",
+    stackgroups = TRUE
+  ) +
+  facet_grid(c(~Perspective, ~Regional)) +
+  coord_flip() +
+  theme_bw() +
+  theme(
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank(),
+    legend.position = "bottom"
+  ) +
+  labs(
+    x = "Interpretive Rerpertoire",
+    y = "",
+    caption = "Source: Author's own",
+    fill = "Key"
+  ) +
+  scale_fill_brewer(direction = -1, palette = "Set2")
 ```
 
 
@@ -248,8 +242,6 @@ metaphorical uses of the word blood to convey different messages:
 2.  Calls for "fresh blood" (recruitment drive).
 3.  Being the "life-blood" (volunteer importance).
 
-<br>
-
 **General function** Several *micro-level* functions exist in the news articles
 as contradictions or disagreements. For example, one volunteer positions
 themselves as `r interep$Subject[1]` yet feels insignificant as management
@@ -258,8 +250,7 @@ evident, although minor cultural differences can be assumed as the articles
 cover different regions of England, Scotland and Wales. See figure 1 for the
 variation in the spread of positive and negative attribution.
 
-
-
+<br>
 
 *****
 
@@ -267,5 +258,3 @@ Please use the [email link](mailto:sleeds40@gmail.com) above for questions or
 further information.
 
 <br>
-
-
