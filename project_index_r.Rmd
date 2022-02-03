@@ -1,0 +1,52 @@
+---
+title: "Interesting Projects Using R"
+output: 
+  html_document:
+    toc: FALSE
+---
+
+```{r libs, echo=FALSE}
+
+library(fontawesome)
+
+```
+
+<br>
+
+1.  [**Places I have lived**](./places_lived.html)
+
+*This is a short RMarkdown cataloguing the places I have lived since birth.*
+[Reading time: 5 minutes]
+
+2. [**Using the `lessR` package to investigate wellbeing data**](./lessR_wellbeing.html)
+
+*A short-ish exploration of wellbeing data with the `lessR` package. Using linear
+regression to find the relationship between wellbeing and working hours in $22$
+European countries. The wellbeing data are from`UsingR`* [Reading time: 6.2
+minutes]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -5,7 +5,7 @@ date: "14/11/2021"
 output:
   html_document:
     toc: no
-bibliography: ../common/occ_psych.bib
+bibliography: ./ref/my_library.bib
 csl: ../common/apa.csl
 link-citations: yes
 ---

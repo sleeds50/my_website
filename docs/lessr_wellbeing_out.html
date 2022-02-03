@@ -333,7 +333,13 @@ div.tocify {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="./aboutme.html">Who am I?</a>
+      <a href="./index.html">Welcome</a>
+    </li>
+    <li>
+      <a href="./index_qual.html">Qualifications</a>
+    </li>
+    <li>
+      <a href="./index_employ.html">Employment</a>
     </li>
   </ul>
 </li>
@@ -345,7 +351,10 @@ div.tocify {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="./500_index.html">Index</a>
+      <a href="./500_index_soc.html">Social Psychology</a>
+    </li>
+    <li>
+      <a href="./500_index_occ.html">Occupational Psychology</a>
     </li>
   </ul>
 </li>
@@ -357,7 +366,13 @@ div.tocify {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="./project_index.html">Index</a>
+      <a href="./project_index_soc.html">Social Psychology</a>
+    </li>
+    <li>
+      <a href="./project_index_occ.html">Occuaptional Psychology</a>
+    </li>
+    <li>
+      <a href="./project_index_r.html">R - Items of Interest</a>
     </li>
   </ul>
 </li>
@@ -416,7 +431,7 @@ div.tocify {
 <h2>The Data</h2>
 <p>Read the data with the <code>lessR</code> function <code>Read</code>. The corresponding data values for the variables in the model comprise the <em>training data</em>, from which the model is estimated.</p>
 <pre class="r"><code>d &lt;- Read(from = &quot;./data/wellbeing.xlsx&quot;)</code></pre>
-<pre><code>## [with the read.xlsx function from Schauberger and Walker&#39;s openxlsx package] 
+<pre><code>## [with the read.xlsx() function from Schauberger and Walker&#39;s openxlsx package] 
 ## 
 ## &gt;&gt;&gt; Suggestions
 ## To read a csv or Excel file of variable labels, var_labels=TRUE
@@ -444,7 +459,12 @@ div.tocify {
 ## 10          Work.income    double     16       6      16   30.4599990844727 ... 27.1000003814697
 ## 11      Health.spending    double     22       0      22   15.74170456 ... 15.58877599
 ## 12    Military.spending    double     22       0      22   0.812633138406514 ... 2.35142785961432
-## ------------------------------------------------------------------------------------------</code></pre>
+## ------------------------------------------------------------------------------------------
+## 
+## 
+## For the column Country, each row of data is unique. Are these values
+## a unique ID for each row? To implement, perhaps re-read a worksheet or text
+## file with the following setting added to your Read statement: row_names=1</code></pre>
 <p>Data from the following variables are available for analysis: Country, Well.being, GDP, Equality, Food.consumption, Alcohol.consumption, Energy.consumption, Family, Working.hours, Work.income, Health.spending and Military.spending.</p>
 </div>
 <div id="the-model" class="section level2">

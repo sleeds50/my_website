@@ -1,0 +1,48 @@
+---
+title: "Qualifications"
+output: 
+  html_document:
+    toc: FALSE
+---
+
+<br>
+
+### MSc Occupational Psychology^[Accredited by the BPS]
+
+*2020-2021, University of the West of England (UWE)*
+
+**Dissertation:** [Quantitative research] A cross-sectional correlational
+study, with added mediator and moderator analyses.  
+**Title:** *"Engagement at work: investigating the relationships between age
+groups, gender, personality; and trait EI".* 
+[(Read a summary here).](./dissertation_summary.html)
+
+### BSc (Honours) Social Psychology^[Accredited by the BPS]
+
+*2016-2020, The Open University (OU; part-time: 2016-2018)*
+
+**Final project:** [Qualitative research] A form of Critical Discourse
+Analysis  
+**Title:** *"Volunteering and identity: a discursive approach to how volunteers
+see themselves and are seen by others".* 
+[(Read a summary here).](./lvl3_project_summary.html)
+
+-----
+
+### <u>Certifications</u>
+
+#### Data Science: Foundations in using R specialisation
+
+*2020, Coursera*
+
+**Courses:** R-programming; The data scientists toolbox; Getting and cleaning
+data; Exploratory data analysis; Reproducible research.
+
+-----
+
+### <u>Affiliations</u>
+
+#### Graduate member
+
+*2020-present, The British Psychological Society (BPS)*  
+(Student member 2017-2020)

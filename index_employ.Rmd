@@ -1,0 +1,38 @@
+---
+title: "Employment"
+output: 
+  html_document:
+    toc: FALSE
+---
+
+<br>
+
+### Now
+
+After achieving my BSc (Honours) Social Psychology (grade 2.1) in 2020, I
+decided to educate myself further by studying a full-time MSc in Occupational
+Psychology, in the hope of finding a more suitable role for my interests and
+needs. Ideally, I am looking for assistant researcher; assistant Occupational
+Psychologist positions or Social Psychology roles. I'm willing to combine both
+areas of interest; and have a keen interest in R-programming, to accompany SPSS
+and JASP skills. I also have a working knowledge of Nvivo and RQDA for
+qualitative analysis.
+
+  - Additional transferable skills include: dedication, honesty, fortitude,
+    attention to detail, data analysis, report writing, use of the usual
+    MS-Office packages.
+
+### Then
+
+Before I decided to concentrate full-time on my (then) undergraduate degree
+in 2018, I had been in full-time employment since leaving secondary education.
+Various short-lived jobs filled the gap before I undertook an electrical
+apprenticeship in 1989; and I continued working in several electrical
+disciplines for 29 years. These included; and are not limited to: maintenance of
+university estate; technical drawing; inspection & testing; installation and
+maintenance of sewage treatment plants; and finally, maintenance of utility
+scale solar sites (LV/HV; AC/DC supplies) in the UK. Each job allowed me to
+train; and transfer new skills and abilities; honing my focus, dedication, and
+commitment.
+
+  - <u>Full CV on request</u>

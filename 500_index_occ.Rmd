@@ -1,0 +1,18 @@
+---
+title: "Short articles on Occupational Psychology"
+output: 
+  html_document:
+    toc: FALSE
+---
+
+```{r libs, echo=FALSE}
+
+library(fontawesome)
+
+```
+
+<br>
+
+1. [__...coming soon__](./index.html)
+
+_Short description_

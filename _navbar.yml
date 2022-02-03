@@ -4,16 +4,26 @@ type: inverse
 left:
   - text: "About"
     menu:
-      - text: "Who am I?"
-        href: ./aboutme.html
+      - text: "Welcome"
+        href: ./index.html
+      - text: "Qualifications"
+        href: ./index_qual.html
+      - text: "Employment"
+        href: ./index_employ.html
   - text: "500's"
     menu:
-       - text: "Index"
-         href: ./500_index.html
+       - text: "Social Psychology"
+         href: ./500_index_soc.html
+       - text: "Occupational Psychology"
+         href: ./500_index_occ.html
   - text: "Projects"
     menu:
-       - text: "Index"
-         href: ./project_index.html
+       - text: "Social Psychology"
+         href: ./project_index_soc.html
+       - text: "Occuaptional Psychology"
+         href: ./project_index_occ.html
+       - text: "R - Items of Interest"
+         href: ./project_index_r.html
   - text: "Contact"
     menu:
        - text: "Email"

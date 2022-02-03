@@ -277,7 +277,13 @@ $(document).ready(function () {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="./aboutme.html">Who am I?</a>
+      <a href="./index.html">Welcome</a>
+    </li>
+    <li>
+      <a href="./index_qual.html">Qualifications</a>
+    </li>
+    <li>
+      <a href="./index_employ.html">Employment</a>
     </li>
   </ul>
 </li>
@@ -289,7 +295,10 @@ $(document).ready(function () {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="./500_index.html">Index</a>
+      <a href="./500_index_soc.html">Social Psychology</a>
+    </li>
+    <li>
+      <a href="./500_index_occ.html">Occupational Psychology</a>
     </li>
   </ul>
 </li>
@@ -301,7 +310,13 @@ $(document).ready(function () {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="./project_index.html">Index</a>
+      <a href="./project_index_soc.html">Social Psychology</a>
+    </li>
+    <li>
+      <a href="./project_index_occ.html">Occuaptional Psychology</a>
+    </li>
+    <li>
+      <a href="./project_index_r.html">R - Items of Interest</a>
     </li>
   </ul>
 </li>
@@ -359,7 +374,7 @@ $(document).ready(function () {
 <p>Employee wellbeing is a concern in occupational psychology. Negative antecedents such as toxic work environments, poor organisational climate, bullying, amount and type of working hours among many others <span class="citation">(<a href="#ref-colliganWorkplaceStressEtiology2006" role="doc-biblioref">Colligan &amp; Higgins, 2006</a>)</span>, increase employee stress. The addition of the Covid-19 pandemic brings new stressors, such as changing working practices by working from home or being on furlough, which have helped contribute to what has become known as <a href="https://www.theguardian.com/money/2021/nov/01/the-great-resignation-almost-one-in-four-workers-planning-job-change">“The Great Resignation” (TGR)</a>.</p>
 <p>It would seem that the pandemic has allowed some people to re-evaluate their lives and working practices, thereby, looking after their own wellbeing by doing what is best for them. Though these might be troubling times as far as some employees or organisations are concerned, some recruitment writers see suitable benefits for how TGR can potentially <a href="https://www.reed.co.uk/career-advice/the-great-resignation-and-what-it-means-for-your-career/">benefit your career</a> and consequently increase wellbeing.</p>
 <p>However, this is not an essay or report on wellbeing in the workplace. The subject is far too deep and complicated to go into here in any great detail, but the introduction sets the scene.</p>
-<p>The idea here is to investigate the relationships between wellbeing and working hours using the <code>lessr</code> package <span class="citation">(<a href="#ref-R-lessR" role="doc-biblioref">Gerbing et al., 2021</a>)</span> which I have recently found to be very useful.</p>
+<p>The idea here is to investigate the relationships between wellbeing and working hours using the <code>lessr</code> package <span class="citation">(<a href="#ref-R-lessR" role="doc-biblioref">Gerbing et al., 2022</a>)</span> which I have recently found to be very useful.</p>
 </div>
 <div id="the-data" class="section level1">
 <h1>The Data</h1>
@@ -812,7 +827,7 @@ United Kingdom
 Colligan, T. W., &amp; Higgins, E. M. (2006). Workplace stress: <span>Etiology</span> and consequences. <em>Journal of Workplace Behavioral Health</em>, <em>21</em>(2, 2), 89–97. <a href="https://doi.org/10.1300/J490v21n02_07">https://doi.org/10.1300/J490v21n02_07</a>
 </div>
 <div id="ref-R-lessR" class="csl-entry">
-Gerbing, D., Business, T. S. of, &amp; University, P. S. (2021). <em>lessR: Less code, more results</em>. <a href="https://CRAN.R-project.org/package=lessR">https://CRAN.R-project.org/package=lessR</a>
+Gerbing, D., Business, T. S. of, &amp; University, P. S. (2022). <em>lessR: Less code, more results</em>. <a href="https://CRAN.R-project.org/package=lessR">https://CRAN.R-project.org/package=lessR</a>
 </div>
 <div id="ref-R-lubridate" class="csl-entry">
 Spinu, V., Grolemund, G., &amp; Wickham, H. (2021). <em>Lubridate: Make dealing with dates a little easier</em>. <a href="https://CRAN.R-project.org/package=lubridate">https://CRAN.R-project.org/package=lubridate</a>
@@ -852,7 +867,7 @@ mydata &lt;- wellbeing
 
 # Read data
 d &lt;- Read(&quot;./data/wellbeing.xlsx&quot;)</code></pre>
-<pre><code>## [with the read.xlsx function from Schauberger and Walker&#39;s openxlsx package] 
+<pre><code>## [with the read.xlsx() function from Schauberger and Walker&#39;s openxlsx package] 
 ## 
 ## &gt;&gt;&gt; Suggestions
 ## To read a csv or Excel file of variable labels, var_labels=TRUE
@@ -880,7 +895,12 @@ d &lt;- Read(&quot;./data/wellbeing.xlsx&quot;)</code></pre>
 ## 10          Work.income    double     16       6      16   30.4599990844727 ... 27.1000003814697
 ## 11      Health.spending    double     22       0      22   15.74170456 ... 15.58877599
 ## 12    Military.spending    double     22       0      22   0.812633138406514 ... 2.35142785961432
-## ------------------------------------------------------------------------------------------</code></pre>
+## ------------------------------------------------------------------------------------------
+## 
+## 
+## For the column Country, each row of data is unique. Are these values
+## a unique ID for each row? To implement, perhaps re-read a worksheet or text
+## file with the following setting added to your Read statement: row_names=1</code></pre>
 <pre class="r"><code># Select columns of interest
 d &lt;- d[, .(&quot;Country&quot;, &quot;Well.being&quot;, &quot;Working.hours&quot;)]
 

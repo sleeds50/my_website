@@ -1,0 +1,23 @@
+---
+title: "Social Psychology Projects"
+output: 
+  html_document:
+    toc: FALSE
+---
+
+```{r libs, echo=FALSE}
+
+library(fontawesome)
+
+```
+
+<br>
+
+1.  [**Volunteering and identity**](./lvl3_project_summary.html)
+
+*A summary of my level 3 final project. As much as I enjoyed (and enjoy)
+quantitative statistics, qualitative research methods intrigued me. Since I felt
+generally comfortable with the statistics side of research, I decided to indulge
+in a Critical Discursive Psychology approach using existing newspaper reports.
+It was enough to secure a 2:1 overall grade; and was inspired by my own
+volunteering at a local Citizens Advice office.* [Reading time: 5 minutes]
