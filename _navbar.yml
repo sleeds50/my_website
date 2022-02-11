@@ -20,7 +20,7 @@ left:
     menu:
        - text: "Social Psychology"
          href: ./project_index_soc.html
-       - text: "Occuaptional Psychology"
+       - text: "Occupational Psychology"
          href: ./project_index_occ.html
        - text: "R - Items of Interest"
          href: ./project_index_r.html
