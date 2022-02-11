@@ -7,7 +7,7 @@ output:
 
 <br>
 
-### MSc Occupational Psychology^[Accredited by the BPS]
+### MSc Occupational Psychology^[<small>Accredited by the BPS</small>]
 
 *2020-2021, University of the West of England (UWE)*
 
@@ -17,7 +17,7 @@ study, with added mediator and moderator analyses.
 groups, gender, personality; and trait EI".* 
 [(Read a summary here).](./dissertation_summary.html)
 
-### BSc (Honours) Social Psychology^[Accredited by the BPS]
+### BSc (Honours) Social Psychology^[<small>Accredited by the BPS</small>]
 
 *2016-2020, The Open University (OU; part-time: 2016-2018)*
 

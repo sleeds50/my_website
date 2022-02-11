@@ -13,39 +13,29 @@ The title of this site incorporates my interests in qualified areas of
 psychology (Social + Occupational), with additional interest in R-programming
 with RStudio.
 
-My intention for creating this website^[<u>Note</u>: This website is a
+My intention for creating this website^[<small><u>Note</u>: This website is a
 collection of regular *RMarkdown* documents, so you can use all the usual
 formatting. If you are new to R Markdown, you can learn more about it [on the R
-Markdown website](https://rmarkdown.rstudio.com/).] ^[<u>Credit</u>: Thanks to
+Markdown website</small>](https://rmarkdown.rstudio.com/).] ^[<small><u>Credit</u>: Thanks to
 *Andreas Handel* for this [build
-tutorial](https://www.andreashandel.com/posts/github-website/).] was to promote
+tutorial</small>](https://www.andreashandel.com/posts/github-website/).] was to promote
 a personal, professional on-line presence to keep things in one accessible
 place.
 
-#### <u>The menu bar</u>
+#### The menu bar
 
 Click the links in the menu above and look around....
 
-#### <u>(Soc + Occ)psych/R:</u>
+1. __(SOC + OCC)PSYCH/R:__ Returns to this page.
 
-Returns to this page.
+2. __About:__ Opens links to this page, main [Qualifications](./index_qual.html), and a very brief summary of [Employment](./index_employ.html).
 
-#### <u>About:</u>
+3. __500's:__ Opens an index to where I intend to start writing on my subjects of
+psychological interest. Each entry should be around 500 words.
 
-Opens links to this page, main [Qualifications](./index_qual.html), and a very brief summary of [Employment](./index_employ.html).
-
-#### <u>500's:</u>
-
-Opens an index to where I intend to start writing on my subjects of
-psychological interest. Each entry should have around 500 words (+/- 10%!)
-
-#### <u>Projects:</u>
-
-Opens an index for links to various [Social](./project_index_soc.html) &
-[Occupational psychology](./project_index_occ.html) projects I've
+4. __Projects:__ Opens an index for links to various [Social](./project_index_soc.html) &
+[Occupational psychology](./project_index_occ.html) projects I have 
 conducted, or been involved with; and items of interest regarding
-[R-programming](./project_index_r.html) (my own or things I've found).
+[R-programming](./project_index_r.html) and [External research](./project_index_external.html).
 
-#### <u>Contact:</u>
-
-A direct link to my personal email address (prompt responses). On the right-hand side, you'll see links to my [email](mailto:<sleeds40@gmail.com>), [Github](https://github.com/sleeds50/my\_website) and [LinkedIn](https://www.linkedin.com/in/stuart-leeds2020/) profiles.
+5. __Contact:__ A direct link to my personal email address (prompt responses). On the right-hand side, you'll see additional links to [email](mailto:<sleeds40@gmail.com>), [Github](https://github.com/sleeds50/my\_website) and [LinkedIn](https://www.linkedin.com/in/stuart-leeds2020/) profiles.
