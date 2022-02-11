@@ -1,6 +1,6 @@
 ---
 title: "It’s never too late to learn new things"
-# author: "Stuart Leeds"
+### author: "Stuart Leeds"
 date: "10/05/2021"
 output: 
     html_document:
@@ -14,7 +14,7 @@ link-citations: true
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Introduction
+### Introduction
 
 Part of my MSc in Occupational Psychology required spending 60 hours in work
 experience for the Applying Psychology to Work and Organisations module. Since I
@@ -25,7 +25,7 @@ conducted remotely. I had always assumed spending 10 hours per week on this
 project (a ‘normal’ working day, right?); and once I had met the client on
 Teams, we arranged weekly meetings to monitor progress and exchange information.
 
-# The job
+### The job
 
 I had, perhaps naively, expected pages of numerical data, thinking I could run
 various quantitative statistical analyses to present my findings. Imagine my
@@ -37,7 +37,7 @@ procedures in how they write, collect and review feedback on outcomes of
 learning. This was a new learning curve for me in comprehending this discipline,
 as my previous professional background was technical/electrical field work.
 
-# Procedure
+### Procedure
 
 In the previous year I had learned the basics of R-programming with RStudio and
 thought I would incorporate this learning for the task, using RMarkdown to
@@ -74,7 +74,7 @@ The whole project was received well; and the client was surprised at the depth
 of analysis; and also pleased with the different concepts used. Suffice to say,
 I enjoyed the whole process.
 
-# Relating the task to Occupational Psychology
+### Relating the task to Occupational Psychology
 
 Goal setting theory: to maintain motivation and a positive effect on performance
 [@locke1990TheoryGoalSetting; @locke2002BuildingPracticallyUseful].
@@ -98,6 +98,6 @@ knitr::include_graphics("./images/tree_corridor.png")
 
 <br>
 
-# References
+### References
 
 
