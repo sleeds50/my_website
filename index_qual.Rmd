@@ -7,24 +7,24 @@ output:
 
 <br>
 
-### MSc Occupational Psychology^[<small>Accredited by the BPS</small>]
+### MSc Occupational Psychology^[<small>Accredited by the BPS</small>] <small>_(Merit)_</small>
 
-*2020-2021, University of the West of England (UWE)*
+*2020-2021, University of the West of England (UWE Bristol)*
 
 **Dissertation:** [Quantitative research] A cross-sectional correlational
 study, with added mediator and moderator analyses.  
 **Title:** *"Engagement at work: investigating the relationships between age
-groups, gender, personality; and trait EI".* 
+groups, gender, personality; and trait EI".*  
 [(Read a summary here).](./dissertation_summary.html)
 
-### BSc (Honours) Social Psychology^[<small>Accredited by the BPS</small>]
+### BSc (Honours) Social Psychology^[<small>Accredited by the BPS</small>] <small>_(Upper 2:1)_</small>
 
 *2016-2020, The Open University (OU; part-time: 2016-2018)*
 
 **Final project:** [Qualitative research] A form of Critical Discourse
 Analysis  
 **Title:** *"Volunteering and identity: a discursive approach to how volunteers
-see themselves and are seen by others".* 
+see themselves and are seen by others".*  
 [(Read a summary here).](./lvl3_project_summary.html)
 
 -----
