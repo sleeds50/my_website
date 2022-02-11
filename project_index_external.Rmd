@@ -17,10 +17,6 @@ library(fontawesome)
 
 <small>Note: The data used for the research conducted on behalf of Citizens Advice remain their property, and as such there are no links to the reports. Brief summaries are shown here for context.</small>
 
-\
+1.  <span style="color:#eb6f6b">__The Impact of Covid19 on Children__</span>
 
-1.  <span style="color:#eb6f6b">__The Impact of Covid19 on Children: Bath and North East Somerset Citizens Advice - 17 March to 18 August 2020__</span>
-
-_The report highlights the indirect and direct impact of Covid19 on children via issues brought to the Bath and North East Somerset_ (BANES) _Citizens Advice between March and August 2020. The data are from the ‘Tableau’ database, filtered to local offices, including qualitative data sourced from evidence forms. Indirect impact includes employment and debt issues faced by adults and parents, direct impact on children also includes issues of discrimination and poor debt advice_ (by others).
-
-<span style="color:blue">blue</span>
+_The report highlights the indirect and direct impact of Covid19 on children via issues brought to a local Citizens Advice branch between March and August 2020. The data are from the ‘Tableau’ database, filtered to local offices, including qualitative data sourced from evidence forms. Indirect impact includes employment and debt issues faced by adults and parents, direct impact on children also includes issues of discrimination and poor debt advice_ (by others).
