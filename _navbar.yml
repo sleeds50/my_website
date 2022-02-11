@@ -24,6 +24,8 @@ left:
          href: ./project_index_occ.html
        - text: "R - Items of Interest"
          href: ./project_index_r.html
+       - text: "External Research"
+         href: ./project_index_external.html
   - text: "Contact"
     menu:
        - text: "Email"
