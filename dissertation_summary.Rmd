@@ -156,6 +156,9 @@ knitr::include_graphics("./images/H1_wide.png")
 
 Questions or additional information requests to be directed to [the main author.](mailto:sleeds40@gmail.com)
 
-This summary is also published at [ProjectMatch(/blog)](https://www.project-match.com/about/): _"Connecting business and students for great project partnerships"._
+This summary is also published at:
+
+1. [ProjectMatch](https://www.project-match.com/blog/): _"Connecting business and students for great project partnerships"_.  
+2. [ELEVATION OCC PSY](https://elevationoccpsyblog.wordpress.com/2022/03/17/sharing-research/): _"Sharing Research"_.
 
 <br>
