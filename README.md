@@ -14,4 +14,4 @@ So far, so good. ~~Will 'go live' at some point~~.
 
 __<u>Credit</u>__
 
-<u>Credit</u>: Thanks to *Andreas Handel* for the [build tutorial](https://www.andreashandel.com/post/github-website/), who also discusses _RMarkdown_ and reproducibility [here](https://andreashandel.github.io/MADAcourse/1e_ToolsforReproducibility.html).
+<u>Credit</u>: Thanks to *Andreas Handel* for the [build tutorial](https://www.andreashandel.com/posts/github-website/).
