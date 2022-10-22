@@ -6,7 +6,7 @@ output:
 ---
 
 
-![_Stuart M. Leeds, MBPsS_](./images/me2020sq.jpg){height=165}
+![_Stuart M. Leeds, GMBPsS_](./images/me2020sq.jpg){height=165}
 
 So, my main interests are:
 
