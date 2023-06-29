@@ -543,15 +543,15 @@ website](https://www.convertunits.com/from/meters/to/miles) (others are
 available!) to convert the distances into miles (not sure if the site specifies
 US miles as others have done, or my preferred UK miles, however...)
 
-> It's enough to give a guide to how close *Rush Green* is...
+It's enough to give a guide to how close *Rush Green* is...
 
-> to the median location of places in England:
+to the median of places in England:  
 
-  - Stapleford Abbotts = 8.73Km (5.43 miles) away.
+> __Stapleford Abbotts = 8.73Km (5.43 miles) away.__
 
-> to the median point of the worldwide locations:
+to the median of worldwide locations:  
 
-  - Upminster = 5.58Km (3.47 miles) away.
+> __Upminster = 5.58Km (3.47 miles) away.__
 
 This has been an interesting project - thanks for reading. I might take it
 further one day and tell the story of each place and why I moved so many times.
