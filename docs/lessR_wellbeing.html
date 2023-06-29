@@ -15,7 +15,7 @@
 
 <title>Using the lessR package to investigate wellbeing data</title>
 
-<script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.22/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
@@ -36,8 +36,8 @@
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -169,11 +169,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -202,8 +206,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -211,16 +215,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -368,7 +365,8 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Using the <code>lessR</code> package to investigate wellbeing data</h1>
+<h1 class="title toc-ignore">Using the <code>lessR</code> package to
+investigate wellbeing data</h1>
 <h4 class="author">Stuart Leeds</h4>
 <h4 class="date">01/12/2021</h4>
 
@@ -378,27 +376,77 @@ $(document).ready(function () {
 <p><br></p>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
-<p>Employee wellbeing is a concern in occupational psychology. Negative antecedents such as toxic work environments, poor organisational climate, bullying, amount and type of working hours among many others <span class="citation">(<a href="#ref-colliganWorkplaceStressEtiology2006" role="doc-biblioref">Colligan &amp; Higgins, 2006</a>)</span>, increase employee stress. The addition of the Covid-19 pandemic brings new stressors, such as changing working practices by working from home or being on furlough, which have helped contribute to what has become known as <a href="https://www.theguardian.com/money/2021/nov/01/the-great-resignation-almost-one-in-four-workers-planning-job-change">“The Great Resignation” (TGR)</a>.</p>
-<p>It would seem that the pandemic has allowed some people to re-evaluate their lives and working practices, thereby, looking after their own wellbeing by doing what is best for them. Though these might be troubling times as far as some employees or organisations are concerned, some recruitment writers see suitable benefits for how TGR can potentially <a href="https://www.reed.co.uk/career-advice/the-great-resignation-and-what-it-means-for-your-career/">benefit your career</a> and consequently increase wellbeing.</p>
-<p>However, this is not an essay or report on wellbeing in the workplace. The subject is far too deep and complicated to go into here in any great detail, but the introduction sets the scene.</p>
-<p>The idea here is to investigate the relationships between wellbeing and working hours using the <code>lessr</code> package <span class="citation">(<a href="#ref-R-lessR" role="doc-biblioref">Gerbing et al., 2022</a>)</span> which I have recently found to be very useful.</p>
+<p>Employee wellbeing is a concern in occupational psychology. Negative
+antecedents such as toxic work environments, poor organisational
+climate, bullying, amount and type of working hours among many others
+<span class="citation">(<a
+href="#ref-colliganWorkplaceStressEtiology2006">Colligan &amp; Higgins,
+2006</a>)</span>, increase employee stress. The addition of the Covid-19
+pandemic brings new stressors, such as changing working practices by
+working from home or being on furlough, which have helped contribute to
+what has become known as <a
+href="https://www.theguardian.com/money/2021/nov/01/the-great-resignation-almost-one-in-four-workers-planning-job-change">“The
+Great Resignation” (TGR)</a>.</p>
+<p>It would seem that the pandemic has allowed some people to
+re-evaluate their lives and working practices, thereby, looking after
+their own wellbeing by doing what is best for them. Though these might
+be troubling times as far as some employees or organisations are
+concerned, some recruitment writers see suitable benefits for how TGR
+can potentially <a
+href="https://www.reed.co.uk/career-advice/the-great-resignation-and-what-it-means-for-your-career/">benefit
+your career</a> and consequently increase wellbeing.</p>
+<p>However, this is not an essay or report on wellbeing in the
+workplace. The subject is far too deep and complicated to go into here
+in any great detail, but the introduction sets the scene.</p>
+<p>The idea here is to investigate the relationships between wellbeing
+and working hours using the <code>lessr</code> package <span
+class="citation">(<a href="#ref-R-lessR">Gerbing et al.,
+2023</a>)</span> which I have recently found to be very useful.</p>
 </div>
 <div id="the-data" class="section level1">
 <h1>The Data</h1>
-<p>The wellbeing data are included in the <code>UsingR</code> package <span class="citation">(<a href="#ref-R-UsingR" role="doc-biblioref">Verzani, 2022</a>)</span> and originally used <a href="http://prcweb.co.uk/lab/what-makes-us-happy/">here</a>, where you can see interactive correlations with wellbeing and variables of your choice. There are also links to the data origin at <a href="http://www.nationalaccountsofwellbeing.org/">The National Accounts of Well-being</a> and category data from <a href="https://www.gapminder.org/data/">Gapminder</a>, where you can also download other data from the <em>Gapminder</em> database in CSV or XLSX formats.</p>
-<p>The wellbeing data consists of <span class="math inline">\(22\)</span> observations (European countries):</p>
+<p>The wellbeing data are included in the <code>UsingR</code> package
+<span class="citation">(<a href="#ref-R-UsingR">Verzani,
+2022</a>)</span> and originally used <a
+href="http://prcweb.co.uk/lab/what-makes-us-happy/">here</a>, where you
+can see interactive correlations with wellbeing and variables of your
+choice. There are also links to the data origin at <a
+href="http://www.nationalaccountsofwellbeing.org/">The National Accounts
+of Well-being</a> and category data from <a
+href="https://www.gapminder.org/data/">Gapminder</a>, where you can also
+download other data from the <em>Gapminder</em> database in CSV or XLSX
+formats.</p>
+<p>The wellbeing data consists of <span
+class="math inline">\(22\)</span> observations (European countries):</p>
 <blockquote>
-<p>Austria, Belgium, Bulgaria, Cyprus, Denmark, Estonia, Finland, France, Germany, Hungary, Ireland, Netherlands, Norway, Poland, Portugal, Slovakia, Slovenia, Spain, Sweden, Switzerland, Ukraine, United Kingdom</p>
+<p>Austria, Belgium, Bulgaria, Cyprus, Denmark, Estonia, Finland,
+France, Germany, Hungary, Ireland, Netherlands, Norway, Poland,
+Portugal, Slovakia, Slovenia, Spain, Sweden, Switzerland, Ukraine,
+United Kingdom</p>
 </blockquote>
 <p>and <span class="math inline">\(11\)</span> additional variables:</p>
 <blockquote>
-<p>Well.being, GDP, Equality, Food.consumption, Alcohol.consumption, Energy.consumption, Family, Working.hours, Work.income, Health.spending, Military.spending</p>
+<p>Well.being, GDP, Equality, Food.consumption, Alcohol.consumption,
+Energy.consumption, Family, Working.hours, Work.income, Health.spending,
+Military.spending</p>
 </blockquote>
-<p>The data require minimal cleaning, so in this case only the necessary columns are selected with <code>d[]</code> function; and the Well.being column sorted with the <code>Sort()</code> function in <code>lessR</code> (all code for this document can be found in the <a href="#Appendix">Appendix</a>). For the purposes of using <code>lessR</code>, the <code>UsingR::wellbeing</code> data frame was saved as an <code>.xlsx</code> file with <code>Write()</code> and re-imported with <code>Read()</code> into the variable <code>d</code> (you might not have to do this - I could not get the original data to be manipulated with <code>lessR</code> functions).</p>
+<p>The data require minimal cleaning, so in this case only the necessary
+columns are selected with <code>d[]</code> function; and the Well.being
+column sorted with the <code>Sort()</code> function in
+<code>lessR</code> (all code for this document can be found in the <a
+href="#Appendix">Appendix</a>). For the purposes of using
+<code>lessR</code>, the <code>UsingR::wellbeing</code> data frame was
+saved as an <code>.xlsx</code> file with <code>Write()</code> and
+re-imported with <code>Read()</code> into the variable <code>d</code>
+(you might not have to do this - I could not get the original data to be
+manipulated with <code>lessR</code> functions).</p>
 </div>
 <div id="the-analysis" class="section level1">
 <h1>The Analysis</h1>
-<p>Table 1 shows the top five European countries with the highest wellbeing (Denmark: 5.93), and the bottom five with the lowest wellbeing (Ukraine: 4.39). There’s not much difference between the highest and lowest positions (1.54).</p>
+<p>Table 1 shows the top five European countries with the highest
+wellbeing (Denmark: 5.93), and the bottom five with the lowest wellbeing
+(Ukraine: 4.39). There’s not much difference between the highest and
+lowest positions (1.54).</p>
 <table class="kable_wrapper lightable-classic" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
 <thead>
 <tr>
@@ -415,7 +463,8 @@ Lowest Wellbeing
 </tr>
 </thead>
 <caption>
-<b>Table 1.</b><br><i>European Countries with Highest &amp; Lowest Wellbeing</i>
+<b>Table 1.</b><br><i>European Countries with Highest &amp; Lowest
+Wellbeing</i>
 </caption>
 <tbody>
 <tr>
@@ -577,15 +626,25 @@ NA
 </tr>
 <tr>
 <td style="padding: 0; " colspan="100%">
-<sup></sup> Working.hours are the average working hours per week per person
+<sup></sup> Working.hours are the average working hours per week per
+person
 </td>
 </tr>
 </tfoot>
 </table>
 <p><br />
 </p>
-<p>Not all functions from <code>lessr</code> are necessary for this project. So aside from the “tidying” functions used above, the additional functions of interest are <code>Regression()</code> and <code>regPlot()</code>.</p>
-<p>The <code>Regression()</code> function is really useful. As the name <code>lessR</code> suggests, less <span class="math inline">\(R\)</span> and more output. We want to explore the relationship between wellbeing (<em>Intercept</em>) and the average working hours per week per person (<em>predictor</em>). The output for <code>Regression()</code> includes everything you need (and more), all of which can be presented separately if assigned to its own variable, such as:</p>
+<p>Not all functions from <code>lessr</code> are necessary for this
+project. So aside from the “tidying” functions used above, the
+additional functions of interest are <code>Regression()</code> and
+<code>regPlot()</code>.</p>
+<p>The <code>Regression()</code> function is really useful. As the name
+<code>lessR</code> suggests, less <span class="math inline">\(R\)</span>
+and more output. We want to explore the relationship between wellbeing
+(<em>Intercept</em>) and the average working hours per week per person
+(<em>predictor</em>). The output for <code>Regression()</code> includes
+everything you need (and more), all of which can be presented separately
+if assigned to its own variable, such as:</p>
 <p><br />
 </p>
 <ol style="list-style-type: decimal">
@@ -599,28 +658,44 @@ NA
 <ol start="2" style="list-style-type: decimal">
 <li>The Anova:</li>
 </ol>
-<pre><code>##                 df    Sum Sq   Mean Sq   F-value   p-value
+<pre><code>## -- Analysis of Variance
+## 
+##                 df    Sum Sq   Mean Sq   F-value   p-value
 ## Model            1      0.58      0.58      5.20     0.038
 ## Residuals       15      1.68      0.11
 ## Well.being      16      2.27      0.14</code></pre>
 <p><br />
 </p>
 <ol start="3" style="list-style-type: decimal">
-<li>The adjusted R-squared value is <span class="math inline">\((R_{adj}^2 = 0.2077)\)</span>.</li>
+<li>The adjusted R-squared value is <span
+class="math inline">\((R_{adj}^2 = 0.2077)\)</span>.</li>
 </ol>
 <p><br />
 </p>
 <p>The statistical information is reported as follows:</p>
 <blockquote>
-<p>A simple linear regression was carried out to test if Working Hours significantly predicted Wellbeing. The results of the regression indicated that the model explained 20.77% of the variance and that the model was significant, <span class="math inline">\(F\)</span>(1, 15) <span class="math inline">\(=\)</span> 5.2, <span class="math inline">\(p=\)</span> 0.038. It was found that Working Hours significantly predicted Wellbeing (<span class="math inline">\(B_1=\)</span> -0.06, <span class="math inline">\(p=\)</span> 0.038).<br />
-The final predictive model is: proportion of Wellbeing <span class="math inline">\(=\)</span> 7.08 + (-0.06 <span class="math inline">\(\times\)</span> Working Hours)</p>
+<p>A simple linear regression was carried out to test if Working Hours
+significantly predicted Wellbeing. The results of the regression
+indicated that the model explained 20.77% of the variance and that the
+model was significant, <span class="math inline">\(F\)</span>(1, 15)
+<span class="math inline">\(=\)</span> 5.2, <span
+class="math inline">\(p=\)</span> 0.038. It was found that Working Hours
+significantly predicted Wellbeing (<span
+class="math inline">\(B_1=\)</span> -0.06, <span
+class="math inline">\(p=\)</span> 0.038).<br />
+The final predictive model is: proportion of Wellbeing <span
+class="math inline">\(=\)</span> 7.08 + (-0.06 <span
+class="math inline">\(\times\)</span> Working Hours)</p>
 </blockquote>
 </div>
 <div id="plots" class="section level1">
 <h1>Plots</h1>
-<p>Three plots for visualising the regression and the assumptions are also produced (automatically in the <code>Regression()</code> function, or separately using <code>regPlot()</code>, as here:)</p>
+<p>Three plots for visualising the regression and the assumptions are
+also produced (automatically in the <code>Regression()</code> function,
+or separately using <code>regPlot()</code>, as here:)</p>
 <p><strong>Figure 1.</strong><br />
-<em>Scatterplot showing regression line, prediction and confidence intervals:</em></p>
+<em>Scatterplot showing regression line, prediction and confidence
+intervals:</em></p>
 <p><img src="lessR_wellbeing_files/figure-html/plot1-1.png" width="672" style="display: block; margin: auto;" /><br />
 </p>
 <p><strong>Figure 2.</strong><br />
@@ -633,7 +708,10 @@ The final predictive model is: proportion of Wellbeing <span class="math inline"
 </div>
 <div id="additional-output" class="section level1">
 <h1>Additional Output</h1>
-<p>Additional analyses of interest in the <code>Regression()</code> output are the correlation matrix, which shows a negative moderate relationship between wellbeing and working hours <span class="math inline">\((r= -0.51)\)</span>:</p>
+<p>Additional analyses of interest in the <code>Regression()</code>
+output are the correlation matrix, which shows a negative moderate
+relationship between wellbeing and working hours <span
+class="math inline">\((r= -0.51)\)</span>:</p>
 <p><br />
 </p>
 <ol style="list-style-type: decimal">
@@ -647,47 +725,74 @@ The final predictive model is: proportion of Wellbeing <span class="math inline"
 <ol start="2" style="list-style-type: decimal">
 <li>RESIDUALS AND INFLUENCE (Top five showing here)</li>
 </ol>
-<pre><code>##  [1] &quot;Data, Fitted, Residual, Studentized Residual, Dffits, Cook&#39;s Distance&quot;
-##  [2] &quot;   [sorted by Cook&#39;s Distance]&quot;                                       
-##  [3] &quot;   [res_rows = 17, out of 17 ]&quot;                                       
-##  [4] &quot;--------------------------------------------------------------&quot;       
-##  [5] &quot;     Working.hours Well.being fitted resid rstdnt dffits cooks&quot;       
-##  [6] &quot;   9         27.55       5.01   5.45 -0.44  -1.49  -0.65  0.20&quot;       
-##  [7] &quot;   5         30.27       5.93   5.29  0.64   2.24   0.62  0.15&quot;       
-##  [8] &quot;  16         33.63       4.57   5.09 -0.52  -1.72  -0.51  0.12&quot;       
-##  [9] &quot;  20         31.87       5.66   5.19  0.47   1.50   0.37  0.06&quot;       
+<pre><code>##  [1] &quot;-- Data, Fitted, Residual, Studentized Residual, Dffits, Cook&#39;s Distance&quot;
+##  [2] &quot;   [sorted by Cook&#39;s Distance]&quot;                                          
+##  [3] &quot;   [n_res_rows = 17, out of 17 ]&quot;                                        
+##  [4] &quot;--------------------------------------------------------------&quot;          
+##  [5] &quot;     Working.hours Well.being fitted resid rstdnt dffits cooks&quot;          
+##  [6] &quot;   9         27.55       5.01   5.45 -0.44  -1.49  -0.65  0.20&quot;          
+##  [7] &quot;   5         30.27       5.93   5.29  0.64   2.24   0.62  0.15&quot;          
+##  [8] &quot;  16         33.63       4.57   5.09 -0.52  -1.72  -0.51  0.12&quot;          
+##  [9] &quot;  20         31.87       5.66   5.19  0.47   1.50   0.37  0.06&quot;          
 ## [10] &quot;   8         30.16       4.88   5.29 -0.41  -1.32  -0.37  0.06&quot;</code></pre>
 <p><br />
 </p>
 <ol start="3" style="list-style-type: decimal">
 <li>PREDICTION ERROR</li>
 </ol>
-<p>Data, Predicted, Standard Error of Forecast, 95% Prediction Intervals [sorted by lower bound of prediction interval] ———————————————-(Top 5 again)</p>
-<pre><code>## [1] &quot;     Working.hours Well.being pred   sf pi.lwr pi.upr width&quot;
-## [2] &quot;  10         38.25       4.74 4.82 0.38   4.00   5.64  1.64&quot;
-## [3] &quot;  14         38.17       4.81 4.82 0.38   4.00   5.64  1.64&quot;
-## [4] &quot;  15         33.81       4.89 5.08 0.35   4.33   5.82  1.49&quot;
-## [5] &quot;  16         33.63       4.57 5.09 0.35   4.35   5.83  1.49&quot;
-## [6] &quot;   7         32.95       5.39 5.13 0.35   4.39   5.87  1.48&quot;</code></pre>
+<p>– Data, Predicted, Standard Error of Prediction, 95% Prediction
+Intervals [sorted by lower bound of prediction interval]
+———————————————-(Top 5 again)</p>
+<pre><code>## [1] &quot;     Working.hours Well.being pred s_pred pi.lwr pi.upr width&quot;
+## [2] &quot;  10         38.25       4.74 4.82   0.38   4.00   5.64  1.64&quot;
+## [3] &quot;  14         38.17       4.81 4.82   0.38   4.00   5.64  1.64&quot;
+## [4] &quot;  15         33.81       4.89 5.08   0.35   4.33   5.82  1.49&quot;
+## [5] &quot;  16         33.63       4.57 5.09   0.35   4.35   5.83  1.49&quot;
+## [6] &quot;   7         32.95       5.39 5.13   0.35   4.39   5.87  1.48&quot;</code></pre>
 <p><br />
 </p>
 <blockquote>
-<p>Another excellent feature of the <code>Regression()</code> function is the <code>Rmd = "filename"</code> parameter which automatically produces an explanatory and exploratory <code>.Rmd</code> document of the regression analysis that can be edited; and an additional <code>.html</code> document, which for this analysis you can read <a href="./lessr_wellbeing_out.html">here</a>.</p>
+<p>Another excellent feature of the <code>Regression()</code> function
+is the <code>Rmd = "filename"</code> parameter which automatically
+produces an explanatory and exploratory <code>.Rmd</code> document of
+the regression analysis that can be edited; and an additional
+<code>.html</code> document, which for this analysis you can read <a
+href="./lessr_wellbeing_out.html">here</a>.</p>
 </blockquote>
 </div>
 <div id="further-query" class="section level1">
 <h1>Further Query</h1>
-<p>Clearly, working more hours in a week reduces wellbeing. We have already seen that the Wellbeing Mean for this data set is <span class="math inline">\(5.1\)</span>. This could be considered as <em>peak</em> wellbeing, so what are the average working hours per week per person needed to maintain that level of wellbeing?</p>
-<p>The prediction output suggests a level of wellbeing at <span class="math inline">\(5.13\)</span> <span class="math inline">\((95\%\space CI[4.39, 5.87])\)</span> for <span class="math inline">\(32.95\)</span> (round to <span class="math inline">\(33\)</span>) average hours worked at item <span class="math inline">\(7\)</span>:</p>
-<pre><code>## [1] &quot;     Working.hours Well.being pred   sf pi.lwr pi.upr width&quot;
-## [2] &quot;   7         32.95       5.39 5.13 0.35   4.39   5.87  1.48&quot;</code></pre>
+<p>Clearly, working more hours in a week reduces wellbeing. We have
+already seen that the Wellbeing Mean for this data set is <span
+class="math inline">\(5.1\)</span>. This could be considered as
+<em>peak</em> wellbeing, so what are the average working hours per week
+per person needed to maintain that level of wellbeing?</p>
+<p>The prediction output suggests a level of wellbeing at <span
+class="math inline">\(5.13\)</span> <span
+class="math inline">\((95\%\space CI[4.39, 5.87])\)</span> for <span
+class="math inline">\(32.95\)</span> (round to <span
+class="math inline">\(33\)</span>) average hours worked at item <span
+class="math inline">\(7\)</span>:</p>
+<pre><code>## [1] &quot;     Working.hours Well.being pred s_pred pi.lwr pi.upr width&quot;
+## [2] &quot;   7         32.95       5.39 5.13   0.35   4.39   5.87  1.48&quot;</code></pre>
 <p><br />
 </p>
-<p>This prediction can be confirmed with the regression calculation identified above:</p>
+<p>This prediction can be confirmed with the regression calculation
+identified above:</p>
 <blockquote>
-<p>Wellbeing = 7.08 + (-0.06 <span class="math inline">\(\times\)</span> Working Hours) <span class="math inline">\(\space\therefore\space\)</span> 7.08 + (-0.06 <span class="math inline">\(\times\)</span> 33) <span class="math inline">\(=\)</span> 5.13</p>
+<p>Wellbeing = 7.08 + (-0.06 <span class="math inline">\(\times\)</span>
+Working Hours) <span
+class="math inline">\(\space\therefore\space\)</span> 7.08 + (-0.06
+<span class="math inline">\(\times\)</span> 33) <span
+class="math inline">\(=\)</span> 5.13</p>
 </blockquote>
-<p>If the preferred working hours to maintain wellbeing at <span class="math inline">\(5.13\)</span> is <span class="math inline">\(33\)</span>, then the question is: would it be more beneficial to work a shorter week with longer hours per day, or a longer week with fewer hours per day? See Table 2 (Calculations converted to time with <code>lubridate</code> <span class="citation">(<a href="#ref-R-lubridate" role="doc-biblioref">Spinu et al., 2021</a>)</span>).</p>
+<p>If the preferred working hours to maintain wellbeing at <span
+class="math inline">\(5.13\)</span> is <span
+class="math inline">\(33\)</span>, then the question is: would it be
+more beneficial to work a shorter week with longer hours per day, or a
+longer week with fewer hours per day? See Table 2 (Calculations
+converted to time with <code>lubridate</code> <span class="citation">(<a
+href="#ref-R-lubridate">Spinu et al., 2023</a>)</span>).</p>
 <table class=" lightable-classic" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 <b>Table 2.</b><br><i>Speculative Working Week</i>
@@ -723,11 +828,20 @@ Hours per Day
 </table>
 <p><br />
 </p>
-<p>Of course there are other options, for example, a three day week at <span class="math inline">\(11\)</span> hours per day, or a six day week at <span class="math inline">\(5\)</span> hours <span class="math inline">\(30\)</span> minutes per day, not intending to dismiss those workers who would do more (or less).</p>
-<p>This theory does not account for the four countries that work fewer than <span class="math inline">\(33\)</span> hours per week per person and have a lower than average wellbeing: <em>Belgium, France, Germany</em> and the <em>United Kingdom</em> (See the lower-left quadrant of Figure 1; and Table 3).</p>
+<p>Of course there are other options, for example, a three day week at
+<span class="math inline">\(11\)</span> hours per day, or a six day week
+at <span class="math inline">\(5\)</span> hours <span
+class="math inline">\(30\)</span> minutes per day, not intending to
+dismiss those workers who would do more (or less).</p>
+<p>This theory does not account for the four countries that work fewer
+than <span class="math inline">\(33\)</span> hours per week per person
+and have a lower than average wellbeing: <em>Belgium, France,
+Germany</em> and the <em>United Kingdom</em> (See the lower-left
+quadrant of Figure 1; and Table 3).</p>
 <table class=" lightable-classic" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<b>Table 3.</b><br><i>European Countries with Wellbeing &lt; 5.13 and Working Hours &lt; 33</i>
+<b>Table 3.</b><br><i>European Countries with Wellbeing &lt; 5.13 and
+Working Hours &lt; 33</i>
 </caption>
 <thead>
 <tr>
@@ -821,26 +935,66 @@ United Kingdom
 </table>
 <p><br />
 </p>
-<p>In this group, <em>France</em> has the largest difference in wellbeing <span class="math inline">\((-0.25)\)</span>, a <span class="math inline">\(1/4\)</span> of a point less than average wellbeing. However, all of the wellbeing differences are <em>very</em> small; and the wellbeing scores for each country are within the bounds of the <span class="math inline">\(95\%\space CI[4.39, 5.87]\)</span> of the wellbeing/working hours prediction. The country with the greatest working hours difference is <em>Germany</em> at <span class="math inline">\(-5.45\)</span>, which is <span class="math inline">\(5\)</span> hours <span class="math inline">\(27\)</span> minutes fewer than average. Further research is required to determine the <em>whys</em> and <em>wherefores</em>, which is beyond the scope of this report.</p>
+<p>In this group, <em>France</em> has the largest difference in
+wellbeing <span class="math inline">\((-0.25)\)</span>, a <span
+class="math inline">\(1/4\)</span> of a point less than average
+wellbeing. However, all of the wellbeing differences are <em>very</em>
+small; and the wellbeing scores for each country are within the bounds
+of the <span class="math inline">\(95\%\space CI[4.39, 5.87]\)</span> of
+the wellbeing/working hours prediction. The country with the greatest
+working hours difference is <em>Germany</em> at <span
+class="math inline">\(-5.45\)</span>, which is <span
+class="math inline">\(5\)</span> hours <span
+class="math inline">\(27\)</span> minutes fewer than average. Further
+research is required to determine the <em>whys</em> and
+<em>wherefores</em>, which is beyond the scope of this report.</p>
 </div>
 <div id="conclusion" class="section level1">
 <h1>Conclusion</h1>
-<p>A very brief introduction to employee wellbeing preceded the purpose of using various functions from the <code>lessR</code> package to explore the relationship between Well.being and Working.hours in <span class="math inline">\(22\)</span> European countries using the <code>UsingR::wellbeing</code> data set. The <code>lessR</code> functions used were <code>Write()</code>, <code>Read()</code>, <code>d[]</code>, <code>Sort()</code>, <code>Regression()</code> and <code>regPlot()</code>. The key <code>Regression()</code> outputs, <em>estimate, ANOVA</em> and <em>adjusted R-squared</em> were presented separately to weave into the text, along with three plots to verify regression assumptions. Additional output for <em>correlation, residuals and influence</em> and <em>prediction error</em> followed. Further query suggested a predicted number of average working hours to maintain average wellbeing, with speculative thought on how a working week could be arranged. Finally, the four countries showing less than wellbeing average and fewer than average working hours were addressed. In general, <code>lessR</code> was found to be an excellent <span class="math inline">\(R\)</span> package to manipulate data with minimal use of <span class="math inline">\(R\)</span> for maximum output.</p>
+<p>A very brief introduction to employee wellbeing preceded the purpose
+of using various functions from the <code>lessR</code> package to
+explore the relationship between Well.being and Working.hours in <span
+class="math inline">\(22\)</span> European countries using the
+<code>UsingR::wellbeing</code> data set. The <code>lessR</code>
+functions used were <code>Write()</code>, <code>Read()</code>,
+<code>d[]</code>, <code>Sort()</code>, <code>Regression()</code> and
+<code>regPlot()</code>. The key <code>Regression()</code> outputs,
+<em>estimate, ANOVA</em> and <em>adjusted R-squared</em> were presented
+separately to weave into the text, along with three plots to verify
+regression assumptions. Additional output for <em>correlation, residuals
+and influence</em> and <em>prediction error</em> followed. Further query
+suggested a predicted number of average working hours to maintain
+average wellbeing, with speculative thought on how a working week could
+be arranged. Finally, the four countries showing less than wellbeing
+average and fewer than average working hours were addressed. In general,
+<code>lessR</code> was found to be an excellent <span
+class="math inline">\(R\)</span> package to manipulate data with minimal
+use of <span class="math inline">\(R\)</span> for maximum output.</p>
 </div>
 <div id="references" class="section level1">
 <h1>References</h1>
-<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
+<div id="refs" class="references csl-bib-body hanging-indent"
+line-spacing="2">
 <div id="ref-colliganWorkplaceStressEtiology2006" class="csl-entry">
-Colligan, T. W., &amp; Higgins, E. M. (2006). Workplace stress: <span>Etiology</span> and consequences. <em>Journal of Workplace Behavioral Health</em>, <em>21</em>(2, 2), 89–97. <a href="https://doi.org/10.1300/J490v21n02_07">https://doi.org/10.1300/J490v21n02_07</a>
+Colligan, T. W., &amp; Higgins, E. M. (2006). Workplace stress:
+<span>Etiology</span> and consequences. <em>Journal of Workplace
+Behavioral Health</em>, <em>21</em>(2, 2), 89–97. <a
+href="https://doi.org/10.1300/J490v21n02_07">https://doi.org/10.1300/J490v21n02_07</a>
 </div>
 <div id="ref-R-lessR" class="csl-entry">
-Gerbing, D., Business, T. S. of, &amp; University, P. S. (2022). <em>lessR: Less code, more results</em>. <a href="https://CRAN.R-project.org/package=lessR">https://CRAN.R-project.org/package=lessR</a>
+Gerbing, D., Business, T. S. of, &amp; University, P. S. (2023).
+<em>lessR: Less code, more results</em>. <a
+href="https://CRAN.R-project.org/package=lessR">https://CRAN.R-project.org/package=lessR</a>
 </div>
 <div id="ref-R-lubridate" class="csl-entry">
-Spinu, V., Grolemund, G., &amp; Wickham, H. (2021). <em>Lubridate: Make dealing with dates a little easier</em>. <a href="https://CRAN.R-project.org/package=lubridate">https://CRAN.R-project.org/package=lubridate</a>
+Spinu, V., Grolemund, G., &amp; Wickham, H. (2023). <em>Lubridate: Make
+dealing with dates a little easier</em>. <a
+href="https://CRAN.R-project.org/package=lubridate">https://CRAN.R-project.org/package=lubridate</a>
 </div>
 <div id="ref-R-UsingR" class="csl-entry">
-Verzani, J. (2022). <em>UsingR: Data sets, etc. For the text "using r for introductory statistics", second edition</em>. <a href="https://CRAN.R-project.org/package=UsingR">https://CRAN.R-project.org/package=UsingR</a>
+Verzani, J. (2022). <em>UsingR: Data sets, etc. For the text "using r
+for introductory statistics", second edition</em>. <a
+href="https://CRAN.R-project.org/package=UsingR">https://CRAN.R-project.org/package=UsingR</a>
 </div>
 </div>
 <p><br />
@@ -878,7 +1032,9 @@ d &lt;- Read(&quot;./data/wellbeing.xlsx&quot;)</code></pre>
 ## 
 ## &gt;&gt;&gt; Suggestions
 ## To read a csv or Excel file of variable labels, var_labels=TRUE
-##    Each row of the file:  Variable Name, Variable Label
+##   Each row of the file:  Variable Name, Variable Label
+## Read into a data frame named l  (the letter el)
+## 
 ## Details about your data, Enter:  details()  for d, or  details(name)
 ## 
 ## Data Types
@@ -906,8 +1062,8 @@ d &lt;- Read(&quot;./data/wellbeing.xlsx&quot;)</code></pre>
 ## 
 ## 
 ## For the column Country, each row of data is unique. Are these values
-## a unique ID for each row? To implement, perhaps re-read a worksheet or text
-## file with the following setting added to your Read statement: row_names=1</code></pre>
+## a unique ID for each row? To define as a row name, re-read the data file
+## with the following setting added to your Read() statement: row_names=1</code></pre>
 <pre class="r"><code># Select columns of interest
 d &lt;- d[, .(&quot;Country&quot;, &quot;Well.being&quot;, &quot;Working.hours&quot;)]
 
@@ -947,7 +1103,8 @@ Lowest Wellbeing
 </tr>
 </thead>
 <caption>
-<b>Table 1.</b><br><i>European Countries with Highest &amp; Lowest Wellbeing</i>
+<b>Table 1.</b><br><i>European Countries with Highest &amp; Lowest
+Wellbeing</i>
 </caption>
 <tbody>
 <tr>
@@ -1109,7 +1266,8 @@ NA
 </tr>
 <tr>
 <td style="padding: 0; " colspan="100%">
-<sup></sup> Working.hours are the average working hours per week per person
+<sup></sup> Working.hours are the average working hours per week per
+person
 </td>
 </tr>
 </tfoot>
@@ -1127,6 +1285,7 @@ r</code></pre>
 ## # Create an R markdown file for interpretative output with  Rmd = &quot;file_name&quot;
 ## Regression(my_formula=Well.being ~ Working.hours, digits_d=2, graphics=FALSE, Rmd=&quot;eg&quot;)  
 ## 
+## 
 ##   BACKGROUND 
 ## 
 ## Data Frame:  d 
@@ -1136,6 +1295,7 @@ r</code></pre>
 ##  
 ## Number of cases (rows) of data:  22 
 ## Number of cases retained for analysis:  17 
+## 
 ## 
 ##   BASIC ANALYSIS 
 ## 
@@ -1153,12 +1313,16 @@ r</code></pre>
 ## Null hypothesis of all 0 population slope coefficients:
 ##   F-statistic: 5.195     df: 1 and 15     p-value:  0.038 
 ## 
+## -- Analysis of Variance 
+##  
 ##                 df    Sum Sq   Mean Sq   F-value   p-value 
 ## Model            1      0.58      0.58      5.20     0.038 
 ## Residuals       15      1.68      0.11 
 ## Well.being      16      2.27      0.14 
 ## 
+## 
 ##   K-FOLD CROSS-VALIDATION 
+## 
 ## 
 ##   RELATIONS AMONG THE VARIABLES 
 ## 
@@ -1166,11 +1330,12 @@ r</code></pre>
 ##      Well.being       1.00         -0.51 
 ##   Working.hours      -0.51          1.00 
 ## 
+## 
 ##   RESIDUALS AND INFLUENCE 
 ## 
-## Data, Fitted, Residual, Studentized Residual, Dffits, Cook&#39;s Distance 
+## -- Data, Fitted, Residual, Studentized Residual, Dffits, Cook&#39;s Distance 
 ##    [sorted by Cook&#39;s Distance] 
-##    [res_rows = 17, out of 17 ] 
+##    [n_res_rows = 17, out of 17 ] 
 ## -------------------------------------------------------------- 
 ##      Working.hours Well.being fitted resid rstdnt dffits cooks 
 ##    9         27.55       5.01   5.45 -0.44  -1.49  -0.65  0.20 
@@ -1191,31 +1356,31 @@ r</code></pre>
 ##   18         31.82       5.34   5.20  0.14   0.43   0.11  0.01 
 ##   14         38.17       4.81   4.82 -0.01  -0.04  -0.02  0.00 
 ## 
+## 
 ##   PREDICTION ERROR 
 ## 
-## Data, Predicted, Standard Error of Forecast, 
-## 95% Prediction Intervals 
+## -- Data, Predicted, Standard Error of Prediction, 95% Prediction Intervals 
 ##    [sorted by lower bound of prediction interval] 
 ##  ---------------------------------------------- 
 ## 
-##      Working.hours Well.being pred   sf pi.lwr pi.upr width 
-##   10         38.25       4.74 4.82 0.38   4.00   5.64  1.64 
-##   14         38.17       4.81 4.82 0.38   4.00   5.64  1.64 
-##   15         33.81       4.89 5.08 0.35   4.33   5.82  1.49 
-##   16         33.63       4.57 5.09 0.35   4.35   5.83  1.49 
-##    7         32.95       5.39 5.13 0.35   4.39   5.87  1.48 
-##   22         32.09       4.98 5.18 0.34   4.45   5.91  1.47 
-##   20         31.87       5.66 5.19 0.34   4.46   5.93  1.47 
-##   18         31.82       5.34 5.20 0.34   4.46   5.93  1.47 
-##    1         31.82       5.37 5.20 0.34   4.46   5.93  1.47 
-##   11         31.54       5.44 5.21 0.34   4.48   5.95  1.47 
-##   19         30.30       5.44 5.29 0.35   4.55   6.02  1.48 
-##    5         30.27       5.93 5.29 0.35   4.55   6.03  1.48 
-##    2         30.21       5.04 5.29 0.35   4.55   6.03  1.48 
-##    8         30.16       4.88 5.29 0.35   4.56   6.03  1.48 
-##    9         27.55       5.01 5.45 0.36   4.68   6.22  1.54 
-##   13         27.08       5.69 5.48 0.36   4.70   6.25  1.55 
-##   12         26.75       5.31 5.50 0.37   4.71   6.28  1.57</code></pre>
+##      Working.hours Well.being pred s_pred pi.lwr pi.upr width 
+##   10         38.25       4.74 4.82   0.38   4.00   5.64  1.64 
+##   14         38.17       4.81 4.82   0.38   4.00   5.64  1.64 
+##   15         33.81       4.89 5.08   0.35   4.33   5.82  1.49 
+##   16         33.63       4.57 5.09   0.35   4.35   5.83  1.49 
+##    7         32.95       5.39 5.13   0.35   4.39   5.87  1.48 
+##   22         32.09       4.98 5.18   0.34   4.45   5.91  1.47 
+##   20         31.87       5.66 5.19   0.34   4.46   5.93  1.47 
+##   18         31.82       5.34 5.20   0.34   4.46   5.93  1.47 
+##    1         31.82       5.37 5.20   0.34   4.46   5.93  1.47 
+##   11         31.54       5.44 5.21   0.34   4.48   5.95  1.47 
+##   19         30.30       5.44 5.29   0.35   4.55   6.02  1.48 
+##    5         30.27       5.93 5.29   0.35   4.55   6.03  1.48 
+##    2         30.21       5.04 5.29   0.35   4.55   6.03  1.48 
+##    8         30.16       4.88 5.29   0.35   4.56   6.03  1.48 
+##    9         27.55       5.01 5.45   0.36   4.68   6.22  1.54 
+##   13         27.08       5.69 5.48   0.36   4.70   6.25  1.55 
+##   12         26.75       5.31 5.50   0.37   4.71   6.28  1.57</code></pre>
 <pre class="r"><code># The estimates output
 r$out_estimates</code></pre>
 <pre><code>##                Estimate    Std Err  t-value  p-value   Lower 95%   Upper 95%
@@ -1223,7 +1388,9 @@ r$out_estimates</code></pre>
 ## Working.hours     -0.06       0.03   -2.279    0.038       -0.11       -0.00</code></pre>
 <pre class="r"><code># The ANOVA output
 r$out_anova</code></pre>
-<pre><code>##                 df    Sum Sq   Mean Sq   F-value   p-value
+<pre><code>## -- Analysis of Variance
+## 
+##                 df    Sum Sq   Mean Sq   F-value   p-value
 ## Model            1      0.58      0.58      5.20     0.038
 ## Residuals       15      1.68      0.11
 ## Well.being      16      2.27      0.14</code></pre>
@@ -1243,28 +1410,28 @@ r$out_cor</code></pre>
 ##   Working.hours      -0.51          1.00</code></pre>
 <pre class="r"><code># The residuals output
 head(r$out_residuals, 10)</code></pre>
-<pre><code>##  [1] &quot;Data, Fitted, Residual, Studentized Residual, Dffits, Cook&#39;s Distance&quot;
-##  [2] &quot;   [sorted by Cook&#39;s Distance]&quot;                                       
-##  [3] &quot;   [res_rows = 17, out of 17 ]&quot;                                       
-##  [4] &quot;--------------------------------------------------------------&quot;       
-##  [5] &quot;     Working.hours Well.being fitted resid rstdnt dffits cooks&quot;       
-##  [6] &quot;   9         27.55       5.01   5.45 -0.44  -1.49  -0.65  0.20&quot;       
-##  [7] &quot;   5         30.27       5.93   5.29  0.64   2.24   0.62  0.15&quot;       
-##  [8] &quot;  16         33.63       4.57   5.09 -0.52  -1.72  -0.51  0.12&quot;       
-##  [9] &quot;  20         31.87       5.66   5.19  0.47   1.50   0.37  0.06&quot;       
+<pre><code>##  [1] &quot;-- Data, Fitted, Residual, Studentized Residual, Dffits, Cook&#39;s Distance&quot;
+##  [2] &quot;   [sorted by Cook&#39;s Distance]&quot;                                          
+##  [3] &quot;   [n_res_rows = 17, out of 17 ]&quot;                                        
+##  [4] &quot;--------------------------------------------------------------&quot;          
+##  [5] &quot;     Working.hours Well.being fitted resid rstdnt dffits cooks&quot;          
+##  [6] &quot;   9         27.55       5.01   5.45 -0.44  -1.49  -0.65  0.20&quot;          
+##  [7] &quot;   5         30.27       5.93   5.29  0.64   2.24   0.62  0.15&quot;          
+##  [8] &quot;  16         33.63       4.57   5.09 -0.52  -1.72  -0.51  0.12&quot;          
+##  [9] &quot;  20         31.87       5.66   5.19  0.47   1.50   0.37  0.06&quot;          
 ## [10] &quot;   8         30.16       4.88   5.29 -0.41  -1.32  -0.37  0.06&quot;</code></pre>
 <pre class="r"><code># The prediction output
 head(r$out_predict)</code></pre>
-<pre><code>## [1] &quot;     Working.hours Well.being pred   sf pi.lwr pi.upr width&quot;
-## [2] &quot;  10         38.25       4.74 4.82 0.38   4.00   5.64  1.64&quot;
-## [3] &quot;  14         38.17       4.81 4.82 0.38   4.00   5.64  1.64&quot;
-## [4] &quot;  15         33.81       4.89 5.08 0.35   4.33   5.82  1.49&quot;
-## [5] &quot;  16         33.63       4.57 5.09 0.35   4.35   5.83  1.49&quot;
-## [6] &quot;   7         32.95       5.39 5.13 0.35   4.39   5.87  1.48&quot;</code></pre>
+<pre><code>## [1] &quot;     Working.hours Well.being pred s_pred pi.lwr pi.upr width&quot;
+## [2] &quot;  10         38.25       4.74 4.82   0.38   4.00   5.64  1.64&quot;
+## [3] &quot;  14         38.17       4.81 4.82   0.38   4.00   5.64  1.64&quot;
+## [4] &quot;  15         33.81       4.89 5.08   0.35   4.33   5.82  1.49&quot;
+## [5] &quot;  16         33.63       4.57 5.09   0.35   4.35   5.83  1.49&quot;
+## [6] &quot;   7         32.95       5.39 5.13   0.35   4.39   5.87  1.48&quot;</code></pre>
 <pre class="r"><code># The prediction output for 5.13 wellbeing
 r$out_predict[c(1, 6)]</code></pre>
-<pre><code>## [1] &quot;     Working.hours Well.being pred   sf pi.lwr pi.upr width&quot;
-## [2] &quot;   7         32.95       5.39 5.13 0.35   4.39   5.87  1.48&quot;</code></pre>
+<pre><code>## [1] &quot;     Working.hours Well.being pred s_pred pi.lwr pi.upr width&quot;
+## [2] &quot;   7         32.95       5.39 5.13   0.35   4.39   5.87  1.48&quot;</code></pre>
 <pre class="r"><code># The data frame for speculative working week
 time_table &lt;- data.frame(
   &quot;Days&quot; = c(4, 5),
@@ -1342,7 +1509,8 @@ kbl(less_well,
   kable_classic(full_width = FALSE)</code></pre>
 <table class=" lightable-classic" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<b>Table 3.</b><br><i>European Countries with Wellbeing &lt; 5.13 and Working Hours &lt; 33</i>
+<b>Table 3.</b><br><i>European Countries with Wellbeing &lt; 5.13 and
+Working Hours &lt; 33</i>
 </caption>
 <thead>
 <tr>

@@ -13,7 +13,7 @@
 
 <title>Welcome to my website!</title>
 
-<script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.22/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
@@ -32,8 +32,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -143,11 +143,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -176,8 +180,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -185,16 +189,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -347,31 +344,62 @@ $(document).ready(function () {
 </div>
 
 
-<div class="figure">
-<img src="images/me2020sq.jpg" height="165" alt="" />
-<p class="caption"><em>Stuart M. Leeds, MBPsS</em></p>
+<div class="float">
+<img src="images/me2020sq.jpg" height="165"
+alt="Stuart M. Leeds, MBPsS" />
+<div class="figcaption"><em>Stuart M. Leeds, MBPsS</em></div>
 </div>
 <div id="thanks-for-stopping-by" class="section level3">
 <h3>Thanks for stopping by!</h3>
-<p>The title of this site incorporates my interests in qualified areas of psychology (Social + Occupational), with additional interest in R-programming with RStudio.</p>
-<p>My intention for creating this website<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> <a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> was to promote a personal, professional on-line presence to keep things in one accessible place.</p>
+<p>The title of this site incorporates my interests in qualified areas
+of psychology (Social + Occupational), with additional interest in
+R-programming with RStudio.</p>
+<p>My intention for creating this website<a href="#fn1"
+class="footnote-ref" id="fnref1"><sup>1</sup></a> <a href="#fn2"
+class="footnote-ref" id="fnref2"><sup>2</sup></a> was to promote a
+personal, professional on-line presence to keep things in one accessible
+place.</p>
 <div id="the-menu-bar" class="section level4">
 <h4>The menu bar</h4>
 <p>Click the links in the menu above and look around….</p>
 <ol style="list-style-type: decimal">
-<li><p><strong>(SOC + OCC)PSYCH/R:</strong> Returns to this page.</p></li>
-<li><p><strong>About:</strong> Opens links to this page, main <a href="./index_qual.html">Qualifications</a>, and a very brief summary of <a href="./index_employ.html">Employment</a>.</p></li>
-<li><p><strong>500’s:</strong> Opens an index to where I intend to start writing on my subjects of psychological interest. Each entry should be around 500 words.</p></li>
-<li><p><strong>Projects:</strong> Opens an index for links to various <a href="./project_index_soc.html">Social</a> &amp; <a href="./project_index_occ.html">Occupational psychology</a> projects I have conducted, or been involved with; and items of interest regarding <a href="./project_index_r.html">R-programming</a> and <a href="./project_index_external.html">External research</a>.</p></li>
-<li><p><strong>Contact:</strong> A direct link to my personal email address (prompt responses). On the right-hand side, you’ll see additional links to <a href="mailto:%3Csleeds40@gmail.com%3E">email</a>, <a href="https://github.com/sleeds50/my_website">Github</a> and <a href="https://www.linkedin.com/in/stuart-leeds2020/">LinkedIn</a> profiles.</p></li>
+<li><p><strong>(SOC + OCC)PSYCH/R:</strong> Returns to this
+page.</p></li>
+<li><p><strong>About:</strong> Opens links to this page, main <a
+href="./index_qual.html">Qualifications</a>, and a very brief summary of
+<a href="./index_employ.html">Employment</a>.</p></li>
+<li><p><strong>500’s:</strong> Opens an index to where I intend to start
+writing on my subjects of psychological interest. Each entry should be
+around 500 words.</p></li>
+<li><p><strong>Projects:</strong> Opens an index for links to various <a
+href="./project_index_soc.html">Social</a> &amp; <a
+href="./project_index_occ.html">Occupational psychology</a> projects I
+have conducted, or been involved with; and items of interest regarding
+<a href="./project_index_r.html">R-programming</a> and <a
+href="./project_index_external.html">External research</a>.</p></li>
+<li><p><strong>Contact:</strong> A direct link to my personal email
+address (prompt responses). On the right-hand side, you’ll see
+additional links to <a href="mailto:%3Csleeds40@gmail.com%3E">email</a>,
+<a href="https://github.com/sleeds50/my_website">Github</a> and <a
+href="https://www.linkedin.com/in/stuart-leeds2020/">LinkedIn</a>
+profiles.</p></li>
 </ol>
 </div>
 </div>
-<div class="footnotes">
+<div class="footnotes footnotes-end-of-document">
 <hr />
 <ol>
-<li id="fn1"><p><small><u>Note</u>: This website is a collection of regular <em>RMarkdown</em> documents, so you can use all the usual formatting. If you are new to R Markdown, you can learn more about it <a href="https://rmarkdown.rstudio.com/">on the R Markdown website</small></a>.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
-<li id="fn2"><p><small><u>Credit</u>: Thanks to <em>Andreas Handel</em> for this <a href="https://www.andreashandel.com/posts/github-website/">build tutorial</small></a>.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn1"><p><small><u>Note</u>: This website is a collection of
+regular <em>RMarkdown</em> documents, so you can use all the usual
+formatting. If you are new to R Markdown, you can learn more about it <a
+href="https://rmarkdown.rstudio.com/">on the R Markdown
+website</small></a>.<a href="#fnref1"
+class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p><small><u>Credit</u>: Thanks to <em>Andreas Handel</em>
+for this <a
+href="https://www.andreashandel.com/posts/github-website/">build
+tutorial</small></a>.<a href="#fnref2"
+class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 
@@ -380,7 +408,7 @@ $(document).ready(function () {
 
  <!-- remove Html comment bars below when enough content --> 
 
- <!-- <p>Copyright &copy; 2021 S.M.Leeds. All rights reserved.</p> --> 
+ <!-- <p>Copyright &copy; 2022 S.M.Leeds. All rights reserved.</p> --> 
 
 
 

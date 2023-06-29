@@ -13,7 +13,7 @@
 
 <title>Qualifications</title>
 
-<script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.22/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
@@ -32,8 +32,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -143,11 +143,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -176,8 +180,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -185,16 +189,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -349,26 +346,40 @@ $(document).ready(function () {
 
 <p><br></p>
 <div id="msc-occupational-psychology-merit" class="section level3">
-<h3>MSc Occupational Psychology<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> <small><em>(Merit)</em></small></h3>
-<p><em>2020-2021, University of the West of England (UWE Bristol)</em></p>
-<p><strong>Dissertation:</strong> [Quantitative research] A cross-sectional correlational study, with added mediator and moderator analyses.<br />
-<strong>Title:</strong> <em>“Engagement at work: investigating the relationships between age groups, gender, personality; and trait EI”.</em><br />
+<h3>MSc Occupational Psychology<a href="#fn1" class="footnote-ref"
+id="fnref1"><sup>1</sup></a> <small><em>(Merit)</em></small></h3>
+<p><em>2020-2021, University of the West of England (UWE
+Bristol)</em></p>
+<p><strong>Dissertation:</strong> [Quantitative research] A
+cross-sectional correlational study, with added mediator and moderator
+analyses.<br />
+<strong>Title:</strong> <em>“Engagement at work: investigating the
+relationships between age groups, gender, personality; and trait
+EI”.</em><br />
 <a href="./dissertation_summary.html">(Read a summary here).</a></p>
 </div>
 <div id="bsc-honours-social-psychology-upper-21" class="section level3">
-<h3>BSc (Honours) Social Psychology<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> <small><em>(Upper 2:1)</em></small></h3>
-<p><em>2016-2020, The Open University (OU; part-time: 2016-2018)</em></p>
-<p><strong>Final project:</strong> [Qualitative research] A form of Critical Discourse Analysis<br />
-<strong>Title:</strong> <em>“Volunteering and identity: a discursive approach to how volunteers see themselves and are seen by others”.</em><br />
+<h3>BSc (Honours) Social Psychology<a href="#fn2" class="footnote-ref"
+id="fnref2"><sup>2</sup></a> <small><em>(Upper 2:1)</em></small></h3>
+<p><em>2016-2020, The Open University (OU; part-time:
+2016-2018)</em></p>
+<p><strong>Final project:</strong> [Qualitative research] A form of
+Critical Discourse Analysis<br />
+<strong>Title:</strong> <em>“Volunteering and identity: a discursive
+approach to how volunteers see themselves and are seen by
+others”.</em><br />
 <a href="./lvl3_project_summary.html">(Read a summary here).</a></p>
 <hr />
 </div>
 <div id="certifications" class="section level3">
 <h3><u>Certifications</u></h3>
-<div id="data-science-foundations-in-using-r-specialisation" class="section level4">
+<div id="data-science-foundations-in-using-r-specialisation"
+class="section level4">
 <h4>Data Science: Foundations in using R specialisation</h4>
 <p><em>2020, Coursera</em></p>
-<p><strong>Courses:</strong> R-programming; The data scientists toolbox; Getting and cleaning data; Exploratory data analysis; Reproducible research.</p>
+<p><strong>Courses:</strong> R-programming; The data scientists toolbox;
+Getting and cleaning data; Exploratory data analysis; Reproducible
+research.</p>
 <hr />
 </div>
 </div>
@@ -380,11 +391,13 @@ $(document).ready(function () {
 (Student member 2017-2020)</p>
 </div>
 </div>
-<div class="footnotes">
+<div class="footnotes footnotes-end-of-document">
 <hr />
 <ol>
-<li id="fn1"><p><small>Accredited by the BPS</small><a href="#fnref1" class="footnote-back">↩︎</a></p></li>
-<li id="fn2"><p><small>Accredited by the BPS</small><a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn1"><p><small>Accredited by the BPS</small><a href="#fnref1"
+class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p><small>Accredited by the BPS</small><a href="#fnref2"
+class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 
@@ -393,7 +406,7 @@ $(document).ready(function () {
 
  <!-- remove Html comment bars below when enough content --> 
 
- <!-- <p>Copyright &copy; 2021 S.M.Leeds. All rights reserved.</p> --> 
+ <!-- <p>Copyright &copy; 2022 S.M.Leeds. All rights reserved.</p> --> 
 
 
 

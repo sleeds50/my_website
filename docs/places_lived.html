@@ -14,7 +14,7 @@
 
 <title>Places I have lived</title>
 
-<script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.22/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
@@ -35,16 +35,16 @@
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="site_libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
 <link href="site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="site_libs/leaflet-1.3.1/leaflet.js"></script>
 <link href="site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
 <script src="site_libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="site_libs/leaflet-binding-2.1.0/leaflet.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<script src="site_libs/leaflet-binding-2.1.2/leaflet.js"></script>
+<link href="site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -154,11 +154,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -187,8 +191,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -196,16 +200,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -360,14 +357,26 @@ $(document).ready(function () {
 
 
 <blockquote>
-<p>It occurred to me that I have lived in many places during my lifetime. This is a basic run-down of them all, giving rough locations as coordinates. I might return to it at some point and add dates, but this will do for now.</p>
+<p>It occurred to me that I have lived in many places during my
+lifetime. This is a basic run-down of them all, giving rough locations
+as coordinates. I might return to it at some point and add dates, but
+this will do for now.</p>
 </blockquote>
-<p><a href="https://github.com/sleeds50/my_website/blob/main/places_lived.Rmd"><code>Code</code> available here</a><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<p><a
+href="https://github.com/sleeds50/my_website/blob/main/places_lived.Rmd"><code>Code</code>
+available here</a><a href="#fn1" class="footnote-ref"
+id="fnref1"><sup>1</sup></a></p>
 <div id="locations" class="section level1">
 <h1>1. Locations</h1>
-<p>Table 1 lists the places I have lived. Let me state that it only includes places where I have lived with parents as a child and young adult (see items 1:8); and places that I have officially rented or mortgaged as an adult (items 9:end). Furthermore, if memory serves, we lived in two properties in Kuwait, two in Bahrain; and I lived in Chertsey more than once; and rented twice in Addlestone.</p>
+<p>Table 1 lists the places I have lived. Let me state that it only
+includes places where I have lived with parents as a child and young
+adult (see items 1:8); and places that I have officially rented or
+mortgaged as an adult (items 9:end). Furthermore, if memory serves, we
+lived in two properties in Kuwait, two in Bahrain; and I lived in
+Chertsey more than once; and rented twice in Addlestone.</p>
 <p>I have not included sofa-surfing or temporary dwellings.</p>
-<p>Table 1 also shows the order of properties lived in, from birth to now (some 50-ish years later!)</p>
+<p>Table 1 also shows the order of properties lived in, from birth to
+now (some 50-ish years later!)</p>
 <table class=" lightable-classic-2" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 <b>Table 1</b><br> <i>Places I have lived</i>
@@ -646,14 +655,21 @@ Bath, Somerset
 </div>
 <div id="interactive-map" class="section level1">
 <h1>2. Interactive map</h1>
-<p>The coordinates are pin-pointed on a world map (use +/- zoom functions and left-click[hold]/drag to pan). Hover cursor over circles for labels.</p>
+<p>The coordinates are pin-pointed on a world map (use +/- zoom
+functions and left-click[hold]/drag to pan). Hover cursor over circles
+for labels.</p>
 <ul>
-<li><p><strong>Green circles:</strong> points of all places lived.</p></li>
-<li><p><strong>Blue circles:</strong> <em>mean</em> average location of ALL coordinates in <em>Table 1</em> (see <em>Table 2</em> for details)</p></li>
-<li><p><strong>Red circles:</strong> <em>median</em> average locations of ALL coordinates in <em>Table 1</em> (see <em>Table 3</em> for details)</p></li>
+<li><p><strong>Green circles:</strong> points of all places
+lived.</p></li>
+<li><p><strong>Blue circles:</strong> <em>mean</em> average location of
+ALL coordinates in <em>Table 1</em> (see <em>Table 2</em> for
+details)</p></li>
+<li><p><strong>Red circles:</strong> <em>median</em> average locations
+of ALL coordinates in <em>Table 1</em> (see <em>Table 3</em> for
+details)</p></li>
 </ul>
-<div id="htmlwidget-8a9fe6d12d2ccc01f5d0" style="width:900px;height:480px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8a9fe6d12d2ccc01f5d0">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addCircleMarkers","args":[[51.651447,51.9070471,29.3797091,26.2235041,51.6357161,51.378971,52.13974,52.158376,51.37128,51.438541,51.4349,51.450761,51.776301,51.933189,51.932645,52.068666,51.39475,51.392352],[0.124044,0.2017505,47.9735629,50.5822436,0.2945186,-0.520269,0.516622,0.506907,-0.489646,-0.336711,-0.33281,-0.4396,1.119079,1.274589,1.275031,1.130408,-2.388744,-2.384639],10,null,null,{"interactive":true,"className":"","stroke":true,"color":"green","weight":5,"opacity":0.5,"fill":true,"fillColor":"green","fillOpacity":0.2},null,null,null,null,["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addCircleMarkers","args":[49.0371053,5.45035203333333,10,null,null,{"interactive":true,"className":"","stroke":true,"color":"blue","weight":5,"opacity":0.5,"fill":true,"fillColor":"blue","fillOpacity":0.2},null,null,null,null,"World mean",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addCircleMarkers","args":[51.6915426375,-0.02809186875,10,null,null,{"interactive":true,"className":"","stroke":true,"color":"blue","weight":5,"opacity":0.5,"fill":true,"fillColor":"blue","fillOpacity":0.2},null,null,null,null,"England mean",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addCircleMarkers","args":[51.54323855,0.24813455,10,null,null,{"interactive":true,"className":"","stroke":true,"color":"red","weight":5,"opacity":0.5,"fill":true,"fillColor":"red","fillOpacity":0.2},null,null,null,null,"World median",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addCircleMarkers","args":[51.64358155,0.16289725,10,null,null,{"interactive":true,"className":"","stroke":true,"color":"red","weight":5,"opacity":0.5,"fill":true,"fillColor":"red","fillOpacity":0.2},null,null,null,null,"England median",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[26.2235041,52.158376],"lng":[-2.388744,50.5822436]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-45e8cedb835bdd0aa30d" style="width:900px;height:480px;" class="leaflet html-widget "></div>
+<script type="application/json" data-for="htmlwidget-45e8cedb835bdd0aa30d">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addCircleMarkers","args":[[51.651447,51.9070471,29.3797091,26.2235041,51.6357161,51.378971,52.13974,52.158376,51.37128,51.438541,51.4349,51.450761,51.776301,51.933189,51.932645,52.068666,51.39475,51.392352],[0.124044,0.2017505,47.9735629,50.5822436,0.2945186,-0.520269,0.516622,0.506907,-0.489646,-0.336711,-0.33281,-0.4396,1.119079,1.274589,1.275031,1.130408,-2.388744,-2.384639],10,null,null,{"interactive":true,"className":"","stroke":true,"color":"green","weight":5,"opacity":0.5,"fill":true,"fillColor":"green","fillOpacity":0.2},null,null,null,null,["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addCircleMarkers","args":[49.0371053,5.450352033333333,10,null,null,{"interactive":true,"className":"","stroke":true,"color":"blue","weight":5,"opacity":0.5,"fill":true,"fillColor":"blue","fillOpacity":0.2},null,null,null,null,"World mean",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addCircleMarkers","args":[51.6915426375,-0.02809186874999999,10,null,null,{"interactive":true,"className":"","stroke":true,"color":"blue","weight":5,"opacity":0.5,"fill":true,"fillColor":"blue","fillOpacity":0.2},null,null,null,null,"England mean",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addCircleMarkers","args":[51.54323855,0.24813455,10,null,null,{"interactive":true,"className":"","stroke":true,"color":"red","weight":5,"opacity":0.5,"fill":true,"fillColor":"red","fillOpacity":0.2},null,null,null,null,"World median",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addCircleMarkers","args":[51.64358155,0.16289725,10,null,null,{"interactive":true,"className":"","stroke":true,"color":"red","weight":5,"opacity":0.5,"fill":true,"fillColor":"red","fillOpacity":0.2},null,null,null,null,"England median",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[26.2235041,52.158376],"lng":[-2.388744,50.5822436]}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="a.-static-plots" class="section level1">
 <h1>3a. Static plots</h1>
@@ -664,11 +680,23 @@ Bath, Somerset
 <div id="the-spread-of-locations-in-england" class="section level2">
 <h2>The spread of locations in England</h2>
 <p><img src="places_lived_files/figure-html/map%20uk%20plot-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>You can see that most of the places lived in England have been between <span class="math inline">\(51^{\circ}\)</span> and <span class="math inline">\(52^{\circ}\)</span> latitude, with a brief sojourn above the <span class="math inline">\(52nd\)</span> parallel (although I spent around five years living in Ipswich (16)); and between <span class="math inline">\(-2.5^{\circ}\)</span> and <span class="math inline">\(1.5^{\circ}\)</span> longitude (quite a small area, considering).</p>
+<p>You can see that most of the places lived in England have been
+between <span class="math inline">\(51^{\circ}\)</span> and <span
+class="math inline">\(52^{\circ}\)</span> latitude, with a brief sojourn
+above the <span class="math inline">\(52nd\)</span> parallel (although I
+spent around five years living in Ipswich (16)); and between <span
+class="math inline">\(-2.5^{\circ}\)</span> and <span
+class="math inline">\(1.5^{\circ}\)</span> longitude (quite a small
+area, considering).</p>
 <ul>
-<li>The numbers represent the order in which the places were lived and coincide with Table 1 above.</li>
+<li>The numbers represent the order in which the places were lived and
+coincide with Table 1 above.</li>
 </ul>
-<p>It is interesting that, although numerous; and despite the huge leap between locations 2 and 5 (3 and 4 abroad, see main map above), the places lived are in relatively tight clusters suggesting that I’ve enjoyed a local familiarity for a while before needing/having to move on.</p>
+<p>It is interesting that, although numerous; and despite the huge leap
+between locations 2 and 5 (3 and 4 abroad, see main map above), the
+places lived are in relatively tight clusters suggesting that I’ve
+enjoyed a local familiarity for a while before needing/having to move
+on.</p>
 <p>The clusters are divided across counties, as follows.</p>
 </div>
 </div>
@@ -684,7 +712,9 @@ Bath, Somerset
 </div>
 <div id="somerset" class="section level2">
 <h2>Somerset</h2>
-<p>There’s little point presenting a plot with two points on it, so Coordinate plot 5 below shows the locations in Surrey/Middlesex and Somerset and the expanse between.</p>
+<p>There’s little point presenting a plot with two points on it, so
+Coordinate plot 5 below shows the locations in Surrey/Middlesex and
+Somerset and the expanse between.</p>
 <p><img src="places_lived_files/figure-html/map%20Bath%20plot-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
@@ -692,8 +722,12 @@ Bath, Somerset
 <h1>3c. Mean and Median locations</h1>
 <div id="mean-coordinates" class="section level2">
 <h2>Mean coordinates</h2>
-<p>I thought it would be interesting to know the mean and median locations of where I have lived in the world; and in England.</p>
-<p>Table 2 shows the mean coordinates of both the worldwide; and the England locations from Table 1. In my mind, these give an indication of where I should be living according to the mean-average coordinates of where I actually <em>have</em> lived.</p>
+<p>I thought it would be interesting to know the mean and median
+locations of where I have lived in the world; and in England.</p>
+<p>Table 2 shows the mean coordinates of both the worldwide; and the
+England locations from Table 1. In my mind, these give an indication of
+where I should be living according to the mean-average coordinates of
+where I actually <em>have</em> lived.</p>
 <table class=" lightable-classic-2" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 <b>Table 2</b><br> <i>Average coordinates (mean)</i>
@@ -745,12 +779,19 @@ Cheshunt, Hertfordshire, England
 </tbody>
 </table>
 <p><img src="places_lived_files/figure-html/mean%20coords%20plot-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>I must admit, I quite fancy <strong>Génicourt-sur-Meuse, France</strong>. I’ve never been there, but it sounds like it would suit me. Ironically, I worked in Cheshunt for a fair while until I was made redundant, though I didn’t miss the daily journey from Harwich and back which became a drag after about 5 years of working for the company there.</p>
+<p>I must admit, I quite fancy <strong>Génicourt-sur-Meuse,
+France</strong>. I’ve never been there, but it sounds like it would suit
+me. Ironically, I worked in Cheshunt for a fair while until I was made
+redundant, though I didn’t miss the daily journey from Harwich and back
+which became a drag after about 5 years of working for the company
+there.</p>
 </div>
 <div id="median-coordinates" class="section level2">
 <h2>Median coordinates</h2>
-<p>Table 3 shows the median coordinates of both the worldwide; and the England locations from Table 1.</p>
-<p>So, technically, these will be the absolute mid-point places to live according to both options.</p>
+<p>Table 3 shows the median coordinates of both the worldwide; and the
+England locations from Table 1.</p>
+<p>So, technically, these will be the absolute mid-point places to live
+according to both options.</p>
 <table class=" lightable-classic-2" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 <b>Table 3</b><br> <i> Average coordinates (median)</i>
@@ -804,14 +845,26 @@ Stapleford Abbotts, Essex, England
 <p><img src="places_lived_files/figure-html/med%20coords%20plot-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p><br></p>
 <blockquote>
-<p><em>Note.</em> The irony of the median coordinate plot is that both locations from the worldwide and England coordinates are a stones throw from where I was born! (Shown with an asterisk on the map above).</p>
+<p><em>Note.</em> The irony of the median coordinate plot is that both
+locations from the worldwide and England coordinates are a stones throw
+from where I was born! (Shown with an asterisk on the map above).</p>
 </blockquote>
 <p><br></p>
 </div>
-<div id="distances-from-the-median-locations-to-where-i-was-born" class="section level2">
+<div id="distances-from-the-median-locations-to-where-i-was-born"
+class="section level2">
 <h2>Distances from the median locations to where I was born</h2>
-<p>So for fun, we’ll use the <code>distm</code> function from the <code>geosphere</code> package to calculate the distances between coordinates in metres (tutorial found on <a href="https://statisticsglobe.com/geospatial-distance-between-two-points-in-r">Statistics Globe</a> - actually a good site and recommended for many explanations of R-functions).</p>
-<p>Once installed and loaded, I realised I needed another variable to hold the _Rush Green _ coordinates. Then, I found out that <code>distm</code> needs the longitude and latitude in that order, so had to reverse the two columns in my original mean/median variables, then combined the two new variables into one, for each.</p>
+<p>So for fun, we’ll use the <code>distm</code> function from the
+<code>geosphere</code> package to calculate the distances between
+coordinates in metres (tutorial found on <a
+href="https://statisticsglobe.com/geospatial-distance-between-two-points-in-r">Statistics
+Globe</a> - actually a good site and recommended for many explanations
+of R-functions).</p>
+<p>Once installed and loaded, I realised I needed another variable to
+hold the _Rush Green _ coordinates. Then, I found out that
+<code>distm</code> needs the longitude and latitude in that order, so
+had to reverse the two columns in my original mean/median variables,
+then combined the two new variables into one, for each.</p>
 <p>So the calculation returns like this for Stapleford Abbot:</p>
 <pre><code>##         [,1]    [,2]
 ## [1,]    0.00 8734.64
@@ -823,7 +876,11 @@ Stapleford Abbotts, Essex, England
 </div>
 <div id="summary" class="section level2">
 <h2>Summary</h2>
-<p>Remember the distances are in metres - I used <a href="https://www.convertunits.com/from/meters/to/miles">this website</a> (others are available!) to convert the distances into miles (not sure if the site specifies US miles as others have done, or my preferred UK miles, however…)</p>
+<p>Remember the distances are in metres - I used <a
+href="https://www.convertunits.com/from/meters/to/miles">this
+website</a> (others are available!) to convert the distances into miles
+(not sure if the site specifies US miles as others have done, or my
+preferred UK miles, however…)</p>
 <blockquote>
 <p>It’s enough to give a guide to how close <em>Rush Green</em> is…</p>
 </blockquote>
@@ -839,14 +896,26 @@ Stapleford Abbotts, Essex, England
 <ul>
 <li>Upminster = 5.58Km (3.47 miles) away.</li>
 </ul>
-<p>This has been an interesting project - thanks for reading. I might take it further one day and tell the story of each place and why I moved so many times. I’m sure that the average moves during a lifetime is far fewer than what I have achieved here. Does it mean I haven’t settled anywhere? Or is it acting on circumstances? A mixture of both? Why have I laid my hat in; and called so many different locations, home?</p>
-<p>(Social) psychology would describe these transitional moments of upheaval as <em>ruptures</em> <a href="https://www.google.co.uk/books/edition/Transitions/ivgnDwAAQBAJ?hl=en&amp;gbpv=1&amp;pg=PR1&amp;printsec=frontcover">(Zittoun, 2006, p. 5)</a>, since they can cause stress and disruption to ‘normal’ life (whatever <em>that</em> is). Maybe that explains a few things!</p>
+<p>This has been an interesting project - thanks for reading. I might
+take it further one day and tell the story of each place and why I moved
+so many times. I’m sure that the average moves during a lifetime is far
+fewer than what I have achieved here. Does it mean I haven’t settled
+anywhere? Or is it acting on circumstances? A mixture of both? Why have
+I laid my hat in; and called so many different locations, home?</p>
+<p>(Social) psychology would describe these transitional moments of
+upheaval as <em>ruptures</em> <a
+href="https://www.google.co.uk/books/edition/Transitions/ivgnDwAAQBAJ?hl=en&amp;gbpv=1&amp;pg=PR1&amp;printsec=frontcover">(Zittoun,
+2006, p. 5)</a>, since they can cause stress and disruption to ‘normal’
+life (whatever <em>that</em> is). Maybe that explains a few things!</p>
 </div>
 </div>
-<div class="footnotes">
+<div class="footnotes footnotes-end-of-document">
 <hr />
 <ol>
-<li id="fn1"><p>Feel free to use it and change details to suit your needs - or improve it (if you do, please email me to say how you did it better - we’re all learning, right?)<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn1"><p>Feel free to use it and change details to suit your
+needs - or improve it (if you do, please email me to say how you did it
+better - we’re all learning, right?)<a href="#fnref1"
+class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 
@@ -855,7 +924,7 @@ Stapleford Abbotts, Essex, England
 
  <!-- remove Html comment bars below when enough content --> 
 
- <!-- <p>Copyright &copy; 2021 S.M.Leeds. All rights reserved.</p> --> 
+ <!-- <p>Copyright &copy; 2022 S.M.Leeds. All rights reserved.</p> --> 
 
 
 
