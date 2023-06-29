@@ -5,7 +5,7 @@ output:
     toc: FALSE
 ---
 
-![*Stuart M. Leeds, MBPsS*](./images/me2020sq.jpg){height="165"}
+![*Stuart M. Leeds, GMBPsS*](./images/me2020sq.jpg){height="165"}
 
 ### Thanks for stopping by!
 
