@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Stuart Leeds" />
+
+
+<title>Diamonds</title>
+
+<script src="site_libs/header-attrs-2.18/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">(Soc + Occ)Psych/R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    About
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="./index.html">Welcome</a>
+    </li>
+    <li>
+      <a href="./index_qual.html">Qualifications</a>
+    </li>
+    <li>
+      <a href="./index_employ.html">Employment</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    500's
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="./500_index_soc.html">Social Psychology</a>
+    </li>
+    <li>
+      <a href="./500_index_occ.html">Occupational Psychology</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Projects
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="./project_index_soc.html">Social Psychology</a>
+    </li>
+    <li>
+      <a href="./project_index_occ.html">Occupational Psychology</a>
+    </li>
+    <li>
+      <a href="./project_index_r.html">R - Items of Interest</a>
+    </li>
+    <li>
+      <a href="./project_index_external.html">External Research</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Contact
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="mailto:sleeds40@gmail.com">Email</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="mailto:sleeds40@gmail.com">
+    <span class="fa fa-envelope fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://github.com/sleeds50/my_website">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://www.linkedin.com/in/stuart-leeds2020/">
+    <span class="fa fa-linkedin fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Diamonds</h1>
+<h4 class="author">Stuart Leeds</h4>
+<h4 class="date">19/03/2022</h4>
+
+</div>
+
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>Are diamonds really a girls best friend? Are they even forever? They
+are certainly expensive; and they last a long time. Diamonds are the
+hardest known natural material and are developed deep underground over
+millennia of immense pressure and temperature. See the <a
+href="https://en.wikipedia.org/w/index.php?title=Diamond&amp;oldid=1073530080"><em>Wikipedia</em></a>
+entry for general information about diamonds.</p>
+<p>The purpose of this short article is to analyse a dataset of diamond
+information using various <code>R</code> packages. We are interested in
+the descriptive statistics of the dataset; the correlation between price
+and the main variables; and whether the relationship between carat and
+the price of diamonds is mediated by cut, color and clarity.</p>
+</div>
+<div id="data" class="section level1">
+<h1>Data</h1>
+<p>The <code>diamonds</code> data are found in <code>ggplot2</code>
+<span class="citation">(<a href="#ref-R-ggplot2"
+role="doc-biblioref">Wickham et al., 2022</a>)</span> and consist of
+almost 54,000 round-cut diamonds with the following variables:</p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li><p><strong>Carat</strong> <em>(weight of the diamond):</em> 0.2 to
+5.01ct.</p></li>
+<li><p><strong>Cut</strong> <em>(quality of the cut):</em> Fair, Good,
+Very Good, Premium, Ideal.</p></li>
+<li><p><strong>Color:</strong> [Best] D, E, F, G, H, I, J
+[Worst].</p></li>
+<li><p><strong>Clarity</strong> <em>(how clear the diamond is):</em>
+[Worst] I1, SI2, SI1, VS2, VS1, VVS2, VVS1, IF [Best].</p></li>
+<li><p><strong>Depth</strong> <em>(total depth percentage):</em> 43 to
+79%, calculated with either <span
+class="math display">\[\frac{z}{mean(x, y)}\times 100 \quad
+\text{or}\quad \frac{2
+\times z}{(x + y)}\times 100\]</span></p></li>
+<li><p><strong>Table</strong> <em>(width of top of diamond relative to
+widest point [percentage of diameter]):</em> 43 to 95%.</p></li>
+<li><p><strong>Price</strong> <em>(US$):</em> 326 to 18823.</p>
+<p>The variables below are used to calculate <em>Depth (Item 5)</em>,
+and are not used in any analysis in this article:<br />
+<strong>x</strong> <em>(length):</em> 0 to 10.74mm.<br />
+<strong>y</strong> <em>(width):</em> 0 to 58.9mm.<br />
+<strong>z</strong> <em>(depth):</em> 0 to 31.8mm.</p></li>
+</ol>
+<p><small><em>information from <code>?diamonds</code></em>.</small></p>
+</blockquote>
+<table class="kable_wrapper lightable-classic table" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;border-bottom: 0;">
+<thead>
+<tr>
+<th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: left; " colspan="1">
+<div style="border-bottom: 1px solid #111111; margin-bottom: -1px; ">
+<span class="math inline">\(Cut\)</span>
+</div>
+</th>
+<th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: left; " colspan="1">
+<div style="border-bottom: 1px solid #111111; margin-bottom: -1px; ">
+<span class="math inline">\(Color\)</span>
+</div>
+</th>
+<th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: left; " colspan="1">
+<div style="border-bottom: 1px solid #111111; margin-bottom: -1px; ">
+<span class="math inline">\(Clarity\)</span>
+</div>
+</th>
+</tr>
+</thead>
+<caption>
+<b>Table 1.</b><br><i>Number of Occurances and Average Price for each
+Categorical Variable</i>
+</caption>
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+N
+</th>
+<th style="text-align:left;">
+Percent
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Fair
+</td>
+<td style="text-align:right;">
+1,610
+</td>
+<td style="text-align:left;">
+3.0%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Good
+</td>
+<td style="text-align:right;">
+4,906
+</td>
+<td style="text-align:left;">
+9.1%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Very Good
+</td>
+<td style="text-align:right;">
+12,082
+</td>
+<td style="text-align:left;">
+22.4%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Premium
+</td>
+<td style="text-align:right;">
+13,791
+</td>
+<td style="text-align:left;">
+25.6%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ideal
+</td>
+<td style="text-align:right;">
+21,551
+</td>
+<td style="text-align:left;">
+40.0%
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+N
+</th>
+<th style="text-align:left;">
+Percent
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+D
+</td>
+<td style="text-align:right;">
+6,775
+</td>
+<td style="text-align:left;">
+12.6%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E
+</td>
+<td style="text-align:right;">
+9,797
+</td>
+<td style="text-align:left;">
+18.2%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:right;">
+9,542
+</td>
+<td style="text-align:left;">
+17.7%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+G
+</td>
+<td style="text-align:right;">
+11,292
+</td>
+<td style="text-align:left;">
+20.9%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+H
+</td>
+<td style="text-align:right;">
+8,304
+</td>
+<td style="text-align:left;">
+15.4%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+I
+</td>
+<td style="text-align:right;">
+5,422
+</td>
+<td style="text-align:left;">
+10.1%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+J
+</td>
+<td style="text-align:right;">
+2,808
+</td>
+<td style="text-align:left;">
+5.2%
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+N
+</th>
+<th style="text-align:left;">
+Percent
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+I1
+</td>
+<td style="text-align:right;">
+741
+</td>
+<td style="text-align:left;">
+1.4%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SI2
+</td>
+<td style="text-align:right;">
+9,194
+</td>
+<td style="text-align:left;">
+17.0%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SI1
+</td>
+<td style="text-align:right;">
+13,065
+</td>
+<td style="text-align:left;">
+24.2%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+VS2
+</td>
+<td style="text-align:right;">
+12,258
+</td>
+<td style="text-align:left;">
+22.7%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+VS1
+</td>
+<td style="text-align:right;">
+8,171
+</td>
+<td style="text-align:left;">
+15.1%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+VVS2
+</td>
+<td style="text-align:right;">
+5,066
+</td>
+<td style="text-align:left;">
+9.4%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+VVS1
+</td>
+<td style="text-align:right;">
+3,655
+</td>
+<td style="text-align:left;">
+6.8%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+IF
+</td>
+<td style="text-align:right;">
+1,790
+</td>
+<td style="text-align:left;">
+3.3%
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; " colspan="100%">
+<span style="font-style: italic;"><strong>Note. </strong> </span>
+<sup></sup> <em>Color</em>- D (Absolutely colorless or icy-white); E
+&amp; F (Colorless); G - J (Near colorless). <sup></sup>
+<em>Clarity</em>- I1 - I3 (Included); SI2 &amp; SI1 (Slightly included);
+VS2 &amp; VS1 (Very slightly included); VVS2 &amp; VVS1 (Very very
+slightly included); IF (Internally flawless); [FL (Flawless), not listed
+here]. <sup></sup> See <em>Brilliant Earth</em> for further details of
+variable identification (ID) categories: <a
+href="https://www.brilliantearth.com/diamond-cuts/"><em>Cut</em></a>; <a
+href="https://www.brilliantearth.com/diamond-color/"><em>Color</em></a>;
+<a
+href="https://www.brilliantearth.com/diamond-clarity/"><em>Clarity</em></a>
+</td>
+</tr>
+</tfoot>
+</table>
+<p><br />
+</p>
+<div class="figure" style="text-align: center">
+<img src="diamonds_files/figure-html/show_cat_figs-1.png" alt="__Figure 1.__ _Number of Occurances for each Categorical Variable_" width="33.3%" /><img src="diamonds_files/figure-html/show_cat_figs-2.png" alt="__Figure 1.__ _Number of Occurances for each Categorical Variable_" width="33.3%" /><img src="diamonds_files/figure-html/show_cat_figs-3.png" alt="__Figure 1.__ _Number of Occurances for each Categorical Variable_" width="33.3%" />
+<p class="caption">
+<strong>Figure 1.</strong> <em>Number of Occurances for each Categorical
+Variable</em>
+</p>
+</div>
+</div>
+<div id="method" class="section level1">
+<h1>Method</h1>
+</div>
+<div id="results" class="section level1">
+<h1>Results</h1>
+<div id="correlation" class="section level2">
+<h2>Correlation</h2>
+<p>Correlational analysis shows the relationships between variables
+whether significant, or otherwise (see Figure 2 below). As expected all
+the main variables in the diamond data set are significantly correlated
+with price. Of the significant positive relationships, <em>carat</em> is
+the strongest (<span class="math inline">\(r=\)</span> <span
+class="math inline">\(0.92\)</span>, <span class="math inline">\(p&lt;
+.001\)</span>), with weak correlations with price found for
+<em>color</em> (<span class="math inline">\(r=\)</span> <span
+class="math inline">\(0.17\)</span>, <span class="math inline">\(p&lt;
+.001\)</span>). The remaining variables have negative, weak, yet
+significant correlations with price: <em>clarity</em> (<span
+class="math inline">\(r=\)</span> <span
+class="math inline">\(-0.15\)</span>, <span class="math inline">\(p&lt;
+.001\)</span>) and <em>cut</em> (<span class="math inline">\(r=\)</span>
+<span class="math inline">\(-0.05\)</span>, <span
+class="math inline">\(p&lt; .001\)</span>).</p>
+<div class="figure" style="text-align: center">
+<img src="diamonds_files/figure-html/corr%20plot-1.png" alt="__Figure 2.__ _Correlation Plot of Diamonds Data with the Main Variables_" width="672" />
+<p class="caption">
+<strong>Figure 2.</strong> <em>Correlation Plot of Diamonds Data with
+the Main Variables</em>
+</p>
+</div>
+<p><br />
+</p>
+<p>The variance of each correlation with price can be explained with
+<span class="math inline">\(r^2\)</span> (see Figure 3 below). For
+example, <span class="math inline">\(85\%\)</span> of the variance in
+the price of diamonds can be explained by <em>carat</em> (<span
+class="math inline">\(r^2=\)</span> <span
+class="math inline">\(0.85\)</span>). The same principle applies to the
+other correlations: <em>color</em> (<span
+class="math inline">\(r^2=\)</span> <span
+class="math inline">\(0.03\)</span> explains <span
+class="math inline">\(3\%\)</span> of the variance in price);
+<em>clarity</em> (<span class="math inline">\(r^2=\)</span> <span
+class="math inline">\(0.02\)</span>; <span
+class="math inline">\(2\%\)</span>); and <em>cut</em> (<span
+class="math inline">\(r^2=\)</span> <span
+class="math inline">\(0.003\)</span>); <span
+class="math inline">\(0.3\%\)</span>).</p>
+<p><br />
+</p>
+<div class="figure" style="text-align: center">
+<img src="diamonds_files/figure-html/correlation%20venns-1.png" alt="__Figure 3.__ _Percentage of Variance in Price (shown in green) and each Variable_" width="25%" /><img src="diamonds_files/figure-html/correlation%20venns-2.png" alt="__Figure 3.__ _Percentage of Variance in Price (shown in green) and each Variable_" width="25%" /><img src="diamonds_files/figure-html/correlation%20venns-3.png" alt="__Figure 3.__ _Percentage of Variance in Price (shown in green) and each Variable_" width="25%" /><img src="diamonds_files/figure-html/correlation%20venns-4.png" alt="__Figure 3.__ _Percentage of Variance in Price (shown in green) and each Variable_" width="25%" />
+<p class="caption">
+<strong>Figure 3.</strong> <em>Percentage of Variance in Price (shown in
+green) and each Variable</em>
+</p>
+</div>
+<p><br />
+</p>
+</div>
+<div id="linear-regression" class="section level2">
+<h2>Linear Regression</h2>
+<table class=" lightable-classic table" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; margin-left: auto; margin-right: auto; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<b>Table 2.</b><br><i>Linear Regression Showing the Effect Size Between
+Variables and Price.</i>
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+<span class="math inline">\(Predictor\)</span>
+</th>
+<th style="text-align:left;">
+<span class="math inline">\(b\)</span>
+</th>
+<th style="text-align:left;">
+<span class="math inline">\(95\% \space CI\)</span>
+</th>
+<th style="text-align:left;">
+<span class="math inline">\(t\)</span>
+</th>
+<th style="text-align:left;">
+<span class="math inline">\(\mathit{df}\)</span>
+</th>
+<th style="text-align:left;">
+<span class="math inline">\(p\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Intercept
+</td>
+<td style="text-align:left;">
+-4,661.17
+</td>
+<td style="text-align:left;">
+[-4,715.25, -4,607.10]
+</td>
+<td style="text-align:left;">
+-168.94
+</td>
+<td style="text-align:left;">
+53935
+</td>
+<td style="text-align:left;">
+&lt; .001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Carat
+</td>
+<td style="text-align:left;">
+8,783.77
+</td>
+<td style="text-align:left;">
+[8,758.90, 8,808.65]
+</td>
+<td style="text-align:left;">
+692.09
+</td>
+<td style="text-align:left;">
+53935
+</td>
+<td style="text-align:left;">
+&lt; .001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cut
+</td>
+<td style="text-align:left;">
+155.70
+</td>
+<td style="text-align:left;">
+[146.17, 165.23]
+</td>
+<td style="text-align:left;">
+32.01
+</td>
+<td style="text-align:left;">
+53935
+</td>
+<td style="text-align:left;">
+&lt; .001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Color
+</td>
+<td style="text-align:left;">
+-319.67
+</td>
+<td style="text-align:left;">
+[-326.14, -313.20]
+</td>
+<td style="text-align:left;">
+-96.81
+</td>
+<td style="text-align:left;">
+53935
+</td>
+<td style="text-align:left;">
+&lt; .001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Clarity
+</td>
+<td style="text-align:left;">
+524.84
+</td>
+<td style="text-align:left;">
+[517.93, 531.76]
+</td>
+<td style="text-align:left;">
+148.80
+</td>
+<td style="text-align:left;">
+53935
+</td>
+<td style="text-align:left;">
+&lt; .001
+</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<p>A significant regression model was found (<span
+class="math inline">\(F(4, 53,935) = 127,219.09\)</span>, <span
+class="math inline">\(p &lt; .001\)</span>) with <span
+class="math inline">\(R^2_{adj} = .90\)</span></p>
+<p><br />
+</p>
+</div>
+<div id="mediation" class="section level2">
+<h2>Mediation</h2>
+<div class="figure" style="text-align: center">
+<img src="diamonds_files/figure-html/med%20calc-1.png" alt="__Figure 4.__ _Mediation Plot Between Carat and Price Mediated by Cut, Color and Clarity_" width="672" />
+<p class="caption">
+<strong>Figure 4.</strong> <em>Mediation Plot Between Carat and Price
+Mediated by Cut, Color and Clarity</em>
+</p>
+</div>
+<p><br />
+</p>
+</div>
+<div id="discussion" class="section level2">
+<h2>Discussion</h2>
+<p><br />
+</p>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
+<p><br />
+</p>
+</div>
+<div id="references" class="section level2">
+<h2>References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent"
+line-spacing="2">
+<div id="ref-R-ggplot2" class="csl-entry">
+Wickham, H., Chang, W., Henry, L., Pedersen, T. L., Takahashi, K.,
+Wilke, C., Woo, K., Yutani, H., &amp; Dunnington, D. (2022).
+<em>ggplot2: Create elegant data visualisations using the grammar of
+graphics</em>. <a
+href="https://CRAN.R-project.org/package=ggplot2">https://CRAN.R-project.org/package=ggplot2</a>
+</div>
+</div>
+<p><br />
+</p>
+<!-- __Appendix:__ All code for this article {#Appendix} -->
+<!-- ```{r ref.label=knitr::all_labels(), echo = T, eval = T, results='markup'} -->
+<!-- ``` -->
+</div>
+</div>
+
+
+
+
+ <!-- remove Html comment bars below when enough content --> 
+
+ <!-- <p>Copyright &copy; 2022 S.M.Leeds. All rights reserved.</p> --> 
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+digraph ICLUST {
+  rankdir=RL;
+  size="8,6";
+  node [fontname="Helvetica" fontsize=14 shape=box, width=2];
+  edge [fontname="Helvetica" fontsize=12];
+ label = "ICLUST";
+	fontsize=20;
+V1  [label = "carat"];
+V2  [label = "-Cut"];
+V3  [label = "Color"];
+V4  [label = "-Clarity"];
+V5  [label = "price"];
+node [shape=ellipse, width ="1"];
+C1-> V5 [ label = 0.96 ];
+C1-> V1 [ label = 0.96 ];
+C2-> V4 [ label = 0.5 ];
+C2-> V2 [ label = 0.5 ];
+C3-> C1 [ label = 0.3 ];
+C3-> V3 [ label = 0.6 ];
+C4-> C3 [ label = 0.27 ];
+C4-> C2 [ label = -0.55 ];
+C1  [label =   "C1\n  alpha= 0.96\n beta=  0.96\nN= 2"] ;
+C2  [label =   "C2\n  alpha= 0.32\n beta=  0.32\nN= 2"] ;
+C3  [label =   "C3\n  alpha= 0.72\n beta=  0.36\nN= 3"] ;
+C4  [label =   "C4\n  alpha= 0.59\n beta=  0.3\nN= 5"] ;
+{ rank=same;
+V1;V2;V3;V4;V5;}}

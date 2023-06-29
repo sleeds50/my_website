@@ -177,7 +177,7 @@ r$out_anova
 ```
 \
 
-3. The adjusted R-squared value is $(R^2_adj = `r round(r$Rsqadj, 4)`)$.
+3. The adjusted R-squared value is $(R_{adj}^2 = `r round(r$Rsqadj, 4)`)$.
 
 \
 
