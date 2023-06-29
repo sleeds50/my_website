@@ -13,7 +13,7 @@
 
 <title>Regression of Well.being on Working.hours</title>
 
-<script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.22/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
@@ -29,14 +29,14 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -146,11 +146,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -179,8 +183,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -188,16 +192,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -424,25 +421,34 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Regression of Well.being on Working.hours</h1>
+<h1 class="title toc-ignore">Regression of Well.being on
+Working.hours</h1>
 
 </div>
 
 
 <hr />
 <p><em>Sun Dec 19, 2021 at 12:11   with lessR version 4.1.4</em></p>
-<p><em>Output Options: explain=TRUE, interpret=TRUE, results=TRUE, document=TRUE, code=TRUE</em></p>
+<p><em>Output Options: explain=TRUE, interpret=TRUE, results=TRUE,
+document=TRUE, code=TRUE</em></p>
 <hr />
-<p>The variable of primary interest is the <em>response variable</em>, Well.being. The purpose of this analysis is to account for the values of Well.being in terms of the values of the <em>predictor variable</em> Working.hours.</p>
+<p>The variable of primary interest is the <em>response variable</em>,
+Well.being. The purpose of this analysis is to account for the values of
+Well.being in terms of the values of the <em>predictor variable</em>
+Working.hours.</p>
 <div id="the-data" class="section level2">
 <h2>The Data</h2>
-<p>Read the data with the <code>lessR</code> function <code>Read</code>. The corresponding data values for the variables in the model comprise the <em>training data</em>, from which the model is estimated.</p>
+<p>Read the data with the <code>lessR</code> function <code>Read</code>.
+The corresponding data values for the variables in the model comprise
+the <em>training data</em>, from which the model is estimated.</p>
 <pre class="r"><code>d &lt;- Read(from = &quot;./data/wellbeing.xlsx&quot;)</code></pre>
 <pre><code>## [with the read.xlsx() function from Schauberger and Walker&#39;s openxlsx package] 
 ## 
 ## &gt;&gt;&gt; Suggestions
 ## To read a csv or Excel file of variable labels, var_labels=TRUE
-##    Each row of the file:  Variable Name, Variable Label
+##   Each row of the file:  Variable Name, Variable Label
+## Read into a data frame named l  (the letter el)
+## 
 ## Details about your data, Enter:  details()  for d, or  details(name)
 ## 
 ## Data Types
@@ -470,19 +476,57 @@ div.tocify {
 ## 
 ## 
 ## For the column Country, each row of data is unique. Are these values
-## a unique ID for each row? To implement, perhaps re-read a worksheet or text
-## file with the following setting added to your Read statement: row_names=1</code></pre>
-<p>Data from the following variables are available for analysis: Country, Well.being, GDP, Equality, Food.consumption, Alcohol.consumption, Energy.consumption, Family, Working.hours, Work.income, Health.spending and Military.spending.</p>
+## a unique ID for each row? To define as a row name, re-read the data file
+## with the following setting added to your Read() statement: row_names=1</code></pre>
+<p>Data from the following variables are available for analysis:
+Country, Well.being, GDP, Equality, Food.consumption,
+Alcohol.consumption, Energy.consumption, Family, Working.hours,
+Work.income, Health.spending, Military.spending and
+Military.spending.</p>
 </div>
 <div id="the-model" class="section level2">
 <h2>The Model</h2>
 <div id="specified-model" class="section level3">
 <h3>Specified Model</h3>
-<p>Express Well.being as a linear function of one predictor variable: Working.hours. Within the context of the model, indicate the response variable with a Y, subscripted by the variable name, <span class="math inline">\(Y_{Well.being}\)</span>. Write each predictor variable as a subscript to an X. From the training data compute <span class="math inline">\(\hat Y_{Well.being}\)</span>, the <em>fitted value</em> of the response variable from the model for a specific set of values for Working.hours. <span class="math display">\[\hat Y_{Well.being} = b_0 + b_1 X_{Working.hours}\]</span> The <em>intercept</em>, <span class="math inline">\(b_0\)</span>, indicates the fitted value of Well.being, for values of Working.hours all equal to zero. The <em>slope coefficient</em>, <span class="math inline">\(b_1\)</span> , is the average change in the value of response variable, Well.being, for a one-unit increase in the value of the corresponding predictor variable. The values of these estimated coefficients only apply to the interpretation of the training data from which they were estimated.</p>
-<p>To compute <span class="math inline">\(\hat Y_{Well.being}\)</span> from a specific set of values for Working.hours requires the estimated values of the coefficients of the model, the values of each regression coefficient, <span class="math inline">\(b_j\)</span>. This estimation procedure depends on the <em>residual</em>, the difference between the actual value of Well.being for each row of data and the corresponding value fitted by the model. Define the residual as a variable across all rows of data. Use the subscript <em>i</em> to indicate the <span class="math inline">\(i^{th}\)</span> row of data to emphasize that the expression applies to <em>each</em> row of training data. The name of the response variable in this notation is understood and so is omitted for simplicity. <span class="math display">\[e_i = Y_i - \hat Y_i\]</span> Estimate the coefficients with ordinary least squares (OLS), which provides the one set of estimates that minimize the sum of the squared residuals, <span class="math inline">\(\sum e^2_i\)</span>, across all the rows of the training data.</p>
-<p>Accomplish the estimation and related computations with the <code>lessR</code> function <code>Regression</code>, abbreviated as <code>reg</code>. Keep graphics separate, so generate these later.</p>
+<p>Express Well.being as a linear function of one predictor variable:
+Working.hours. Within the context of the model, indicate the response
+variable with a Y, subscripted by the variable name, <span
+class="math inline">\(Y_{Well.being}\)</span>. Write each predictor
+variable as a subscript to an X. From the training data compute <span
+class="math inline">\(\hat Y_{Well.being}\)</span>, the <em>fitted
+value</em> of the response variable from the model for a specific set of
+values for Working.hours. <span class="math display">\[\hat
+Y_{Well.being} = b_0 + b_1 X_{Working.hours}\]</span> The
+<em>intercept</em>, <span class="math inline">\(b_0\)</span>, indicates
+the fitted value of Well.being, for values of Working.hours all equal to
+zero. The <em>slope coefficient</em>, <span
+class="math inline">\(b_1\)</span> , is the average change in the value
+of response variable, Well.being, for a one-unit increase in the value
+of the corresponding predictor variable. The values of these estimated
+coefficients only apply to the interpretation of the training data from
+which they were estimated.</p>
+<p>To compute <span class="math inline">\(\hat Y_{Well.being}\)</span>
+from a specific set of values for Working.hours requires the estimated
+values of the coefficients of the model, the values of each regression
+coefficient, <span class="math inline">\(b_j\)</span>. This estimation
+procedure depends on the <em>residual</em>, the difference between the
+actual value of Well.being for each row of data and the corresponding
+value fitted by the model. Define the residual as a variable across all
+rows of data. Use the subscript <em>i</em> to indicate the <span
+class="math inline">\(i^{th}\)</span> row of data to emphasize that the
+expression applies to <em>each</em> row of training data. The name of
+the response variable in this notation is understood and so is omitted
+for simplicity. <span class="math display">\[e_i = Y_i - \hat
+Y_i\]</span> Estimate the coefficients with ordinary least squares
+(OLS), which provides the one set of estimates that minimize the sum of
+the squared residuals, <span class="math inline">\(\sum e^2_i\)</span>,
+across all the rows of the training data.</p>
+<p>Accomplish the estimation and related computations with the
+<code>lessR</code> function <code>Regression</code>, abbreviated as
+<code>reg</code>. Keep graphics separate, so generate these later.</p>
 <pre class="r"><code>r &lt;- Regression(my_formula = Well.being ~ Working.hours, digits_d = 2, graphics = FALSE)</code></pre>
-<p>The output begins with a specification of the variables in the model and a brief description of the data.</p>
+<p>The output begins with a specification of the variables in the model
+and a brief description of the data.</p>
 <pre class="r"><code>r$out_background</code></pre>
 <pre><code>## Data Frame:  d
 ## 
@@ -491,39 +535,107 @@ div.tocify {
 ## 
 ## Number of cases (rows) of data:  22
 ## Number of cases retained for analysis:  17</code></pre>
-<p>Of the 22 cases presented for analysis, 17 are retained, so the number of deleted cases due to missing data is 5.</p>
+<p>Of the 22 cases presented for analysis, 17 are retained, so the
+number of deleted cases due to missing data is 5.</p>
 </div>
 <div id="estimated-model" class="section level3">
 <h3>Estimated Model</h3>
-<p>The analysis of the model begins with the estimation of each sample regression coefficient, <span class="math inline">\(b_j\)</span>, from the training data. Of greater interest is each corresponding population value, <span class="math inline">\(\beta_j\)</span>, in the <em>population model</em>. <span class="math display">\[\hat Y_{Well.being} = \beta_0 + \beta_1 X_{Working.hours}\]</span> The associated inferential analyses for each estimate are the hypothesis test and confidence interval. Each <em>t</em>-test evaluates the <em>null hypothesis</em> that the corresponding <em>individual</em> population regression coefficient is 0, here for the <span class="math inline">\(j^{th}\)</span> coefficient. <span class="math display">\[H_0: \beta_j=0\]</span> <span class="math display">\[H_1: \beta_j \ne 0\]</span> The confidence interval provides the range of likely values of the corresponding <span class="math inline">\(\beta_j\)</span>. Each 95% confidence interval is the margin of error on either side of the corresponding estimated intercept or slope coefficient, <span class="math inline">\(b_j\)</span>.</p>
+<p>The analysis of the model begins with the estimation of each sample
+regression coefficient, <span class="math inline">\(b_j\)</span>, from
+the training data. Of greater interest is each corresponding population
+value, <span class="math inline">\(\beta_j\)</span>, in the
+<em>population model</em>. <span class="math display">\[\hat
+Y_{Well.being} = \beta_0 + \beta_1 X_{Working.hours}\]</span> The
+associated inferential analyses for each estimate are the hypothesis
+test and confidence interval. Each <em>t</em>-test evaluates the
+<em>null hypothesis</em> that the corresponding <em>individual</em>
+population regression coefficient is 0, here for the <span
+class="math inline">\(j^{th}\)</span> coefficient. <span
+class="math display">\[H_0: \beta_j=0\]</span> <span
+class="math display">\[H_1: \beta_j \ne 0\]</span> The confidence
+interval provides the range of likely values of the corresponding <span
+class="math inline">\(\beta_j\)</span>. Each 95% confidence interval is
+the margin of error on either side of the corresponding estimated
+intercept or slope coefficient, <span
+class="math inline">\(b_j\)</span>.</p>
 <pre class="r"><code>r$out_estimates</code></pre>
 <pre><code>##                Estimate    Std Err  t-value  p-value   Lower 95%   Upper 95%
 ##   (Intercept)      7.08       0.83    8.571    0.000        5.32        8.84
 ## Working.hours     -0.06       0.03   -2.279    0.038       -0.11       -0.00</code></pre>
-<p>This estimated model is the linear function with estimated numeric coefficients that yield a fitted value of Well.being from the provided data value of Working.hours. <span class="math display">\[\hat Y_{Well.being} = 7.08 - 0.06 X_{Working.hours}\]</span></p>
-<p>This predictor variable has a <em>p</em>-value less than or equal to <span class="math inline">\(\alpha\)</span> = 0.05: <em>Working.hours</em>.</p>
-<p>To extend the results beyond this sample to the population from which the sample was obtained, interpret the meaning of this corresponding coefficient in terms of its confidence interval. With 95% confidence, for each additional unit of Working.hours, on average, Well.being changes somewhere between -0.11 to -0.00.</p>
+<p>This estimated model is the linear function with estimated numeric
+coefficients that yield a fitted value of Well.being from the provided
+data value of Working.hours. <span class="math display">\[\hat
+Y_{Well.being} = 7.08 - 0.06 X_{Working.hours}\]</span></p>
+<p>This predictor variable has a <em>p</em>-value less than or equal to
+<span class="math inline">\(\alpha\)</span> = 0.05:
+<em>Working.hours</em>.</p>
+<p>To extend the results beyond this sample to the population from which
+the sample was obtained, interpret the meaning of this corresponding
+coefficient in terms of its confidence interval. With 95% confidence,
+for each additional unit of Working.hours, on average, Well.being
+changes somewhere between -0.11 to -0.00.</p>
 </div>
 </div>
 <div id="model-fit" class="section level2">
 <h2>Model Fit</h2>
-<p>An estimated model is not necessarily useful. A first consideration of usefulness is that the model fits the data from which it is estimated, the training data. To what extent do the values fitted by the model, <span class="math inline">\(\hat Y_{Well.being}\)</span>, match the corresponding training data values <span class="math inline">\(Y_{Well.being}\)</span>? Are the individual residuals, <span class="math inline">\(e_i\)</span>, typically close to their mean of zero, or are they scattered about the regression line with relatively large positive values and negative values? There are more considerations of usefulness, but a model that cannot fit its own training data is generally not useful.</p>
+<p>An estimated model is not necessarily useful. A first consideration
+of usefulness is that the model fits the data from which it is
+estimated, the training data. To what extent do the values fitted by the
+model, <span class="math inline">\(\hat Y_{Well.being}\)</span>, match
+the corresponding training data values <span
+class="math inline">\(Y_{Well.being}\)</span>? Are the individual
+residuals, <span class="math inline">\(e_i\)</span>, typically close to
+their mean of zero, or are they scattered about the regression line with
+relatively large positive values and negative values? There are more
+considerations of usefulness, but a model that cannot fit its own
+training data is generally not useful.</p>
 <div id="partitioning-of-variance" class="section level3">
 <h3>Partitioning of Variance</h3>
-<p>The analysis of fit depends on the adequacy of the model to account for the variability of the data values of Well.being, expressed in model notation as <span class="math inline">\(Y_{Well.being}\)</span>. The core component of variability is the <em>sum of squares</em>, short for the sum of some type of squared deviations. The <em>total variability</em> of <span class="math inline">\(Y_{Well.being}\)</span> depends on the deviations of its data values from its mean, <span class="math inline">\(Y_{Well.being} - \bar Y_{Well.being}\)</span>, and then the resulting sums of squares, <span class="math inline">\(SS_{Well.being}\)</span>.</p>
-<p>The analysis of the residuals, <span class="math inline">\(e = Y_{Well.being} - \hat Y_{Well.being}\)</span>, follows from the corresponding sum of squares, the value minimized by the least squares estimation procedure, <span class="math inline">\(\sum e^2_i\)</span> = <span class="math inline">\(SS_{Residual}\)</span>. This residual sum of squares represents variation of <span class="math inline">\(Y_{Well.being}\)</span> <em>not</em> accounted for by <span class="math inline">\(\hat Y_{Well.being}\)</span>. The complement to the residual sum of squares is the Model (or Regression) sum of squares, the deviations of the fitted values about the mean, <span class="math inline">\(\hat Y_{Well.being} - \bar Y_{Well.being}\)</span>.</p>
-<p>The analysis of variance (ANOVA) partitions this total sum of squares into the residual variability, <span class="math inline">\(\sum e^2_i\)</span>, and the Model sum of squares, <span class="math inline">\(SS_{Model}\)</span>. The ANOVA table displays these various sources of variation.</p>
+<p>The analysis of fit depends on the adequacy of the model to account
+for the variability of the data values of Well.being, expressed in model
+notation as <span class="math inline">\(Y_{Well.being}\)</span>. The
+core component of variability is the <em>sum of squares</em>, short for
+the sum of some type of squared deviations. The <em>total
+variability</em> of <span class="math inline">\(Y_{Well.being}\)</span>
+depends on the deviations of its data values from its mean, <span
+class="math inline">\(Y_{Well.being} - \bar Y_{Well.being}\)</span>, and
+then the resulting sums of squares, <span
+class="math inline">\(SS_{Well.being}\)</span>.</p>
+<p>The analysis of the residuals, <span class="math inline">\(e =
+Y_{Well.being} - \hat Y_{Well.being}\)</span>, follows from the
+corresponding sum of squares, the value minimized by the least squares
+estimation procedure, <span class="math inline">\(\sum e^2_i\)</span> =
+<span class="math inline">\(SS_{Residual}\)</span>. This residual sum of
+squares represents variation of <span
+class="math inline">\(Y_{Well.being}\)</span> <em>not</em> accounted for
+by <span class="math inline">\(\hat Y_{Well.being}\)</span>. The
+complement to the residual sum of squares is the Model (or Regression)
+sum of squares, the deviations of the fitted values about the mean,
+<span class="math inline">\(\hat Y_{Well.being} - \bar
+Y_{Well.being}\)</span>.</p>
+<p>The analysis of variance (ANOVA) partitions this total sum of squares
+into the residual variability, <span class="math inline">\(\sum
+e^2_i\)</span>, and the Model sum of squares, <span
+class="math inline">\(SS_{Model}\)</span>. The ANOVA table displays
+these various sources of variation.</p>
 <pre class="r"><code>r$out_anova</code></pre>
-<pre><code>##                 df    Sum Sq   Mean Sq   F-value   p-value
+<pre><code>## -- Analysis of Variance
+## 
+##                 df    Sum Sq   Mean Sq   F-value   p-value
 ## Model            1      0.58      0.58      5.20     0.038
 ## Residuals       15      1.68      0.11
 ## Well.being      16      2.27      0.14</code></pre>
-<p><span class="math display">\[SS_{Well.being} = SS_{Model} + SS_{Residual} = 0.58 + 1.68 = 2.27 \]</span></p>
-<p>This decomposition of the sums of squares of Well.being into what is explained by the model, and what is not explained, is fundamental to assessing the fit of the model.</p>
+<p><span class="math display">\[SS_{Well.being} = SS_{Model} +
+SS_{Residual} = 0.58 + 1.68 = 2.27 \]</span></p>
+<p>This decomposition of the sums of squares of Well.being into what is
+explained by the model, and what is not explained, is fundamental to
+assessing the fit of the model.</p>
 </div>
 <div id="fit-indices" class="section level3">
 <h3>Fit Indices</h3>
-<p>From the ANOVA two types of primary indicators of fit are derived: standard deviation of the residuals and several <span class="math inline">\(R^2\)</span> statistics.</p>
+<p>From the ANOVA two types of primary indicators of fit are derived:
+standard deviation of the residuals and several <span
+class="math inline">\(R^2\)</span> statistics.</p>
 <pre class="r"><code>r$out_fit</code></pre>
 <pre><code>## Standard deviation of Well.being: 0.40
 ## 
@@ -534,36 +646,123 @@ div.tocify {
 ## 
 ## Null hypothesis of all 0 population slope coefficients:
 ##   F-statistic: 5.195     df: 1 and 15     p-value:  0.038</code></pre>
-<p>The <em>standard deviation of the residuals</em>, <span class="math inline">\(s_e\)</span>, directly assesses the variability of the data values of Well.being about the corresponding fitted values for the training data, the particular data set from which the model was estimated. Each mean square in the ANOVA table is a variance, a sum of squares divided by the corresponding degrees of freedom, <em>df</em>. By definition, the standard deviation, <span class="math inline">\(s_e\)</span> is the square root of the mean square of the residuals. <span class="math display">\[s_e = \sqrt{MS_{Residual}} = \sqrt{0.11} = 0.33\]</span> To interpret <span class="math inline">\(s_e\)</span> = 0.33, consider the estimated range of 95% of the values of a normally distributed variable, which depends on the corresponding 2.5% cutoff from the <span class="math inline">\(t\)</span>-distribution for df=15: 2.131. <span class="math display">\[95\% \;  Range: 2 * t_{cutoff} * s_e = 2 * 2.131 * 0.33 = 
+<p>The <em>standard deviation of the residuals</em>, <span
+class="math inline">\(s_e\)</span>, directly assesses the variability of
+the data values of Well.being about the corresponding fitted values for
+the training data, the particular data set from which the model was
+estimated. Each mean square in the ANOVA table is a variance, a sum of
+squares divided by the corresponding degrees of freedom, <em>df</em>. By
+definition, the standard deviation, <span
+class="math inline">\(s_e\)</span> is the square root of the mean square
+of the residuals. <span class="math display">\[s_e =
+\sqrt{MS_{Residual}} = \sqrt{0.11} = 0.33\]</span> To interpret <span
+class="math inline">\(s_e\)</span> = 0.33, consider the estimated range
+of 95% of the values of a normally distributed variable, which depends
+on the corresponding 2.5% cutoff from the <span
+class="math inline">\(t\)</span>-distribution for df=15: 2.131. <span
+class="math display">\[95\% \;  Range: 2 * t_{cutoff} * s_e = 2 * 2.131
+* 0.33 =
 1.43\]</span></p>
-<p>This range of the residuals for the fitted values is the lower limit of the range of prediction error presented later.</p>
-<p>A second type of fit index is <span class="math inline">\(R^2\)</span>, the proportion of the overall variability of response variable Well.being that is accounted for by the model, applied to the training data, expressed either in terms of <span class="math inline">\(SS_{Residual}\)</span> or <span class="math inline">\(SS_{Model}\)</span>. <span class="math display">\[R^2 = 1 - \frac{SS_{Residual}}{SS_{Well.being}} = \frac{SS_{Model}}{SS_{Well.being}} = \frac{0.58} {2.27} = 0.257 \]</span> Unfortunately when any new predictor variable is added to a model, useful or not, <span class="math inline">\(R^2\)</span> necessarily increases. Use the adjusted version, <span class="math inline">\(R^2_{adj}\)</span>, to more appropriately compare models estimated from the same training data with different numbers of predictors. <span class="math inline">\(R^2_{adj}\)</span> helps to avoid overfitting a model because it only increases if a new predictor variable added to the model improves the fit more than would be expected by chance. The adjustment considers the number of predictor variables relative to the number of rows of data (cases). Accomplish this adjustment with the degrees of freedom, to transform each Sum of Squares to the corresponding Mean Squares_ <span class="math display">\[R^2_{adj} = 1 - \frac{SS_{Residual} \; / \; 15}
-{SS_{Well.being} \; / \; 16} = 1 - \frac{MS_{Residual}}{MS_{Well.being}} = 1 - \frac{0.11} {0.14} = 0.208\]</span> From this analysis compare <span class="math inline">\(R^2\)</span> = 0.257 to the adjusted value of <span class="math inline">\(R^2_{adj}\)</span> = 0.208, a difference of 0.050. A large difference indicates that too many predictor variables in the model for the available data yielded an overfitted model.</p>
-<p>Both <span class="math inline">\(R^2\)</span> and <span class="math inline">\(R^2_{adj}\)</span> describe the fit of the model to the training data. To generalize to prediction accuracy on <em>new</em> data, evaluate the fit of the model to predict using the <em>predictive residual</em> (PRE). To calculate the predictive residual for a row of data (case), first estimate the model with that case deleted, that is, from all the remaining cases in the training data, an example of a <em>case-deletion</em> statistic. Repeat for all rows of data. <span class="math inline">\(SS_{PRE}\)</span>, or PRESS, is the sum of squares of all the predictive residuals in a data set. From <span class="math inline">\(SS_{PRE}\)</span> define the predictive <span class="math inline">\(R^2\)</span>, <span class="math inline">\(R^2_{PRESS}\)</span>. <span class="math display">\[R^2_{PRESS} = 1 - \frac{SS_{PRE}}{SS_{Well.being}} = 1 - \frac{2.03} {2.27} = 0.102 \]</span></p>
-<p>Because an estimated model at least to some extent overfits the training data, <span class="math inline">\(R^2_{PRESS}\)</span> = 0.102 is lower than both <span class="math inline">\(R^2\)</span> and <span class="math inline">\(R^2_{adj}\)</span>. The value is lower, but is the more appropriate value to understand how well the model predicts new values beyond the training from which it was estimated.</p>
-<p>Compare two nested models with the <code>lessR</code> function <code>Nest</code>. Specify the response variable Well.being, the variables in the reduced model, and then the additional variables in the full model. <code>Nest</code> also ensures to compare the same data values when there is missing data that might otherwise leave more data in the analysis of the reduced model.</p>
+<p>This range of the residuals for the fitted values is the lower limit
+of the range of prediction error presented later.</p>
+<p>A second type of fit index is <span
+class="math inline">\(R^2\)</span>, the proportion of the overall
+variability of response variable Well.being that is accounted for by the
+model, applied to the training data, expressed either in terms of <span
+class="math inline">\(SS_{Residual}\)</span> or <span
+class="math inline">\(SS_{Model}\)</span>. <span
+class="math display">\[R^2 = 1 - \frac{SS_{Residual}}{SS_{Well.being}} =
+\frac{SS_{Model}}{SS_{Well.being}} = \frac{0.58} {2.27} = 0.257
+\]</span> Unfortunately when any new predictor variable is added to a
+model, useful or not, <span class="math inline">\(R^2\)</span>
+necessarily increases. Use the adjusted version, <span
+class="math inline">\(R^2_{adj}\)</span>, to more appropriately compare
+models estimated from the same training data with different numbers of
+predictors. <span class="math inline">\(R^2_{adj}\)</span> helps to
+avoid overfitting a model because it only increases if a new predictor
+variable added to the model improves the fit more than would be expected
+by chance. The adjustment considers the number of predictor variables
+relative to the number of rows of data (cases). Accomplish this
+adjustment with the degrees of freedom, to transform each Sum of Squares
+to the corresponding Mean Squares_ <span
+class="math display">\[R^2_{adj} = 1 - \frac{SS_{Residual} \; / \; 15}
+{SS_{Well.being} \; / \; 16} = 1 - \frac{MS_{Residual}}{MS_{Well.being}}
+= 1 - \frac{0.11} {0.14} = 0.208\]</span> From this analysis compare
+<span class="math inline">\(R^2\)</span> = 0.257 to the adjusted value
+of <span class="math inline">\(R^2_{adj}\)</span> = 0.208, a difference
+of 0.050. A large difference indicates that too many predictor variables
+in the model for the available data yielded an overfitted model.</p>
+<p>Both <span class="math inline">\(R^2\)</span> and <span
+class="math inline">\(R^2_{adj}\)</span> describe the fit of the model
+to the training data. To generalize to prediction accuracy on
+<em>new</em> data, evaluate the fit of the model to predict using the
+<em>predictive residual</em> (PRE). To calculate the predictive residual
+for a row of data (case), first estimate the model with that case
+deleted, that is, from all the remaining cases in the training data, an
+example of a <em>case-deletion</em> statistic. Repeat for all rows of
+data. <span class="math inline">\(SS_{PRE}\)</span>, or PRESS, is the
+sum of squares of all the predictive residuals in a data set. From <span
+class="math inline">\(SS_{PRE}\)</span> define the predictive <span
+class="math inline">\(R^2\)</span>, <span
+class="math inline">\(R^2_{PRESS}\)</span>. <span
+class="math display">\[R^2_{PRESS} = 1 -
+\frac{SS_{PRE}}{SS_{Well.being}} = 1 - \frac{2.03} {2.27} = 0.102
+\]</span></p>
+<p>Because an estimated model at least to some extent overfits the
+training data, <span class="math inline">\(R^2_{PRESS}\)</span> = 0.102
+is lower than both <span class="math inline">\(R^2\)</span> and <span
+class="math inline">\(R^2_{adj}\)</span>. The value is lower, but is the
+more appropriate value to understand how well the model predicts new
+values beyond the training from which it was estimated.</p>
+<p>Compare two nested models with the <code>lessR</code> function
+<code>Nest</code>. Specify the response variable Well.being, the
+variables in the reduced model, and then the additional variables in the
+full model. <code>Nest</code> also ensures to compare the same data
+values when there is missing data that might otherwise leave more data
+in the analysis of the reduced model.</p>
 </div>
 </div>
-<div id="relation-between-well.being-and-working.hours" class="section level2">
+<div id="relation-between-well.being-and-working.hours"
+class="section level2">
 <h2>Relation Between Well.being and Working.hours</h2>
-<p>How do the variables in the model relate to each other? The correlation of response variable Well.being with predictor variable Working.hours should be high. The correlation of Well.being with Working.hours in the training data is <span class="math inline">\(r\)</span> = -0.507.</p>
-<p>Visually summarize the relationship of Well.being and Working.hours in the model with the scatterplot. Plot the scatter plot separately with the <code>lessR</code> function <code>regPlot</code>. Specify option 1 to indicate this specific plot.</p>
+<p>How do the variables in the model relate to each other? The
+correlation of response variable Well.being with predictor variable
+Working.hours should be high. The correlation of Well.being with
+Working.hours in the training data is <span
+class="math inline">\(r\)</span> = -0.507.</p>
+<p>Visually summarize the relationship of Well.being and Working.hours
+in the model with the scatterplot. Plot the scatter plot separately with
+the <code>lessR</code> function <code>regPlot</code>. Specify option 1
+to indicate this specific plot.</p>
 <pre class="r"><code>regPlot(r, 1, pred.intervals=FALSE)  # 1: scatter plot </code></pre>
 <p><img src="lessr_wellbeing_out_files/figure-html/unnamed-chunk-8-1.png" width="528" /></p>
 </div>
 <div id="analysis-of-residuals-and-influence" class="section level2">
 <h2>Analysis of Residuals and Influence</h2>
-<p>Values of Well.being fitted by the estimated model do not generally equal the corresponding data values_ Which cases (rows of data) contribute the most to this lack of fit? The identification of cases that have a large residual and/or undue influence on the estimation of the model helps detect potential outliers. For each case, in addition to the data values, fitted value and corresponding residual, the analysis provides the following values:</p>
+<p>Values of Well.being fitted by the estimated model do not generally
+equal the corresponding data values_ Which cases (rows of data)
+contribute the most to this lack of fit? The identification of cases
+that have a large residual and/or undue influence on the estimation of
+the model helps detect potential outliers. For each case, in addition to
+the data values, fitted value and corresponding residual, the analysis
+provides the following values:</p>
 <ul>
-<li><em>residual</em>: Value of the response variable Well.being minus its fitted value, <span class="math inline">\(e = Y_{Well.being} - \hat Y_{Well.being}\)</span></li>
-<li><em>rstudent</em>: Externally Studentized residual, standardized value of the residual from a model estimated without the case present</li>
-<li><em>dffits</em>: Standardized difference between a fitted value with and without the case present</li>
-<li><em>cooks</em>: Cook’s Distance, the aggregate influence of the case on all the fitted values with each fitted value calculated with the case deleted</li>
+<li><em>residual</em>: Value of the response variable Well.being minus
+its fitted value, <span class="math inline">\(e = Y_{Well.being} - \hat
+Y_{Well.being}\)</span></li>
+<li><em>rstudent</em>: Externally Studentized residual, standardized
+value of the residual from a model estimated without the case
+present</li>
+<li><em>dffits</em>: Standardized difference between a fitted value with
+and without the case present</li>
+<li><em>cooks</em>: Cook’s Distance, the aggregate influence of the case
+on all the fitted values with each fitted value calculated with the case
+deleted</li>
 </ul>
 <pre class="r"><code>r$out_residuals</code></pre>
-<pre><code>## Data, Fitted, Residual, Studentized Residual, Dffits, Cook&#39;s Distance
+<pre><code>## -- Data, Fitted, Residual, Studentized Residual, Dffits, Cook&#39;s Distance
 ##    [sorted by Cook&#39;s Distance]
-##    [res_rows = 17, out of 17 ]
+##    [n_res_rows = 17, out of 17 ]
 ## --------------------------------------------------------------
 ##      Working.hours Well.being fitted resid rstdnt dffits cooks
 ##    9         27.55       5.01   5.45 -0.44  -1.49  -0.65  0.20
@@ -583,71 +782,139 @@ div.tocify {
 ##   19         30.30       5.44   5.29  0.15   0.46   0.13  0.01
 ##   18         31.82       5.34   5.20  0.14   0.43   0.11  0.01
 ##   14         38.17       4.81   4.82 -0.01  -0.04  -0.02  0.00</code></pre>
-<p>From this analysis the five largest Cook’s distances: 0.20, 0.15, 0.12, 0.06 and 0.06.</p>
-<p>An informal criterion for evaluating the size of Cook’s distance is a cutoff value of 1 to indicate too large of a large size. No cases have a Cook’s distance larger than 1 in this analysis.</p>
+<p>From this analysis the five largest Cook’s distances: 0.20, 0.15,
+0.12, 0.06 and 0.06.</p>
+<p>An informal criterion for evaluating the size of Cook’s distance is a
+cutoff value of 1 to indicate too large of a large size. No cases have a
+Cook’s distance larger than 1 in this analysis.</p>
 </div>
 <div id="prediction-intervals" class="section level2">
 <h2>Prediction Intervals</h2>
-<p>Ultimately the analysis moves beyond the training sample. Prediction is from <em>new</em> data values of Working.hours, what may be called the <em>prediction sample</em>. Applying these new data values to the estimated model yields the predicted values. For data values from the training sample, the fitted value and predicted value are the same, calculated from the same estimated model, but are different concepts with different interpretations.</p>
-<p>Unfortunately, prediction is not perfect. The range of values likely to contain the actual data value for Well.being predicted from specific values of Working.hours quantifies the <em>prediction error</em>. The standard deviation of the residuals, <span class="math inline">\(s_e\)</span>, assumed to be the same for all sets of values of the predictor variables, specifies the <em>modeling error</em> of the fitted values from the training data, error due to imperfections in the model. However, for predictions of future values of Well.being, new data are collected. So sampling error of a value on the regression line, indicated with <span class="math inline">\(s_{\hat Y}\)</span>, must also be considered in the assessment of prediction error. Consideration of both sources of error results in the _standard error of prediction (or forecast)</p>
-<p><span class="math display">\[s_f = \sqrt{s^2_e + s^2_{\hat Y}}\]</span></p>
-<p>Unlike modeling error, the amount of sampling error varies depending on the values of the predictor variables, so each row of data has its own value, <span class="math inline">\(s_f\)</span>. Each prediction interval is the margin of error, the <em>t</em>-cutoff multiplied by the corresponding <span class="math inline">\(s_f\)</span>, added and subtracted on either side of <span class="math inline">\(\hat Y_{Well.being}\)</span>.</p>
-<div id="prediction-intervals-from-the-training-data" class="section level3">
+<p>Ultimately the analysis moves beyond the training sample. Prediction
+is from <em>new</em> data values of Working.hours, what may be called
+the <em>prediction sample</em>. Applying these new data values to the
+estimated model yields the predicted values. For data values from the
+training sample, the fitted value and predicted value are the same,
+calculated from the same estimated model, but are different concepts
+with different interpretations.</p>
+<p>Unfortunately, prediction is not perfect. The range of values likely
+to contain the actual data value for Well.being predicted from specific
+values of Working.hours quantifies the <em>prediction error</em>. The
+standard deviation of the residuals, <span
+class="math inline">\(s_e\)</span>, assumed to be the same for all sets
+of values of the predictor variables, specifies the <em>modeling
+error</em> of the fitted values from the training data, error due to
+imperfections in the model. However, for predictions of future values of
+Well.being, new data are collected. So sampling error of a value on the
+regression line, indicated with <span class="math inline">\(s_{\hat
+Y}\)</span>, must also be considered in the assessment of prediction
+error. Consideration of both sources of error results in the _standard
+error of prediction (or forecast)</p>
+<p><span class="math display">\[s_f = \sqrt{s^2_e + s^2_{\hat
+Y}}\]</span></p>
+<p>Unlike modeling error, the amount of sampling error varies depending
+on the values of the predictor variables, so each row of data has its
+own value, <span class="math inline">\(s_f\)</span>. Each prediction
+interval is the margin of error, the <em>t</em>-cutoff multiplied by the
+corresponding <span class="math inline">\(s_f\)</span>, added and
+subtracted on either side of <span class="math inline">\(\hat
+Y_{Well.being}\)</span>.</p>
+<div id="prediction-intervals-from-the-training-data"
+class="section level3">
 <h3>Prediction Intervals from the Training Data</h3>
-<p>The analysis provides each row of data values, <em>as if</em> they were new data, with a predicted value based on the model estimated from the training data, as well as the standard error of prediction. From these values obtain the lower and upper bounds of the corresponding 95% prediction interval. By default, only the first three, middle three and last three rows of data are presented, sufficient to indicate the ranges of prediction error encountered throughout the ranges of data values</p>
+<p>The analysis provides each row of data values, <em>as if</em> they
+were new data, with a predicted value based on the model estimated from
+the training data, as well as the standard error of prediction. From
+these values obtain the lower and upper bounds of the corresponding 95%
+prediction interval. By default, only the first three, middle three and
+last three rows of data are presented, sufficient to indicate the ranges
+of prediction error encountered throughout the ranges of data values</p>
 <pre class="r"><code>r$out_predict</code></pre>
-<pre><code>##      Working.hours Well.being pred   sf pi.lwr pi.upr width
-##   10         38.25       4.74 4.82 0.38   4.00   5.64  1.64
-##   14         38.17       4.81 4.82 0.38   4.00   5.64  1.64
-##   15         33.81       4.89 5.08 0.35   4.33   5.82  1.49
-##   16         33.63       4.57 5.09 0.35   4.35   5.83  1.49
-##    7         32.95       5.39 5.13 0.35   4.39   5.87  1.48
-##   22         32.09       4.98 5.18 0.34   4.45   5.91  1.47
-##   20         31.87       5.66 5.19 0.34   4.46   5.93  1.47
-##   18         31.82       5.34 5.20 0.34   4.46   5.93  1.47
-##    1         31.82       5.37 5.20 0.34   4.46   5.93  1.47
-##   11         31.54       5.44 5.21 0.34   4.48   5.95  1.47
-##   19         30.30       5.44 5.29 0.35   4.55   6.02  1.48
-##    5         30.27       5.93 5.29 0.35   4.55   6.03  1.48
-##    2         30.21       5.04 5.29 0.35   4.55   6.03  1.48
-##    8         30.16       4.88 5.29 0.35   4.56   6.03  1.48
-##    9         27.55       5.01 5.45 0.36   4.68   6.22  1.54
-##   13         27.08       5.69 5.48 0.36   4.70   6.25  1.55
-##   12         26.75       5.31 5.50 0.37   4.71   6.28  1.57</code></pre>
-<p>The size of the prediction intervals for the range of data found in the input data table vary from a minimum of 1.47 for Row 11 to a maximum of 1.64 for Row 10.</p>
-<p>The confidence intervals for the points on the regression line, and the much larger prediction intervals for the individual data points, are illustrated with an enhancement of the original scatter plot. Plot the scatter plot with prediction intervals separately with the <code>lessR</code> function <code>regPlot</code>. Specify option 1 to indicate this specific plot.</p>
+<pre><code>##      Working.hours Well.being pred s_pred pi.lwr pi.upr width
+##   10         38.25       4.74 4.82   0.38   4.00   5.64  1.64
+##   14         38.17       4.81 4.82   0.38   4.00   5.64  1.64
+##   15         33.81       4.89 5.08   0.35   4.33   5.82  1.49
+##   16         33.63       4.57 5.09   0.35   4.35   5.83  1.49
+##    7         32.95       5.39 5.13   0.35   4.39   5.87  1.48
+##   22         32.09       4.98 5.18   0.34   4.45   5.91  1.47
+##   20         31.87       5.66 5.19   0.34   4.46   5.93  1.47
+##   18         31.82       5.34 5.20   0.34   4.46   5.93  1.47
+##    1         31.82       5.37 5.20   0.34   4.46   5.93  1.47
+##   11         31.54       5.44 5.21   0.34   4.48   5.95  1.47
+##   19         30.30       5.44 5.29   0.35   4.55   6.02  1.48
+##    5         30.27       5.93 5.29   0.35   4.55   6.03  1.48
+##    2         30.21       5.04 5.29   0.35   4.55   6.03  1.48
+##    8         30.16       4.88 5.29   0.35   4.56   6.03  1.48
+##    9         27.55       5.01 5.45   0.36   4.68   6.22  1.54
+##   13         27.08       5.69 5.48   0.36   4.70   6.25  1.55
+##   12         26.75       5.31 5.50   0.37   4.71   6.28  1.57</code></pre>
+<p>The size of the prediction intervals for the range of data found in
+the input data table vary from a minimum of 1.47 for Row 11 to a maximum
+of 1.64 for Row 10.</p>
+<p>The confidence intervals for the points on the regression line, and
+the much larger prediction intervals for the individual data points, are
+illustrated with an enhancement of the original scatter plot. Plot the
+scatter plot with prediction intervals separately with the
+<code>lessR</code> function <code>regPlot</code>. Specify option 1 to
+indicate this specific plot.</p>
 <pre class="r"><code>regPlot(r, 1)  # 1: scatter plot with prediction intervals</code></pre>
 <p><img src="lessr_wellbeing_out_files/figure-html/unnamed-chunk-11-1.png" width="528" /></p>
 </div>
 <div id="prediction-intervals-from-new-data" class="section level3">
 <h3>Prediction Intervals from New Data</h3>
-<p>New data values from which to obtain a prediction, different from the training data, can be entered with the options X1_new, X2_new, up to X6_new, where each option name refers to the position of the corresponding predictor variable in the specification of the regression model. Any number of values can be specified for each predictor variable. Suppose, for example, that there are two values of interest for the predictor variable from which to make a prediction, listed below.</p>
+<p>New data values from which to obtain a prediction, different from the
+training data, can be entered with the options X1_new, X2_new, up to
+X6_new, where each option name refers to the position of the
+corresponding predictor variable in the specification of the regression
+model. Any number of values can be specified for each predictor
+variable. Suppose, for example, that there are two values of interest
+for the predictor variable from which to make a prediction, listed
+below.</p>
 <p>Working.hours: 30, 33</p>
-<p>Re-run the analysis to obtain the prediction intervals with these specified values_</p>
+<p>Re-run the analysis to obtain the prediction intervals with these
+specified values_</p>
 <pre class="r"><code>r &lt;- Regression(my_formula = Well.being ~ Working.hours, digits_d = 2,
          X1_new=c(30,33),
          graphics = FALSE)</code></pre>
 <p>Calculate the piction intervals only for the new data values_</p>
 <pre class="r"><code>r$out_predict</code></pre>
-<pre><code>## ----------------------------------------------------------
-##     Working.hours Well.being pred   sf pi.lwr pi.upr width
-##   2         33.00            5.13 0.35   4.39   5.86  1.48
-##   1         30.00            5.30 0.35   4.56   6.04  1.48</code></pre>
-<p>The size of the prediction intervals for the range of data found in the newly specified values vary from a minimum of 1.48 for Row 2 to a maximum of 1.48 for Row 1. The rows in the output display, however, are re-ordered according to the combinations of the ordered values of the predictor variables.</p>
+<pre><code>## ------------------------------------------------------------
+##     Working.hours Well.being pred s_pred pi.lwr pi.upr width
+##   2         33.00            5.13   0.35   4.39   5.86  1.48
+##   1         30.00            5.30   0.35   4.56   6.04  1.48</code></pre>
+<p>The size of the prediction intervals for the range of data found in
+the newly specified values vary from a minimum of 1.48 for Row 2 to a
+maximum of 1.48 for Row 1. The rows in the output display, however, are
+re-ordered according to the combinations of the ordered values of the
+predictor variables.</p>
 </div>
 </div>
 <div id="model-validity" class="section level2">
 <h2>Model Validity</h2>
-<p>The residuals should be independent, normal random variables with a mean of zero and constant variance.</p>
+<p>The residuals should be independent, normal random variables with a
+mean of zero and constant variance.</p>
 <div id="distribution-of-residuals" class="section level3">
 <h3>Distribution of Residuals</h3>
-<p>For the inferential analyses to be valid, the residuals should be normally distributed. Violation of normality does not bias the estimates, but it does render the inferential tests invalid. Plot the distribution of residuals separately with the <code>lessR</code> function <code>regPlot</code>. Specify option 2 to indicate this specific plot.</p>
+<p>For the inferential analyses to be valid, the residuals should be
+normally distributed. Violation of normality does not bias the
+estimates, but it does render the inferential tests invalid. Plot the
+distribution of residuals separately with the <code>lessR</code>
+function <code>regPlot</code>. Specify option 2 to indicate this
+specific plot.</p>
 <pre class="r"><code>regPlot(r, 2)  # 2: distribution of residuals</code></pre>
 <p><img src="lessr_wellbeing_out_files/figure-html/unnamed-chunk-14-1.png" width="528" /></p>
 </div>
 <div id="fitted-values-vs-residuals" class="section level3">
 <h3>Fitted Values vs Residuals</h3>
-<p>The residuals should represent random variation, free of any pattern or structure. They should satisfy the <em>homoscedasticity</em> assumption, randomly scattered about 0, with approximately the same level of variability across the range of the fitted values within a horizontal band around the zero-line. Otherwise they demonstrate <em>heteroskedasticity</em>. Plot the scatter plot of fitted values with residuals separately with the <code>lessR</code> function <code>regPlot</code>. Specify option 3 to indicate this specific plot.</p>
+<p>The residuals should represent random variation, free of any pattern
+or structure. They should satisfy the <em>homoscedasticity</em>
+assumption, randomly scattered about 0, with approximately the same
+level of variability across the range of the fitted values within a
+horizontal band around the zero-line. Otherwise they demonstrate
+<em>heteroskedasticity</em>. Plot the scatter plot of fitted values with
+residuals separately with the <code>lessR</code> function
+<code>regPlot</code>. Specify option 3 to indicate this specific
+plot.</p>
 <pre class="r"><code>regPlot(r, 3)  # 3: scatter plot of fitted with residuals</code></pre>
 <p><img src="lessr_wellbeing_out_files/figure-html/unnamed-chunk-15-1.png" width="528" /></p>
 </div>
@@ -658,7 +925,7 @@ div.tocify {
 
  <!-- remove Html comment bars below when enough content --> 
 
- <!-- <p>Copyright &copy; 2021 S.M.Leeds. All rights reserved.</p> --> 
+ <!-- <p>Copyright &copy; 2022 S.M.Leeds. All rights reserved.</p> --> 
 
 
 </div>

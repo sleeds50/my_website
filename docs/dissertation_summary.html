@@ -13,7 +13,7 @@
 
 <title>Final Dissertation for MSc Occupational Psychology: A Summary</title>
 
-<script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.22/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
@@ -32,8 +32,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -143,11 +143,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -176,8 +180,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -185,16 +189,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -342,7 +339,8 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Final Dissertation for MSc Occupational Psychology: A Summary</h1>
+<h1 class="title toc-ignore">Final Dissertation for MSc Occupational
+Psychology: A Summary</h1>
 <h4 class="date">30/10/2021</h4>
 
 </div>
@@ -350,82 +348,156 @@ $(document).ready(function () {
 
 <p><br></p>
 <center>
-<p><strong>Engagement at Work: Investigating the Relationships Between<br />
-Age-Groups, Gender, Personality; and Trait Emotional Intelligence</strong></p>
+<p><strong>Engagement at Work: Investigating the Relationships
+Between<br />
+Age-Groups, Gender, Personality; and Trait Emotional
+Intelligence</strong></p>
 <p><br></p>
 <p>Stuart M. Leeds and Ben Steeden [supervisor]</p>
 <p><br></p>
-Faculty of Health and Applied Sciences, Department of Health and Social Sciences,<br />
+Faculty of Health and Applied Sciences, Department of Health and Social
+Sciences,<br />
 University of the West of England (UWE), Bristol
 </center>
 <p><br> <br></p>
-<p><strong>Purpose:</strong> To add to and extend existing research of engagement at work with new findings regarding age-groups, gender, personality; and trait emotional intelligence (TEI).</p>
-<p><strong>Design:</strong> A cross-sectional correlation study with added mediator and moderator analyses. Exploratory analyses include two-tailed correlation, hierarchical multiple linear regression and additional mediator analysis.</p>
+<p><strong>Purpose:</strong> To add to and extend existing research of
+engagement at work with new findings regarding age-groups, gender,
+personality; and trait emotional intelligence (TEI).</p>
+<p><strong>Design:</strong> A cross-sectional correlation study with
+added mediator and moderator analyses. Exploratory analyses include
+two-tailed correlation, hierarchical multiple linear regression and
+additional mediator analysis.</p>
 <p>A simple research question reflects the title:</p>
 <blockquote>
-<p><em>What is the relationship between age-groups, gender, personality, TEI and; engagement at work?</em></p>
+<p><em>What is the relationship between age-groups, gender, personality,
+TEI and; engagement at work?</em></p>
 </blockquote>
-<p>The introduction begins with a general overview of engagement at work with an original description and then offers a modernised definition suggesting that engagement is a state of mind where people work hard because they enjoy it, rather than being a static state. Engagement is then characterised by three dimensions: <em>vigour, dedication</em> and <em>absorption</em>, defining how engaged employees approach work; and gives examples of necessary workplace requirements for the positive benefits of engagement to occur. Some positive and negative aspects of engagement are discussed, from individual well-being, to exhaustion and burnout. Criticism of engagement measures is introduced suggesting an over-accentuation of positive aspects which negate the reality of occupational conflict. Then examples of lack of engagement among UK employees are given using the Gallup 2021 State of the Global Workplace Report, followed by examples of previous research showing that engagement can be affected and predicted by various individual differences. The remaining variables (<em>age-groups and gender, personality; and TEI</em>) are described; and their use in the research is justified. Three hypotheses are given:</p>
+<p>The introduction begins with a general overview of engagement at work
+with an original description and then offers a modernised definition
+suggesting that engagement is a state of mind where people work hard
+because they enjoy it, rather than being a static state. Engagement is
+then characterised by three dimensions: <em>vigour, dedication</em> and
+<em>absorption</em>, defining how engaged employees approach work; and
+gives examples of necessary workplace requirements for the positive
+benefits of engagement to occur. Some positive and negative aspects of
+engagement are discussed, from individual well-being, to exhaustion and
+burnout. Criticism of engagement measures is introduced suggesting an
+over-accentuation of positive aspects which negate the reality of
+occupational conflict. Then examples of lack of engagement among UK
+employees are given using the Gallup 2021 State of the Global Workplace
+Report, followed by examples of previous research showing that
+engagement can be affected and predicted by various individual
+differences. The remaining variables (<em>age-groups and gender,
+personality; and TEI</em>) are described; and their use in the research
+is justified. Three hypotheses are given:</p>
 <ul>
-<li><p><strong>Hypothesis H1:</strong> The personality traits Openness to experience, Conscientiousness, Extroversion, Agreeableness and Emotional Stability will be positively correlated to work engagement.</p></li>
-<li><p><strong>Hypothesis H2:</strong> There will be a significantly positive relationship between age-groups and engagement mediated by higher TEI.</p></li>
-<li><p><strong>Hypothesis H3:</strong> Gender will moderate the relationship between age-groups and TEI such that it will be stronger for females than males.</p></li>
+<li><p><strong>Hypothesis H1:</strong> The personality traits Openness
+to experience, Conscientiousness, Extroversion, Agreeableness and
+Emotional Stability will be positively correlated to work
+engagement.</p></li>
+<li><p><strong>Hypothesis H2:</strong> There will be a significantly
+positive relationship between age-groups and engagement mediated by
+higher TEI.</p></li>
+<li><p><strong>Hypothesis H3:</strong> Gender will moderate the
+relationship between age-groups and TEI such that it will be stronger
+for females than males.</p></li>
 </ul>
-<p><span class="math inline">\(159\)</span> volunteers were recruited via bespoke online surveys measuring the usual demographics, personality, TEI; and work engagement of which <span class="math inline">\(88\)</span> participants were used in the analysis. These were arranged into two age groups:</p>
+<p><span class="math inline">\(159\)</span> volunteers were recruited
+via bespoke online surveys measuring the usual demographics,
+personality, TEI; and work engagement of which <span
+class="math inline">\(88\)</span> participants were used in the
+analysis. These were arranged into two age groups:</p>
 <ul>
-<li><p><strong>Group 1:</strong> <span class="math inline">\(51\)</span> participants (<span class="math inline">\(25\)</span> females and <span class="math inline">\(26\)</span> males aged <span class="math inline">\(18-30\)</span>).</p></li>
-<li><p><strong>Group 2:</strong> <span class="math inline">\(37\)</span> participants (<span class="math inline">\(27\)</span> females and <span class="math inline">\(10\)</span> males aged <span class="math inline">\(50\)</span> and above).</p></li>
+<li><p><strong>Group 1:</strong> <span class="math inline">\(51\)</span>
+participants (<span class="math inline">\(25\)</span> females and <span
+class="math inline">\(26\)</span> males aged <span
+class="math inline">\(18-30\)</span>).</p></li>
+<li><p><strong>Group 2:</strong> <span class="math inline">\(37\)</span>
+participants (<span class="math inline">\(27\)</span> females and <span
+class="math inline">\(10\)</span> males aged <span
+class="math inline">\(50\)</span> and above).</p></li>
 </ul>
 <p><br></p>
 <div class="figure" style="text-align: center">
 <img src="images/age_groups_count.png" alt="**Figure 1.** *Participant Numbers by Age-group and Gender*" width="80%" />
 <p class="caption">
-<strong>Figure 1.</strong> <em>Participant Numbers by Age-group and Gender</em>
+<strong>Figure 1.</strong> <em>Participant Numbers by Age-group and
+Gender</em>
 </p>
 </div>
 <p><br></p>
 <p><u><strong>Of the main results:</strong></u></p>
 <ul>
-<li><p>H1 was partially supported in that those participants with higher conscientiousness, agreeableness and emotional stability were more likely to be engaged at work. No relationship was found between engagement and extraversion or openness to experience (see Figure 2).</p></li>
-<li><p>H2 was not supported in that the relationship between age-groups and engagement is not mediated by higher TEI.</p></li>
-<li><p>H3 was not supported in that the relationship between age-groups and TEI is not moderated by gender.</p></li>
+<li><p>H1 was partially supported in that those participants with higher
+conscientiousness, agreeableness and emotional stability were more
+likely to be engaged at work. No relationship was found between
+engagement and extraversion or openness to experience (see Figure
+2).</p></li>
+<li><p>H2 was not supported in that the relationship between age-groups
+and engagement is not mediated by higher TEI.</p></li>
+<li><p>H3 was not supported in that the relationship between age-groups
+and TEI is not moderated by gender.</p></li>
 </ul>
 <div class="figure" style="text-align: center">
-<img src="images/h1_wide.png" alt="**Figure 2.** *H1 Correlations between Engagement and Personality*.&lt;br&gt;_Note:_ 1= Engagement, 2= Extraversion, 3=Agreeableness, 4= Conscientiousness, &lt;br&gt;5= Emotional Stability, 6= Openness to Experience. _N_= 88; * _p_ &lt; .05; ** _p_ &lt; .01." width="80%" />
+<img src="images/H1_wide.png" alt="**Figure 2.** *H1 Correlations between Engagement and Personality*.&lt;br&gt;_Note:_ 1= Engagement, 2= Extraversion, 3=Agreeableness, 4= Conscientiousness, &lt;br&gt;5= Emotional Stability, 6= Openness to Experience. _N_= 88; * _p_ &lt; .05; ** _p_ &lt; .01." width="80%" />
 <p class="caption">
-<strong>Figure 2.</strong> <em>H1 Correlations between Engagement and Personality</em>.<br><em>Note:</em> 1= Engagement, 2= Extraversion, 3=Agreeableness, 4= Conscientiousness, <br>5= Emotional Stability, 6= Openness to Experience. <em>N</em>= 88; * <em>p</em> &lt; .05; ** <em>p</em> &lt; .01.
+<strong>Figure 2.</strong> <em>H1 Correlations between Engagement and
+Personality</em>.<br><em>Note:</em> 1= Engagement, 2= Extraversion,
+3=Agreeableness, 4= Conscientiousness, <br>5= Emotional Stability, 6=
+Openness to Experience. <em>N</em>= 88; * <em>p</em> &lt; .05; **
+<em>p</em> &lt; .01.
 </p>
 </div>
 <p><br></p>
 <p><u><strong>Exploratory results</strong></u></p>
 <ul>
-<li><p>Conscientiousness, emotional stability and agreeableness are the dominant personality traits that relate to engagement and each of its three dimensions.</p></li>
-<li><p>Older workers have a higher TEI which also predicts engagement, though older workers are not more engaged <em>because</em> of a higher TEI.</p></li>
-<li><p>Females from both age-groups are more likely to have higher TEI along with wellbeing and emotionality than males and therefore, are also more likely to be engaged at work.</p></li>
-<li><p>TEI mediates the relationship between gender and engagement in support of female workers from both age-groups.</p></li>
-<li><p>Conscientiousness and gender (females in both age-groups) predict engagement at work. TEI accounts for <span class="math inline">\(23\%\)</span> variance, an increase of <span class="math inline">\(5\%\)</span>.</p></li>
+<li><p>Conscientiousness, emotional stability and agreeableness are the
+dominant personality traits that relate to engagement and each of its
+three dimensions.</p></li>
+<li><p>Older workers have a higher TEI which also predicts engagement,
+though older workers are not more engaged <em>because</em> of a higher
+TEI.</p></li>
+<li><p>Females from both age-groups are more likely to have higher TEI
+along with wellbeing and emotionality than males and therefore, are also
+more likely to be engaged at work.</p></li>
+<li><p>TEI mediates the relationship between gender and engagement in
+support of female workers from both age-groups.</p></li>
+<li><p>Conscientiousness and gender (females in both age-groups) predict
+engagement at work. TEI accounts for <span
+class="math inline">\(23\%\)</span> variance, an increase of <span
+class="math inline">\(5\%\)</span>.</p></li>
 </ul>
 <p><br></p>
 <p><u><strong>Implications</strong></u></p>
 <ol style="list-style-type: decimal">
 <li><strong>Theoretical:</strong>
 <ul>
-<li>Engagement theory is partially supported since personality can change in different circumstances, so one might be more engaged in their job at one time and not the next.</li>
-<li>There is no direct support for older workers being engaged, but they might be engaged indirectly through various personality traits.</li>
+<li>Engagement theory is partially supported since personality can
+change in different circumstances, so one might be more engaged in their
+job at one time and not the next.</li>
+<li>There is no direct support for older workers being engaged, but they
+might be engaged indirectly through various personality traits.</li>
 </ul></li>
 <li><strong>Applied:</strong>
 <ul>
-<li>Recognise disengagement at work and offer support, especially for males (due to lack of support in this study).</li>
-<li>Implement emotional intelligence training programmes to improve wellbeing; and reduce stress and anxiety at work.</li>
+<li>Recognise disengagement at work and offer support, especially for
+males (due to lack of support in this study).</li>
+<li>Implement emotional intelligence training programmes to improve
+wellbeing; and reduce stress and anxiety at work.</li>
 </ul></li>
 </ol>
 <hr />
-<p>Questions or additional information requests to be directed to <a href="mailto:sleeds40@gmail.com">the main author.</a></p>
+<p>Questions or additional information requests to be directed to <a
+href="mailto:sleeds40@gmail.com">the main author.</a></p>
 <p>This summary is also published at:</p>
 <ol style="list-style-type: decimal">
-<li><a href="https://www.project-match.com/blog/">ProjectMatch</a>: <em>“Connecting business and students for great project partnerships”</em>.<br />
+<li><a href="https://www.project-match.com/blog/">ProjectMatch</a>:
+<em>“Connecting business and students for great project
+partnerships”</em>.<br />
 </li>
-<li><a href="https://elevationoccpsyblog.wordpress.com/2022/03/17/sharing-research/">ELEVATION OCC PSY</a>: <em>“Sharing Research”</em>.</li>
+<li><a
+href="https://elevationoccpsyblog.wordpress.com/2022/03/17/sharing-research/">ELEVATION
+OCC PSY</a>: <em>“Sharing Research”</em>.</li>
 </ol>
 <p><br></p>
 
@@ -434,7 +506,7 @@ University of the West of England (UWE), Bristol
 
  <!-- remove Html comment bars below when enough content --> 
 
- <!-- <p>Copyright &copy; 2021 S.M.Leeds. All rights reserved.</p> --> 
+ <!-- <p>Copyright &copy; 2022 S.M.Leeds. All rights reserved.</p> --> 
 
 
 
