@@ -113,9 +113,9 @@ consist of almost 54,000 round-cut diamonds with the following variables:
 
 d_small <- d |> 
     select(carat, cut, color, clarity, price) |>  
-    mutate("Cut" = as.double(cut),
-           "Color" = as.double(color),
-           "Clarity" = as.double(clarity))
+    mutate("Cut" = as.numeric(cut),
+           "Color" = as.numeric(color),
+           "Clarity" = as.numeric(clarity))
 
 # cut data
 
