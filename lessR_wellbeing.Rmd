@@ -24,14 +24,16 @@ knitr::opts_chunk$set(
 
 ```{r libraries}
 
-# Creation of R package citation file
-# knitr::write_bib(c(.packages(), "rmarkdown"), "../common/packages.bib")
+
 
 # Libraries
 library(UsingR) # For wellbeing data
 library(lessR) # Main package
 library(kableExtra) # For tables
 library(lubridate) # For date & time functions
+
+# Creation of R package citation file
+ knitr::write_bib(c(.packages(), "rmarkdown"), "../common/packages.bib")
 ```
 <br>
 
@@ -76,7 +78,7 @@ d <- Read("./data/wellbeing.xlsx")
 
 # The Data
 
-The wellbeing data are included in the `UsingR` [@verzaniUsingRDataSets2022] package and originally found
+The wellbeing data are included in the `UsingR` package and originally found
 [here](http://prcweb.co.uk/lab/what-makes-us-happy/), where you can see
 interactive correlations with wellbeing and variables of your choice. There are
 also links to the data origin at [The National Accounts of
