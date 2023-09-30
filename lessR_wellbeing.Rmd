@@ -24,14 +24,14 @@ knitr::opts_chunk$set(
 
 ```{r libraries}
 
+# Creation of R package citation file
+# knitr::write_bib(c(.packages(), "rmarkdown"), "../common/packages.bib")
+
 # Libraries
 library(UsingR) # For wellbeing data
 library(lessR) # Main package
 library(kableExtra) # For tables
 library(lubridate) # For date & time functions
-
-# Creation of R package citation file
-knitr::write_bib(c(.packages(), "rmarkdown"), "../common/packages.bib")
 ```
 <br>
 
@@ -59,7 +59,7 @@ subject is far too deep and complicated to go into here in any great detail, but
 the introduction sets the scene.
 
 The idea here is to investigate the relationships between wellbeing and working
-hours using the `lessr` package [@R-lessR] which I have recently found to be
+hours using the `lessr` package [@lessR2021] which I have recently found to be
 very useful.
 
 ```{r data}
@@ -76,10 +76,10 @@ d <- Read("./data/wellbeing.xlsx")
 
 # The Data
 
-The wellbeing data are included in the `UsingR` package [@R-UsingR] and
-originally used [here](http://prcweb.co.uk/lab/what-makes-us-happy/), where you
-can see interactive correlations with wellbeing and variables of your choice.
-There are also links to the data origin at [The National Accounts of
+The wellbeing data are included in the `UsingR` [@verzaniUsingRDataSets2022] package and originally found
+[here](http://prcweb.co.uk/lab/what-makes-us-happy/), where you can see
+interactive correlations with wellbeing and variables of your choice. There are
+also links to the data origin at [The National Accounts of
 Well-being](http://www.nationalaccountsofwellbeing.org/) and category data from
 [Gapminder](https://www.gapminder.org/data/), where you can also download other
 data from the *Gapminder* database in CSV or XLSX formats.
@@ -94,8 +94,7 @@ and $11$ additional variables:
 
 The data require minimal cleaning, so in this case only the necessary columns
 are selected with `d[]` function; and the Well.being column sorted with the
-`Sort()` function in `lessR` (all code for this document can be found in the
-[Appendix](#Appendix)). For the purposes of using `lessR`, the
+`Sort()` function in `lessR`. For the purposes of using `lessR`, the
 `UsingR::wellbeing` data frame was saved as an `.xlsx` file with `Write()` and
 re-imported with `Read()` into the variable `d` (you might not have to do this -
 I could not get the original data to be manipulated with `lessR` functions).
@@ -197,8 +196,8 @@ The statistical information is reported as follows:
 # Plots
 
 Three plots for visualising the regression and the assumptions are also produced
-(automatically in the `Regression()` function, or separately using `regPlot()`, 
-as here:)
+(automatically in the `Regression()` function, or separately using `regPlot()`), 
+as here:
 
 __Figure 1.__  
 _Scatterplot showing regression line, prediction and confidence intervals:_
@@ -379,12 +378,3 @@ addressed. In general, `lessR` was found to be an excellent $R$ package to
 manipulate data with minimal use of $R$ for maximum output.
 
 # References
-
-<div id="refs"></div>
-
-\
-
-# Appendix: All code for this article {#Appendix}
-
-```{r ref.label=knitr::all_labels(), echo = T, eval = T, results='markup'}
-```
