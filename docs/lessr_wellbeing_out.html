@@ -13,7 +13,7 @@
 
 <title>Regression of Well.being on Working.hours</title>
 
-<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
@@ -445,11 +445,13 @@ the <em>training data</em>, from which the model is estimated.</p>
 <pre><code>## [with the read.xlsx() function from Schauberger and Walker&#39;s openxlsx package] 
 ## 
 ## &gt;&gt;&gt; Suggestions
-## To read a csv or Excel file of variable labels, var_labels=TRUE
+## Recommended binary format for data files: feather
+##   Create with Write(d, &quot;your_file&quot;, format=&quot;feather&quot;)
+## To read a csv or Excel file of variable labelsvar_labels=TRUE
 ##   Each row of the file:  Variable Name, Variable Label
 ## Read into a data frame named l  (the letter el)
 ## 
-## Details about your data, Enter:  details()  for d, or  details(name)
+## More details about your data, Enter:  details()  for d, or  details(name)
 ## 
 ## Data Types
 ## ------------------------------------------------------------
@@ -637,12 +639,12 @@ assessing the fit of the model.</p>
 standard deviation of the residuals and several <span
 class="math inline">\(R^2\)</span> statistics.</p>
 <pre class="r"><code>r$out_fit</code></pre>
-<pre><code>## Standard deviation of Well.being: 0.40
+<pre><code>## Standard deviation of Well.being: 0.38
 ## 
-## Standard deviation of residuals:  0.33 for 15 degrees of freedom
-## 95% range of residual variation:  1.43 = 2 * (2.131 * 0.33)
+## Standard deviation of residuals:  0.33 for df=15
+## 95% range of residuals:  1.43 = 2 * (2.131 * 0.33)
 ## 
-## R-squared:  0.257    Adjusted R-squared:  0.208    PRESS R-squared:  0.102
+## R-squared: 0.257    Adjusted R-squared: 0.208    PRESS R-squared: 0.102
 ## 
 ## Null hypothesis of all 0 population slope coefficients:
 ##   F-statistic: 5.195     df: 1 and 15     p-value:  0.038</code></pre>
@@ -734,7 +736,7 @@ class="math inline">\(r\)</span> = -0.507.</p>
 in the model with the scatterplot. Plot the scatter plot separately with
 the <code>lessR</code> function <code>regPlot</code>. Specify option 1
 to indicate this specific plot.</p>
-<pre class="r"><code>regPlot(r, 1, pred.intervals=FALSE)  # 1: scatter plot </code></pre>
+<pre class="r"><code>regPlot(r, 1, pred.intervals=FALSE, NULL)  # 1: scatter plot </code></pre>
 <p><img src="lessr_wellbeing_out_files/figure-html/unnamed-chunk-8-1.png" width="528" /></p>
 </div>
 <div id="analysis-of-residuals-and-influence" class="section level2">
@@ -857,7 +859,7 @@ illustrated with an enhancement of the original scatter plot. Plot the
 scatter plot with prediction intervals separately with the
 <code>lessR</code> function <code>regPlot</code>. Specify option 1 to
 indicate this specific plot.</p>
-<pre class="r"><code>regPlot(r, 1)  # 1: scatter plot with prediction intervals</code></pre>
+<pre class="r"><code>regPlot(r, 1, NULL)  # 1: scatter plot with prediction intervals</code></pre>
 <p><img src="lessr_wellbeing_out_files/figure-html/unnamed-chunk-11-1.png" width="528" /></p>
 </div>
 <div id="prediction-intervals-from-new-data" class="section level3">
@@ -901,7 +903,7 @@ estimates, but it does render the inferential tests invalid. Plot the
 distribution of residuals separately with the <code>lessR</code>
 function <code>regPlot</code>. Specify option 2 to indicate this
 specific plot.</p>
-<pre class="r"><code>regPlot(r, 2)  # 2: distribution of residuals</code></pre>
+<pre class="r"><code>regPlot(r, 2, NULL)  # 2: distribution of residuals</code></pre>
 <p><img src="lessr_wellbeing_out_files/figure-html/unnamed-chunk-14-1.png" width="528" /></p>
 </div>
 <div id="fitted-values-vs-residuals" class="section level3">
@@ -915,7 +917,7 @@ horizontal band around the zero-line. Otherwise they demonstrate
 residuals separately with the <code>lessR</code> function
 <code>regPlot</code>. Specify option 3 to indicate this specific
 plot.</p>
-<pre class="r"><code>regPlot(r, 3)  # 3: scatter plot of fitted with residuals</code></pre>
+<pre class="r"><code>regPlot(r, 3, NULL)  # 3: scatter plot of fitted with residuals</code></pre>
 <p><img src="lessr_wellbeing_out_files/figure-html/unnamed-chunk-15-1.png" width="528" /></p>
 </div>
 </div>

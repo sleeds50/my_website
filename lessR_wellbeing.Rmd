@@ -206,7 +206,7 @@ _Scatterplot showing regression line, prediction and confidence intervals:_
 
 ```{r plot1, fig.show='asis'}
 # The regression plot
-regPlot(r, 1, res_rows = "all") # Max rows = 20, use `res_rows='all'` for all rows
+regPlot(r, 1, NULL) # Max rows = 20, use `res_rows='all'` for all rows
 ```
 \
 
