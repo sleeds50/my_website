@@ -1,19 +1,4 @@
----
-title: "Diamonds"
-author: "Stuart Leeds"
-date: "19/03/2022"
-output:
-  html_document:
-    toc: false
-bibliography:
-- ../common/packages.bib
-- ../common/my_library.bib
-csl: ../common/apa.csl
-link-citations: yes
-
----
-
-```{r setup, include=FALSE, message=FALSE, warning=FALSE}
+## ----setup, include=FALSE, message=FALSE, warning=FALSE-------------------------------------------------------------
 
 # Setup
 knitr::opts_chunk$set(
@@ -24,9 +9,9 @@ knitr::opts_chunk$set(
   fig.align = "center"
 )
 
-```
 
-```{r libraries and set-up}
+
+## ----libraries and set-up-------------------------------------------------------------------------------------------
 
 # Libraries
 # library(tidyr)
@@ -47,67 +32,22 @@ knitr::write_bib(c(.packages(), "rmarkdown"), "../common/packages.bib")
 
 # Set colour scheme
 mycol <- brewer.pal(n = 8, name = "Set2")
-```
 
-```{r data}
+
+## ----data-----------------------------------------------------------------------------------------------------------
 
 # Import data and move 'price' variable to front of data frame
 d <- diamonds
 
-```
 
-```{r desc}
+
+## ----desc-----------------------------------------------------------------------------------------------------------
 
 # Describe data
 describe(d)
-```
 
 
-# Introduction
-
-Are diamonds really a girls best friend? Are they even forever? They are
-certainly expensive; and they last a long time. Diamonds are the hardest known
-natural material and are developed deep underground over millennia of immense
-pressure and temperature. See the
-[*Wikipedia*](https://en.wikipedia.org/w/index.php?title=Diamond&oldid=1073530080)
-entry for general information about diamonds.
-
-The purpose of this short article is to analyse a dataset of diamond information
-using various `R` packages. We are interested in the descriptive statistics of
-the dataset; the correlation between price and the main variables; and whether
-the relationship between carat and the price of diamonds is mediated by cut,
-color and clarity.
-
-# Data
-
-The `diamonds` data are found in `ggplot2` [@R-ggplot2] and
-consist of almost 54,000 round-cut diamonds with the following variables:
-
-> 1.  **Carat** *(weight of the diamond):*
->     `r paste(min(d$carat), " to ", max(d$carat), "ct", sep = "")`.
-> 2.  **Cut** *(quality of the cut):* `r levels(d$cut)`.
-> 3.  **Color:** [Best] `r levels(d$color)` [Worst].
-> 4.  **Clarity** *(how clear the diamond is):* [Worst] `r levels(d$clarity)`
->     [Best].
-> 5.  **Depth** *(total depth percentage):* 43 to 79%, calculated with either
->     $$\frac{z}{mean(x, y)}\times 100 \quad \text{or}\quad \frac{2
->     \times z}{(x + y)}\times 100$$
-> 6.  **Table** *(width of top of diamond relative to widest point [percentage
->     of diameter]):*
->     `r paste(min(d$table), " to ", max(d$table), "%", sep = "")`.
-> 7.  **Price** *(US$):* `r paste(min(d$price), " to ", max(d$price))`.  
->       
->     The variables below are used to calculate *Depth (Item 5)*, and are not
->     used in any analysis in this article:  
->     **x** *(length):* `r paste(min(d$x), " to ", max(d$x), "mm", sep = "")`.  
->     **y** *(width):* `r paste(min(d$y), " to ", max(d$y), "mm", sep = "")`.  
->     **z** *(depth):* `r paste(min(d$z), " to ", max(d$z), "mm", sep = "")`.
-> 
-> <small>*information from `?diamonds`*.</small>
-
-
-
-```{r smaller data}
+## ----smaller data---------------------------------------------------------------------------------------------------
 
 # original, and adding numerical values for cut/color/clarity (for psych::mediate())
 
@@ -136,10 +76,9 @@ d_cla <- d_small |>
     adorn_pct_formatting()
 
 
-```
 
 
-```{r tables, results = 'asis'}
+## ----tables, results = 'asis'---------------------------------------------------------------------------------------
 
 # Table for number of diamonds in each categorical variable
 
@@ -157,9 +96,9 @@ kbl(list(d_cut, d_col, d_cla),
       footnote_as_chunk = T,
       c("_Color_- D (Absolutely colorless or icy-white); E & F (Colorless); G - J (Near colorless).", "_Clarity_- I1 - I3 (Included); SI2 & SI1 (Slightly included); VS2 & VS1 (Very slightly included); VVS2 & VVS1 (Very very slightly included); IF (Internally flawless); [FL (Flawless), not listed here].", "See _Brilliant Earth_ for further details of variable identification (ID) categories: [_Cut_](https://www.brilliantearth.com/diamond-cuts/); [_Color_](https://www.brilliantearth.com/diamond-color/); [_Clarity_](https://www.brilliantearth.com/diamond-clarity/)"),
       general_title = "__Note. __ ")
-``` 
 
-```{r categorical figures}
+
+## ----categorical figures--------------------------------------------------------------------------------------------
 
 # figures to show number of items in each category
 
@@ -199,11 +138,9 @@ cla_plot <- d_cla |>
   coord_flip()
 
 
-```
 
-\
 
-```{r show_cat_figs, fig.show='hold', out.width="33.3%", fig.cap="__Figure 1.__ _Number of Occurances for each Categorical Variable_"}
+## ----show_cat_figs, fig.show='hold', out.width="33.3%", fig.cap="__Figure 1.__ _Number of Occurances for each Categorical Variable_"----
 
 # plot categorical figures
 
@@ -218,21 +155,9 @@ par(op)
 
 
 
-```
 
 
-
-
-# Method
-
-
-
-
-# Results
-
-## Correlation
-
-```{r color and correlation}
+## ----color and correlation------------------------------------------------------------------------------------------
 
 # preferred correlation table colours
 
@@ -242,19 +167,9 @@ gr <- colorRampPalette(c("#FC8D62", "white", "#66C2A5"))
 
 dcor <- lowerCor(d_small[,c(1, 6:8, 5)])
 
-```
-
-Correlational analysis shows the relationships between variables whether
-significant, or otherwise (see Figure 2 below). As expected all the main
-variables in the diamond data set are significantly correlated with price. Of
-the significant positive relationships, *carat* is the strongest ($r=$ $`r round(dcor[5, 1], 2)`$, $p< .001$), with weak correlations with price found for
-*color* ($r=$ $`r round(dcor[5, 3], 2)`$, $p< .001$). The remaining variables
-have negative, weak, yet significant correlations with price: *clarity* ($r=$
-$`r round(dcor[5, 4], 2)`$, $p< .001$) and *cut* ($r=$ $`r round(dcor[5, 2],
-2)`$, $p< .001$).
 
 
-```{r corr plot, fig.cap="__Figure 2.__ _Correlation Plot of Diamonds Data with the Main Variables_"}
+## ----corr plot, fig.cap="__Figure 2.__ _Correlation Plot of Diamonds Data with the Main Variables_"-----------------
 
 # lower correlation plot
 
@@ -262,21 +177,9 @@ corPlot(dcor, upper = FALSE, stars = TRUE, main = "", gr = gr, cex = .95,
         labels = c("carat", "cut", "color", "clarity", "price"))
 
 
-```
-\
 
-The variance of each correlation with price can be explained with $r^2$ (see
-Figure 3 below). For example, $`r round(dcor[5, 1]^2, 2)*100`\%$ of the variance
-in the price of diamonds can be explained by *carat* ($r^2=$ $`r round(dcor[5,
-1]^2, 2)`$). The same principle applies to the other correlations: *color*
-($r^2=$ $`r round(dcor[5, 3]^2, 2)`$ explains $`r round(dcor[5, 3]^2, 2)*100`\%$
-of the variance in price);
-*clarity* ($r^2=$ $`r round(dcor[5, 4]^2, 2)`$; $`r round(dcor[5, 4]^2, 2)*100`\%$); 
-and *cut* ($r^2=$ $`r round(dcor[5, 2]^2, 3)`$); $`r round(dcor[5, 2]^2, 3)*100`\%$).
 
-\
-
-```{r correlation venns, fig.show='hold', out.width="25%",fig.cap="__Figure 3.__ _Percentage of Variance in Price (shown in green) and each Variable_"}
+## ----correlation venns, fig.show='hold', out.width="25%",fig.cap="__Figure 3.__ _Percentage of Variance in Price (shown in green) and each Variable_"----
 
 op <- par(mfrow = c(1, 4))
 
@@ -329,16 +232,9 @@ cut_venn <- draw.pairwise.venn(
 
 par(op)
 
-```
 
 
-
-
-\
-
-## Linear Regression
-
-```{r Linear Regression}
+## ----Linear Regression----------------------------------------------------------------------------------------------
 
 # for table info
 
@@ -347,18 +243,13 @@ dia_lr <- lm(price ~ carat + Cut + Color + Clarity, data = d_small)
 dia_lr_info <- apa_print(dia_lr)
 
 
-```
 
-```{r}
 
-```
+## -------------------------------------------------------------------------------------------------------------------
 
 
 
-
-
-
-```{r lr table, results='asis'}
+## ----lr table, results='asis'---------------------------------------------------------------------------------------
 
 # construct LR table
 
@@ -370,18 +261,9 @@ kbl(dia_lr_info$table,
   kable_classic() |>
     kable_styling(full_width = FALSE)
 
-```
-
-\
-
-A significant regression model was found (`r dia_lr_info$statistic$modelfit`) with `r dia_lr_info$estimate$modelfit$r2_adj`
 
 
-\
-
-## Mediation
-
-```{r med calc, cache=TRUE, fig.cap="__Figure 4.__ _Mediation Plot Between Carat and Price Mediated by Cut, Color and Clarity_"}
+## ----med calc, cache=TRUE, fig.cap="__Figure 4.__ _Mediation Plot Between Carat and Price Mediated by Cut, Color and Clarity_"----
 
 # mediation model
 
@@ -389,35 +271,14 @@ dmed1 <- mediate(price ~ carat + (Cut) + (Color) + (Clarity),
   data = d_small, plot = TRUE, main = "", n.obs = 53940
 )
 
-```
 
- 
-```{r mediation summary}
+
+## ----mediation summary----------------------------------------------------------------------------------------------
 
 # Numerical detail of mediation
 summary(dmed1)
-```
 
 
+## -------------------------------------------------------------------------------------------------------------------
 
 
-
-
-
-\
-
-## Discussion
-
-
-
-\
-
-## Conclusion
-
-\
-
-## References
-
-<div id="refs"></div>
-
-\

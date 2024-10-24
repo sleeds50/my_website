@@ -133,7 +133,7 @@ Visually summarize the relationship of Well.being and Working.hours in the model
 Plot the scatter plot separately with the `lessR` function `regPlot`. Specify option 1 to indicate this specific plot.
 
 ```{r}
-regPlot(r, 1, pred.intervals=FALSE)  # 1: scatter plot 
+regPlot(r, 1, pred.intervals=FALSE, NULL)  # 1: scatter plot 
 ```
 
 ## Analysis of Residuals and Influence
@@ -177,7 +177,7 @@ The confidence intervals for the points on the regression line, and the much lar
 Plot the scatter plot with prediction intervals separately with the `lessR` function `regPlot`. Specify option 1 to indicate this specific plot.
 
 ```{r}
-regPlot(r, 1)  # 1: scatter plot with prediction intervals
+regPlot(r, 1, NULL)  # 1: scatter plot with prediction intervals
 ```
 
 ### Prediction Intervals from New Data
@@ -212,7 +212,7 @@ Violation of normality does not bias the estimates, but it does render the infer
 Plot the distribution of residuals separately with the `lessR` function `regPlot`. Specify option 2 to indicate this specific plot.
 
 ```{r}
-regPlot(r, 2)  # 2: distribution of residuals
+regPlot(r, 2, NULL)  # 2: distribution of residuals
 ```
 
 
@@ -221,5 +221,5 @@ The residuals should represent random variation, free of any pattern or structur
 Plot the scatter plot of fitted values with residuals separately with the `lessR` function `regPlot`. Specify option 3 to indicate this specific plot.
 
 ```{r}
-regPlot(r, 3)  # 3: scatter plot of fitted with residuals
+regPlot(r, 3, NULL)  # 3: scatter plot of fitted with residuals
 ```

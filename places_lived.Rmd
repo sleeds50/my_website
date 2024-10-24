@@ -1,7 +1,7 @@
 ---
 title: "Places I have lived"
 # author: "Stuart Leeds"
-date: "2021-07-14"
+date: "2021-07-14, _updated 2024-10-24_"
 output: 
   html_document:
     toc: FALSE
@@ -54,7 +54,7 @@ Table 1 also shows the order of properties lived in, from birth to now
 
 # create data frame
 dwellings <- data.frame(
-  List = 1:18,Address = c(
+  List = 1:19,Address = c(
     "Abridge, Essex",
     "Stansted, Essex",
     "Kuwait City, Kuwait",
@@ -71,6 +71,7 @@ dwellings <- data.frame(
     "Harwich, Essex",
     "Harwich, Essex",
     "Ipswich, Suffolk",
+    "Bath, Somerset",
     "Bath, Somerset",
     "Bath, Somerset"
   ),
@@ -92,7 +93,8 @@ dwellings <- data.frame(
     51.932645,
     52.068666,
     51.394750,
-    51.392352
+    51.392352,
+    51.381027
   ),
   Longitude = c(
     0.124044,
@@ -112,7 +114,8 @@ dwellings <- data.frame(
     1.275031,
     1.130408,
     -2.388744,
-    -2.384639
+    -2.384639,
+    -2.380494
   )
 )
 ```
@@ -147,8 +150,8 @@ meanCoords <- data.frame(
     mean(dwellings[-c(3:4), ]$Longitude) # England
   ),
   Place = c(
-    "Génicourt-sur-Meuse, France",
-    "Cheshunt, Hertfordshire, England"
+    "Neuvilly en Argonne, France",
+    "Hadley Wood, Hertfordshire, England"
   )
 )
 ```
@@ -170,8 +173,8 @@ medianCoords <- data.frame(
     median(dwellings[-c(3:4), ]$Longitude) # England
   ),
   Place = c(
-    "Upminster, Essex, England",
-    "Stapleford Abbotts, Essex, England"
+    "Dartford, Kent, England",
+    "Lambourne End, Essex, England"
   )
 )
 ```
@@ -387,7 +390,9 @@ lived.
 # mean coordinates
 meanCoords |>
   kbl(caption = "<b>Table 2</b><br> <i>Average coordinates (mean)</i>") |>
-  kable_classic_2(full_width = FALSE, position = "center")
+  kable_classic_2(full_width = FALSE, position = "center") |>
+    footnote("Update shows new locations. 
+             Originally: Worldwide place: Génicourt-sur-Meuse, France; England place: Cheshunt, Hertfordshire")
 ```
 
 ```{r mean coords plot}
@@ -409,16 +414,16 @@ ggplot(meanCoords, aes(x = Longitude, y = Latitude)) +
   geom_hline(yintercept = 51.4825766) +
   labs(
     title = "Coodinate plot 6: the average (mean) of all coordinates",
-    caption = "Note. Coordinates intercept at Greenwich, London
-            Cheshunt= England dwelling mean
-            Génicourt-sur-Meuse= World dwelling mean"
+    caption = "Note. Coordinates intercept at Greenwich, London. Before update: 
+    England mean = Cheshunt, Hertfordshire; World mean =  Génicourt-sur-Meuse, France"
   ) +
   theme(plot.caption = element_text(hjust = 0, face = "italic"))
 ```
 
 
-I must admit, I quite fancy **Génicourt-sur-Meuse, France**. I've never been
-there, but it sounds like it would suit me. Ironically, I worked in Cheshunt for
+I must admit, I quite fancy **Génicourt-sur-Meuse and Neuvilly en Argonne,
+France**. I've never been to either, but it sounds like it would suit me.
+Ironically, I worked in Cheshunt (the original location before the update!) for
 a fair while until I was made redundant, though I didn't miss the daily journey
 from Harwich and back which became a drag after about 5 years of working for the
 company there.
@@ -437,7 +442,9 @@ to both options.
 # median coordinates
 medianCoords |>
   kbl(caption = "<b>Table 3</b><br> <i> Average coordinates (median)</i>") |>
-  kable_classic_2(full_width = FALSE, position = "center")
+  kable_classic_2(full_width = FALSE, position = "center") |> 
+    footnote("Update shows new locations. 
+    Originally: World place: Upminster, Essex. England place: Stapleford Abbotts, Essex")
 ```
 
 ```{r med coords plot}
@@ -461,9 +468,8 @@ ggplot(medianCoords, aes(x = Longitude, y = Latitude)) +
   labs(
     title = "Coodinate plot 7: the average (median) of all coordinates",
     caption = "Note. Coordinates intercept at Greenwich, London
-            * = Rush Green, Dagenham
-            Stapleford Abbotts= England dwelling median
-            Upminster= World dwelling median"
+            * = Rush Green, Dagenham. Before update: 
+            England median = Stapleford Abbotts; World median = Upminster"
   ) +
   theme(plot.caption = element_text(hjust = 0, face = "italic"))
 ```
@@ -474,6 +480,7 @@ ggplot(medianCoords, aes(x = Longitude, y = Latitude)) +
 > *Note.* The irony of the median coordinate plot is that both locations from
 > the worldwide and England coordinates are a stones throw from where I was
 > born! (Shown with an asterisk on the map above).
+> The updated ones are not that far away either!
 
 <br>
 
@@ -490,7 +497,7 @@ Once installed and loaded, I realised I needed another variable to hold the
 and latitude in that order, so had to reverse the two columns in my original
 mean/median variables, then combined the two new variables into one, for each.
 
-So the calculation returns like this for Stapleford Abbot: 
+So the calculation returns like this for Lambourne End: 
 
 
 ```{r distance between- setup}
@@ -520,7 +527,7 @@ dist_median <- distm(rush_to_stapleford[, 1:2], fun = distGeo)
 # Print distance matrix
 dist_median
 ```
-...and this for Upminster...
+...and this for Dartford
 
 ```{r distance between- calc}
 
@@ -547,11 +554,13 @@ It's enough to give a guide to how close *Rush Green* is...
 
 to the median of places in England:  
 
-> __Stapleford Abbotts = 8.73Km (5.43 miles) away.__
+> __Lambourne End = 8.60Km (5.34 miles) away.__
+> <small>_Originally: Stapleford Abbotts = 8.73Km (5.43 miles)</small>
 
 to the median of worldwide locations:  
 
-> __Upminster = 5.58Km (3.47 miles) away.__
+> __Dartford = 12.89Km (8.01 miles) away.__
+> <small>_Originally: Upminster = 5.58Km (3.47 miles)</small>
 
 This has been an interesting project - thanks for reading. I might take it
 further one day and tell the story of each place and why I moved so many times.
