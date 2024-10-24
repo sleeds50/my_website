@@ -346,8 +346,8 @@ ggplot(dwellings, aes(x = Longitude, y = Latitude)) +
 
 ## Somerset
 
-There's little point presenting a plot with two points on it, so Coordinate
-plot 5 below shows the locations in Surrey/Middlesex and Somerset and the
+There's little point presenting a plot with three points on it, so Coordinate
+plot 5 below shows the locations in Surrey/Middlesex and Somerset, with the
 expanse between.
 
 ```{r map Bath plot}
@@ -493,7 +493,7 @@ Globe](https://statisticsglobe.com/geospatial-distance-between-two-points-in-r)
 - actually a good site and recommended for many explanations of R-functions).
 
 Once installed and loaded, I realised I needed another variable to hold the
-\_Rush Green \_ coordinates. Then, I found out that `distm` needs the longitude
+__Rush Green__ coordinates. Then, I found out that `distm` needs the longitude
 and latitude in that order, so had to reverse the two columns in my original
 mean/median variables, then combined the two new variables into one, for each.
 
@@ -555,20 +555,12 @@ It's enough to give a guide to how close *Rush Green* is...
 to the median of places in England:  
 
 > __Lambourne End = 8.60Km (5.34 miles) away.__
-<<<<<<< HEAD
 > <small>Originally: Stapleford Abbotts = 8.73Km (5.43 miles)</small>
-=======
-> <small>_Originally: Stapleford Abbotts = 8.73Km (5.43 miles)</small>
->>>>>>> aa0a5acb0fe295e580b778bf602eb927b975a27e
 
 to the median of worldwide locations:  
 
 > __Dartford = 12.89Km (8.01 miles) away.__
-<<<<<<< HEAD
 > <small>Originally: Upminster = 5.58Km (3.47 miles)</small>
-=======
-> <small>_Originally: Upminster = 5.58Km (3.47 miles)</small>
->>>>>>> aa0a5acb0fe295e580b778bf602eb927b975a27e
 
 This has been an interesting project - thanks for reading. I might take it
 further one day and tell the story of each place and why I moved so many times.
